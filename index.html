@@ -107,6 +107,7 @@
       height: 220px;
       object-fit: cover;
       background: #f6f6f6;
+      cursor: pointer;
     }
 
     .project-card .content {
@@ -152,6 +153,56 @@
       background: #0a58ca;
     }
 
+    /* Lightbox Carousel */
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 70vh;
+      border-radius: 10px;
+    }
+
+    #lightbox .caption {
+      margin-top: 10px;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    #lightbox .controls {
+      margin-top: 15px;
+    }
+
+    #lightbox button {
+      background: var(--primary);
+      border: none;
+      color: white;
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      margin: 0 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #lightbox span.close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+    }
+
     @media (max-width: 600px) {
       .card {
         flex-direction: column;
@@ -168,7 +219,7 @@
 <body>
 
   <div class="container">
-    <button class="toggle-dark" onclick="document.body.classList.toggle('dark')">Toggle Dark Mode</button>
+    <button class="toggle-dark" onclick="document.body.classList.toggle('dark')">Toggle Mode</button>
 
     <!-- Profile Card -->
     <div class="card">
@@ -186,8 +237,9 @@
     <h2 class="section-title">Projects</h2>
     <div class="projects">
 
+      <!-- Each project card image has an onclick for lightbox -->
       <div class="project-card">
-        <img src="img/reader.jpeg" alt="Reader App">
+        <img src="img/reader1.jpeg" alt="Reader App" onclick="openCarousel(0)">
         <div class="content">
           <h3>📱 Reader App</h3>
           <p>Android app for viewing PDF, Word, Excel, and TXT files with text-to-speech and recent file tracking.</p>
@@ -195,7 +247,7 @@
       </div>
 
       <div class="project-card">
-        <img src="img/cuk.jpeg" alt="University Student Portal">
+        <img src="img/cuk1.jpeg" alt="University Student Portal" onclick="openCarousel(1)">
         <div class="content">
           <h3>🏫 University Student Portal</h3>
           <p>Student app to access e-library, chatbot, campus maps, and school portals. Powered by Firebase.</p>
@@ -203,7 +255,7 @@
       </div>
 
       <div class="project-card">
-        <img src="img/ecommerce.jpg" alt="E-commerce">
+        <img src="img/ecommerce.jpg" alt="E-commerce" onclick="openCarousel(2)">
         <div class="content">
           <h3>💄 E-commerce (Vincent-Cosmetics)</h3>
           <p>PHP + MySQL site with M-Pesa, shopping cart, filters, and admin dashboard for product management.</p>
@@ -211,7 +263,7 @@
       </div>
 
       <div class="project-card">
-        <img src="img/loan.jpg" alt="Loan Dashboard">
+        <img src="img/loan.jpg" alt="Loan Dashboard" onclick="openCarousel(3)">
         <div class="content">
           <h3>📊 Loan Management System</h3>
           <p>Admin dashboard to manage loans, filter/search, show summaries and graphs. Fully mobile responsive.</p>
@@ -219,7 +271,7 @@
       </div>
 
       <div class="project-card">
-        <img src="img/social.jpg" alt="Social Media Monitoring">
+        <img src="img/social.jpg" alt="Social Media Monitoring" onclick="openCarousel(4)">
         <div class="content">
           <h3>📈 Social Media Monitoring</h3>
           <p>Web app (React + PHP) to monitor sentiment, engagement, and trends using keyword tracking and charts.</p>
@@ -227,7 +279,7 @@
       </div>
 
       <div class="project-card">
-        <img src="img/admin.jpg" alt="Admin Panel">
+        <img src="img/admin.jpg" alt="Admin Panel" onclick="openCarousel(5)">
         <div class="content">
           <h3>🛠️ Admin Panel</h3>
           <p>Responsive panel built with HTML, CSS, and JS for managing users, reports, and app dashboards.</p>
@@ -235,19 +287,73 @@
       </div>
 
       <div class="project-card">
-        <img src="img/industrio.jpg" alt="Industrio Construction">
+        <img src="img/industrio.jpg" alt="Industrio Website" onclick="openCarousel(6)">
         <div class="content">
           <h3>🏗️ Industrio Construction Website</h3>
           <p>Professional construction site with multi-page design, service pages, gallery, and contact form.</p>
         </div>
       </div>
+    </div>
+  </div>
 
+  <!-- Lightbox Carousel Modal -->
+  <div id="lightbox">
+    <span class="close" onclick="closeCarousel()">&times;</span>
+    <img id="carousel-image" src="" alt="">
+    <div class="caption" id="carousel-caption"></div>
+    <div class="controls">
+      <button onclick="prevImage()">Prev</button>
+      <button onclick="nextImage()">Next</button>
     </div>
   </div>
 
   <div class="footer">
     <p>© 2025 Nigel Ooko. All rights reserved.</p>
   </div>
+
+  <script>
+    const projects = [
+      { images: ['img/reader1.jpeg', 'img/reader.jpg'], captions: ['Main Reader UI', 'Voice Reader Feature'] },
+      { images: ['img/cuk1.jpeg', 'img/cuk.jpg'], captions: ['CUK Portal Home', 'Library Section'] },
+      { images: ['img/ecommerce.jpg', 'img/ecommerce.jpg'], captions: ['Main Storefront', 'Cart and Checkout'] },
+      { images: ['img/loan.jpg', 'img/loan.jpg'], captions: ['Dashboard Overview', 'Loan Summary Table'] },
+      { images: ['img/social.jpg', 'img/social.jpg'], captions: ['Keyword Tracking', 'Sentiment Graphs'] },
+      { images: ['img/admin.jpg', 'img/admin.jpg'], captions: ['Admin Panel UI', 'User Management'] },
+      { images: ['img/industrio.jpg', 'img/industrio.jpg'], captions: ['Homepage', 'Project Gallery'] },
+    ];
+
+    let currentProjectIndex = 0;
+    let currentImageIndex = 0;
+
+    function openCarousel(projectIndex) {
+      currentProjectIndex = projectIndex;
+      currentImageIndex = 0;
+      updateCarousel();
+      document.getElementById("lightbox").style.display = "flex";
+    }
+
+    function updateCarousel() {
+      const project = projects[currentProjectIndex];
+      document.getElementById("carousel-image").src = project.images[currentImageIndex];
+      document.getElementById("carousel-caption").innerText = project.captions[currentImageIndex];
+    }
+
+    function closeCarousel() {
+      document.getElementById("lightbox").style.display = "none";
+    }
+
+    function nextImage() {
+      const project = projects[currentProjectIndex];
+      currentImageIndex = (currentImageIndex + 1) % project.images.length;
+      updateCarousel();
+    }
+
+    function prevImage() {
+      const project = projects[currentProjectIndex];
+      currentImageIndex = (currentImageIndex - 1 + project.images.length) % project.images.length;
+      updateCarousel();
+    }
+  </script>
 
 </body>
 </html>
