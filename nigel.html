@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nigel's Portfolio</title>
+  <style>
+    :root {
+      --bg: #f0f2f5;
+      --text: #333;
+      --card: #fff;
+      --primary: #0d6efd;
+    }
+
+    body.dark {
+      --bg: #121212;
+      --text: #e0e0e0;
+      --card: #1e1e1e;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 15px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 3rem;
+      transition: background 0.3s;
+    }
+
+    .card img.profile-pic {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 2rem;
+      border: 3px solid var(--primary);
+    }
+
+    .card .info {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .card .info h1 {
+      margin: 0;
+      font-size: 2.4rem;
+      color: var(--primary);
+    }
+
+    .card .info p {
+      margin: 0.4rem 0;
+      font-size: 1rem;
+    }
+
+    h2.section-title {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 2rem;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background: #f6f6f6;
+    }
+
+    .project-card .content {
+      padding: 1.2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card h3 {
+      margin: 0 0 0.5rem 0;
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+
+    .project-card p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: var(--card);
+      color: var(--text);
+      margin-top: 3rem;
+      border-top: 1px solid #ccc;
+    }
+
+    .toggle-dark {
+      display: inline-block;
+      margin: 1rem auto;
+      padding: 0.5rem 1rem;
+      border: none;
+      background: var(--primary);
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .toggle-dark:hover {
+      background: #0a58ca;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .card img.profile-pic {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <button class="toggle-dark" onclick="document.body.classList.toggle('dark')">Toggle Dark Mode</button>
+
+    <!-- Profile Card -->
+    <div class="card">
+      <img src="img/profile.jpeg" alt="Nigel's Profile Picture" class="profile-pic">
+      <div class="info">
+        <h1>Nigel Ooko</h1>
+        <p><strong>Android & Web Developer | Firebase Specialist</strong></p>
+        <p>📍 Nairobi, Kenya</p>
+        <p>📧 nigelooko364@gmail.com | 📞 +254 741 441 246</p>
+        <p>🌐 <a href="https://github.com/nigel364" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/nigel-ooko-4319822b6/" target="_blank">LinkedIn</a></p>
+      </div>
+    </div>
+
+    <!-- Projects Section -->
+    <h2 class="section-title">Projects</h2>
+    <div class="projects">
+
+      <div class="project-card">
+        <img src="img/reader.jpeg" alt="Reader App">
+        <div class="content">
+          <h3>📱 Reader App</h3>
+          <p>Android app for viewing PDF, Word, Excel, and TXT files with text-to-speech and recent file tracking.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="img/cuk.jpeg" alt="University Student Portal">
+        <div class="content">
+          <h3>🏫 University Student Portal</h3>
+          <p>Student app to access e-library, chatbot, campus maps, and school portals. Powered by Firebase.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="img/ecommerce.jpg" alt="E-commerce">
+        <div class="content">
+          <h3>💄 E-commerce (Vincent-Cosmetics)</h3>
+          <p>PHP + MySQL site with M-Pesa, shopping cart, filters, and admin dashboard for product management.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="img/loan.jpg" alt="Loan Dashboard">
+        <div class="content">
+          <h3>📊 Loan Management System</h3>
+          <p>Admin dashboard to manage loans, filter/search, show summaries and graphs. Fully mobile responsive.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="img/social.jpg" alt="Social Media Monitoring">
+        <div class="content">
+          <h3>📈 Social Media Monitoring</h3>
+          <p>Web app (React + PHP) to monitor sentiment, engagement, and trends using keyword tracking and charts.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="img/admin.jpg" alt="Admin Panel">
+        <div class="content">
+          <h3>🛠️ Admin Panel</h3>
+          <p>Responsive panel built with HTML, CSS, and JS for managing users, reports, and app dashboards.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="img/industrio.jpg" alt="Industrio Construction">
+        <div class="content">
+          <h3>🏗️ Industrio Construction Website</h3>
+          <p>Professional construction site with multi-page design, service pages, gallery, and contact form.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>© 2025 Nigel Ooko. All rights reserved.</p>
+  </div>
+
+</body>
+</html>
