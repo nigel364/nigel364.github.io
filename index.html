@@ -253,20 +253,26 @@
           <p>Student app to access e-library, chatbot, campus maps, and school portals. Powered by Firebase.</p>
         </div>
       </div>
-
-      <div class="project-card">
-        <img src="img/ecommerce.jpg" alt="E-commerce" onclick="openCarousel(2)">
-        <div class="content">
-          <h3>💄 E-commerce (Vincent-Cosmetics)</h3>
-          <p>PHP + MySQL site with M-Pesa, shopping cart, filters, and admin dashboard for product management.</p>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <img src="img/loan.jpg" alt="Loan Dashboard" onclick="openCarousel(3)">
+	  
+		<div class="project-card">
+        <img src="img/loan1.jpg" alt="Loan Dashboard" onclick="openCarousel(3)">
         <div class="content">
           <h3>📊 Loan Management System</h3>
           <p>Admin dashboard to manage loans, filter/search, show summaries and graphs. Fully mobile responsive.</p>
+        </div>
+      </div>
+	   <div class="project-card">
+        <img src="img/admin.jpg" alt="Admin Panel" onclick="openCarousel(5)">
+        <div class="content">
+          <h3>🛠️ Admin Panel</h3>
+          <p>Responsive panel built with HTML, CSS, and JS for managing users, reports, and app dashboards.</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="img/ecommerce.jpg" alt="E-commerce" onclick="openCarousel(2)">
+        <div class="content">
+          <h3>💄 E-commerce</h3>
+          <p>PHP + MySQL site with M-Pesa, shopping cart, filters, and admin dashboard for product management.</p>
         </div>
       </div>
 
@@ -277,15 +283,7 @@
           <p>Web app (React + PHP) to monitor sentiment, engagement, and trends using keyword tracking and charts.</p>
         </div>
       </div>
-
-      <div class="project-card">
-        <img src="img/admin.jpg" alt="Admin Panel" onclick="openCarousel(5)">
-        <div class="content">
-          <h3>🛠️ Admin Panel</h3>
-          <p>Responsive panel built with HTML, CSS, and JS for managing users, reports, and app dashboards.</p>
-        </div>
-      </div>
-
+	  
       <div class="project-card">
         <img src="img/industrio.jpg" alt="Industrio Website" onclick="openCarousel(6)">
         <div class="content">
@@ -313,13 +311,13 @@
 
   <script>
     const projects = [
-      { images: ['img/reader1.jpeg', 'img/reader.jpg'], captions: ['Main Reader UI', 'Voice Reader Feature'] },
-      { images: ['img/cuk1.jpeg', 'img/cuk.jpg'], captions: ['CUK Portal Home', 'Library Section'] },
-      { images: ['img/ecommerce.jpg', 'img/ecommerce.jpg'], captions: ['Main Storefront', 'Cart and Checkout'] },
-      { images: ['img/loan.jpg', 'img/loan.jpg'], captions: ['Dashboard Overview', 'Loan Summary Table'] },
-      { images: ['img/social.jpg', 'img/social.jpg'], captions: ['Keyword Tracking', 'Sentiment Graphs'] },
-      { images: ['img/admin.jpg', 'img/admin.jpg'], captions: ['Admin Panel UI', 'User Management'] },
-      { images: ['img/industrio.jpg', 'img/industrio.jpg'], captions: ['Homepage', 'Project Gallery'] },
+      { images: ['img/reader1.jpeg', 'img/reader.jpeg'], captions: ['Splash Screen', 'Main Reader UI'] },
+      { images: ['img/cuk1.jpeg', 'img/cuk.jpeg','img/cuk2.jpeg'], captions: ['CUK Portal Home', 'CUK Portal Home','Chatbot'] },
+      { images: ['img/ecommerce.jpg'], captions: ['Main Storefront'] },
+      { images: ['img/loan1.png', 'img/loan2.png','img/loan3.png'], captions: ['Dashboard Overview', 'Loan Signin page', 'Loan Signup page'] },
+      { images: ['img/social.jpg'], captions: ['Keyword Tracking'] },
+      { images: ['img/admin.png', 'img/admin1.png', 'img/admin2.png'], captions: ['Admin Panel UI', 'Signin Page', 'Signup Page'] },
+      { images: ['img/industrio.jpg'], captions: ['Homepage'] },
     ];
 
     let currentProjectIndex = 0;
