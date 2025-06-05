@@ -283,7 +283,38 @@
           <p>Web app (React + PHP) to monitor sentiment, engagement, and trends using keyword tracking and charts.</p>
         </div>
       </div>
-	  
+	 <div class="project-card">
+  <img src="img/university.jpg" alt="University Management System" onclick="openCarousel(7)">
+  <div class="content">
+    <h3>📚 University Management System</h3>
+    <p>Full-featured web app to manage students, courses, exams, staff, results, and reports. Built with PHP & MySQL.</p>
+  </div>
+</div>
+
+<div class="project-card">
+  <img src="img/dating.jpg" alt="Dating Website" onclick="openCarousel(8)">
+  <div class="content">
+    <h3>❤️ Dating Website</h3>
+    <p>Modern dating site with profile matching, chat, and user authentication. Built with HTML, CSS, PHP, and MySQL.</p>
+  </div>
+</div>
+
+<div class="project-card">
+  <img src="img/cv.jpg" alt="CV/Resume Website" onclick="openCarousel(9)">
+  <div class="content">
+    <h3>📄 CV/Resume Website</h3>
+    <p>Stylish online CV with sections for experience, education, skills, and portfolio. Responsive & downloadable as PDF.</p>
+  </div>
+</div>
+
+<div class="project-card">
+  <img src="img/voting.jpg" alt="Voting System" onclick="openCarousel(10)">
+  <div class="content">
+    <h3>🗳️ Online Voting System</h3>
+    <p>Secure voting system with voter registration, candidate listing, vote casting, and result tally. Built using PHP/MySQL.</p>
+  </div>
+</div>
+
       <div class="project-card">
         <img src="img/industrio.jpg" alt="Industrio Website" onclick="openCarousel(6)">
         <div class="content">
@@ -311,14 +342,19 @@
 
   <script>
     const projects = [
-      { images: ['img/reader1.jpeg', 'img/reader.jpeg'], captions: ['Splash Screen', 'Main Reader UI'] },
-      { images: ['img/cuk1.jpeg', 'img/cuk.jpeg','img/cuk2.jpeg'], captions: ['CUK Portal Home', 'CUK Portal Home','Chatbot'] },
-      { images: ['img/ecommerce.jpg'], captions: ['Main Storefront'] },
-      { images: ['img/loan1.png', 'img/loan2.png','img/loan3.png'], captions: ['Dashboard Overview', 'Loan Signin page', 'Loan Signup page'] },
-      { images: ['img/social.jpg'], captions: ['Keyword Tracking'] },
-      { images: ['img/admin.png', 'img/admin1.png', 'img/admin2.png'], captions: ['Admin Panel UI', 'Signin Page', 'Signup Page'] },
-      { images: ['img/industrio.jpg'], captions: ['Homepage'] },
-    ];
+  { images: ['img/reader1.jpeg', 'img/reader.jpeg'], captions: ['Splash Screen', 'Main Reader UI'] },
+  { images: ['img/cuk1.jpeg', 'img/cuk.jpeg','img/cuk2.jpeg'], captions: ['CUK Portal Home', 'CUK Portal Home','Chatbot'] },
+  { images: ['img/ecommerce.jpg'], captions: ['Main Storefront'] },
+  { images: ['img/loan1.png', 'img/loan2.png','img/loan3.png'], captions: ['Dashboard Overview', 'Loan Signin page', 'Loan Signup page'] },
+  { images: ['img/social.jpg'], captions: ['Keyword Tracking'] },
+  { images: ['img/admin.png', 'img/admin1.png', 'img/admin2.png'], captions: ['Admin Panel UI', 'Signin Page', 'Signup Page'] },
+  { images: ['img/industrio.jpg'], captions: ['Homepage'] },
+  { images: ['img/university.png', 'img/university2.png'], captions: ['Dashboard', 'Admin Login'] },
+  { images: ['img/dating.png', 'img/dating2.png'], captions: ['Landing Page', 'Match Profile View'] },
+  { images: ['img/cv.png', 'img/cv.png'], captions: ['Home Section'] },
+  { images: ['img/voting.png', 'img/voting2.png'], captions: ['Voting Dashboard', 'Candidate Page'] }
+];
+
 
     let currentProjectIndex = 0;
     let currentImageIndex = 0;
