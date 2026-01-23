@@ -1,393 +1,319 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nigel's Portfolio</title>
-  <style>
-    :root {
-      --bg: #f0f2f5;
-      --text: #333;
-      --card: #fff;
-      --primary: #0d6efd;
-    }
+  <title>Dr. Diagnosis – Your Personal Symptom Insight</title>
 
-    body.dark {
-      --bg: #121212;
-      --text: #e0e0e0;
-      --card: #1e1e1e;
-    }
+  <!-- Vanilla Tilt for 3D card effects -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background-color: var(--bg);
-      color: var(--text);
-      transition: background 0.3s, color 0.3s;
-    }
+  <!-- TensorFlow.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
 
-    a {
-      color: var(--primary);
-      text-decoration: none;
-    }
+  <!-- Font Awesome for icons (email, lock, google, facebook, github) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 2rem;
-    }
-
-    .card {
-      background: var(--card);
-      border-radius: 15px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-      padding: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-bottom: 3rem;
-      transition: background 0.3s;
-    }
-
-    .card img.profile-pic {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 2rem;
-      border: 3px solid var(--primary);
-    }
-
-    .card .info {
-      flex: 1;
-      min-width: 250px;
-    }
-
-    .card .info h1 {
-      margin: 0;
-      font-size: 2.4rem;
-      color: var(--primary);
-    }
-
-    .card .info p {
-      margin: 0.4rem 0;
-      font-size: 1rem;
-    }
-
-    h2.section-title {
-      text-align: center;
-      font-size: 2rem;
-      color: var(--primary);
-      margin-bottom: 2rem;
-    }
-
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.8rem;
-    }
-
-    .project-card {
-      background: var(--card);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-      transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-    }
-
-    .project-card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      background: #f6f6f6;
-      cursor: pointer;
-    }
-
-    .project-card .content {
-      padding: 1.2rem;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-card h3 {
-      margin: 0 0 0.5rem 0;
-      color: var(--primary);
-      font-size: 1.2rem;
-    }
-
-    .project-card p {
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 2rem;
-      background-color: var(--card);
-      color: var(--text);
-      margin-top: 3rem;
-      border-top: 1px solid #ccc;
-    }
-
-    .toggle-dark {
-      display: inline-block;
-      margin: 1rem auto;
-      padding: 0.5rem 1rem;
-      border: none;
-      background: var(--primary);
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .toggle-dark:hover {
-      background: #0a58ca;
-    }
-
-    /* Lightbox Carousel */
-    #lightbox {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-    }
-
-    #lightbox img {
-      max-width: 90%;
-      max-height: 70vh;
-      border-radius: 10px;
-    }
-
-    #lightbox .caption {
-      margin-top: 10px;
-      color: #fff;
-      font-size: 1rem;
-    }
-
-    #lightbox .controls {
-      margin-top: 15px;
-    }
-
-    #lightbox button {
-      background: var(--primary);
-      border: none;
-      color: white;
-      padding: 0.6rem 1rem;
-      font-size: 1rem;
-      margin: 0 0.5rem;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    #lightbox span.close {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      font-size: 2rem;
-      color: white;
-      cursor: pointer;
-    }
-
-    @media (max-width: 600px) {
-      .card {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .card img.profile-pic {
-        margin-right: 0;
-        margin-bottom: 1rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<!-- Side Navigation Menu -->
+<!-- Side Navigation Menu -->
+<nav id="sideNav" class="side-nav">
+  <div class="nav-header">
+    <h2>Dr. Diagnosis</h2>
+    <button class="close-nav" onclick="closeNav()">×</button>
+  </div>
+  <ul class="nav-list">
+    <li>
+      <a href="#" onclick="goToSection('landing'); closeNav();" class="nav-link active">
+        <i class="fas fa-home"></i> Home
+      </a>
+    </li>
+    <li>
+      <a href="#" onclick="showAbout(); closeNav();" class="nav-link">
+        <i class="fas fa-info-circle"></i> About Us
+      </a>
+    </li>
+    <li>
+      <a href="#" onclick="showHistory(); closeNav();" class="nav-link">
+    <i class="fas fa-history"></i> History
+</a>
+    </li>
+    <li class="nav-divider"></li>
+    <li>
+      <button id="nav-theme-toggle" class="nav-link theme-toggle-btn" title="Toggle dark/light mode">
+        <i class="fas fa-moon"></i> <span>Dark Mode</span>
+      </button>
+    </li>
+    <li>
+      <a href="#" onclick="logout()" class="nav-link logout-link">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </li>
+  </ul>
+</nav>
 
-  <div class="container">
-    <button class="toggle-dark" onclick="document.body.classList.toggle('dark')">Toggle Mode</button>
+<!-- Hamburger Menu Button (visible on all screens, especially mobile) -->
+<button id="menuBtn" class="menu-btn" onclick="openNav()" title="Open menu">
+  <i class="fas fa-bars"></i>
+</button>
 
-    <!-- Profile Card -->
-    <div class="card">
-      <img src="img/profile.jpeg" alt="Nigel's Profile Picture" class="profile-pic">
-      <div class="info">
-        <h1>Nigel Ooko</h1>
-        <p><strong>Android & Web Developer | Firebase Specialist</strong></p>
-        <p>📍 Nairobi, Kenya</p>
-        <p>📧 nigelooko364@gmail.com | 📞 +254 741 441 246</p>
-        <p>🌐 <a href="https://github.com/nigel364" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/nigel-ooko-4319822b6/" target="_blank">LinkedIn</a></p>
-      </div>
+<!-- Overlay when menu is open -->
+<div id="navOverlay" class="nav-overlay" onclick="closeNav()"></div>
+ 
+
+  <!-- Landing / Hero -->
+  <section class="hero" id="landing">
+    <div class="content">
+      <h1>Dr. Diagnosis</h1>
+      <p class="tagline">Describe how you feel — get instant insights on possible conditions.</p>
+      <button class="cta-btn" onclick="openModal('signin')">Get Started →</button>
     </div>
+  </section>
 
-    <!-- Projects Section -->
-    <h2 class="section-title">Projects</h2>
-    <div class="projects">
+  <!-- Auth Modal -->
+  <div class="modal" id="authModal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">×</button>
 
-      <!-- Each project card image has an onclick for lightbox -->
-      <div class="project-card">
-        <img src="img/reader1.jpeg" alt="Reader App" onclick="openCarousel(0)">
-        <div class="content">
-          <h3>📱 Reader App</h3>
-          <p>Android app for viewing PDF, Word, Excel, and TXT files with text-to-speech and recent file tracking.</p>
-        </div>
+      <div class="form-header">
+        <h2 id="formTitle">Sign In</h2>
       </div>
 
-      <div class="project-card">
-        <img src="img/cuk1.jpeg" alt="University Student Portal" onclick="openCarousel(1)">
-        <div class="content">
-          <h3>🏫 University Student Portal</h3>
-          <p>Student app to access e-library, chatbot, campus maps, and school portals. Powered by Firebase.</p>
-        </div>
-      </div>
-	  
-		<div class="project-card">
-        <img src="img/loan1.png" alt="Loan Dashboard" onclick="openCarousel(3)">
-        <div class="content">
-          <h3>📊 Loan Management System</h3>
-          <p>Admin dashboard to manage loans, filter/search, show summaries and graphs. Fully mobile responsive.</p>
-        </div>
-      </div>
-	   <div class="project-card">
-        <img src="img/admin.png" alt="Admin Panel" onclick="openCarousel(5)">
-        <div class="content">
-          <h3>🛠️ Admin Panel</h3>
-          <p>Responsive panel built with HTML, CSS, and JS for managing users, reports, and app dashboards.</p>
-        </div>
-      </div>
-      <div class="project-card">
-        <img src="img/ecommerce.jpg" alt="E-commerce" onclick="openCarousel(2)">
-        <div class="content">
-          <h3>💄 E-commerce</h3>
-          <p>PHP + MySQL site with M-Pesa, shopping cart, filters, and admin dashboard for product management.</p>
-        </div>
+      <div class="toggle-btns">
+        <button class="toggle-btn active" onclick="switchForm('signin')">Sign In</button>
+        <button class="toggle-btn" onclick="switchForm('signup')">Sign Up</button>
       </div>
 
-      <div class="project-card">
-        <img src="img/social.jpg" alt="Social Media Monitoring" onclick="openCarousel(4)">
-        <div class="content">
-          <h3>📈 Social Media Monitoring</h3>
-          <p>Web app (React + PHP) to monitor sentiment, engagement, and trends using keyword tracking and charts.</p>
+      <form id="authForm" onsubmit="handleAuth(event)" novalidate>
+        <div class="form-group name-group" id="name-group" style="display:none;">
+          <i class="fas fa-user input-icon"></i>
+          <input type="text" id="fullName" placeholder="Full Name" minlength="2">
         </div>
-      </div>
-	 <div class="project-card">
-  <img src="img/university.png" alt="University Management System" onclick="openCarousel(7)">
-  <div class="content">
-    <h3>📚 University Management System</h3>
-    <p>Full-featured web app to manage students, courses, exams, staff, results, and reports. Built with PHP & MySQL.</p>
-  </div>
-</div>
 
-<div class="project-card">
-  <img src="img/dating.png" alt="Dating Website" onclick="openCarousel(8)">
-  <div class="content">
-    <h3>❤️ Dating Website</h3>
-    <p>Modern dating site with profile matching, chat, and user authentication. Built with HTML, CSS, PHP, and MySQL.</p>
-  </div>
-</div>
-
-<div class="project-card">
-  <img src="img/cv.png" alt="CV/Resume Website" onclick="openCarousel(9)">
-  <div class="content">
-    <h3>📄 CV/Resume Website</h3>
-    <p>Stylish online CV with sections for experience, education, skills, and portfolio. Responsive & downloadable as PDF.</p>
-  </div>
-</div>
-
-<div class="project-card">
-  <img src="img/voting.png" alt="Voting System" onclick="openCarousel(10)">
-  <div class="content">
-    <h3>🗳️ Online Voting System</h3>
-    <p>Secure voting system with voter registration, candidate listing, vote casting, and result tally. Built using PHP/MySQL.</p>
-  </div>
-</div>
-
-      <div class="project-card">
-        <img src="img/industrio.jpg" alt="Industrio Website" onclick="openCarousel(6)">
-        <div class="content">
-          <h3>🏗️ Industrio Construction Website</h3>
-          <p>Professional construction site with multi-page design, service pages, gallery, and contact form.</p>
+        <div class="form-group">
+          <i class="fas fa-envelope input-icon"></i>
+          <input type="email" id="email" placeholder="Email address" required>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Lightbox Carousel Modal -->
-  <div id="lightbox">
-    <span class="close" onclick="closeCarousel()">&times;</span>
-    <img id="carousel-image" src="" alt="">
-    <div class="caption" id="carousel-caption"></div>
-    <div class="controls">
-      <button onclick="prevImage()">Prev</button>
-      <button onclick="nextImage()">Next</button>
+        <div class="form-group">
+          <i class="fas fa-lock input-icon"></i>
+          <input type="password" id="password" placeholder="Password" required minlength="6">
+        </div>
+
+        <div class="form-group confirm-group" id="confirm-password-group" style="display:none;">
+          <i class="fas fa-lock input-icon"></i>
+          <input type="password" id="confirmPassword" placeholder="Confirm Password" minlength="6">
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">Sign In</button>
+      </form>
+
+      <!-- Fake Social Auth Buttons -->
+      <div class="social-auth">
+        <p>or continue with</p>
+        <button class="social-btn google" onclick="fakeSocialAuth('Google')">
+          <i class="fab fa-google"></i> Continue with Google
+        </button>
+        <button class="social-btn facebook" onclick="fakeSocialAuth('Facebook')">
+          <i class="fab fa-facebook-f"></i> Continue with Facebook
+        </button>
+        <button class="social-btn github" onclick="fakeSocialAuth('GitHub')">
+          <i class="fab fa-github"></i> Continue with GitHub
+        </button>
+      </div>
     </div>
   </div>
 
-  <div class="footer">
-    <p>© 2025 Nigel Ooko. All rights reserved.</p>
+  <!-- Main Symptom Checker App -->
+  <div id="app">
+
+    <div class="app-container">
+      <h1>Dr. Diagnosis</h1>
+
+    <div class="search-container">
+		  <i class="fas fa-search search-icon"></i>
+		  <input 
+			type="text" 
+			id="symptomSearch" 
+			placeholder="Search symptoms (e.g. fever, cough, pain...)" 
+			autocomplete="off"
+		  >
+		</div>
+
+      <div class="section-title">Select your symptoms by category:</div>
+
+<div class="symptoms-categories">
+
+  <!-- Category 1 -->
+  <details class="symptom-category" open>
+    <summary>General / Systemic Symptoms</summary>
+    <div class="symptoms-grid">
+      <div class="symptom-item"><input type="checkbox" id="fever" value="fever"><label for="fever">Fever / High temperature</label></div>
+      <div class="symptom-item"><input type="checkbox" id="fatigue" value="fatigue"><label for="fatigue">Fatigue / Tiredness</label></div>
+      <div class="symptom-item"><input type="checkbox" id="chills" value="chills"><label for="chills">Chills</label></div>
+      <div class="symptom-item"><input type="checkbox" id="sweat" value="sweat"><label for="sweat">Excessive sweating</label></div>
+      <div class="symptom-item"><input type="checkbox" id="weightloss" value="weight loss"><label for="weightloss">Unexplained weight loss</label></div>
+    </div>
+  </details>
+
+  <!-- Category 2 -->
+  <details class="symptom-category">
+    <summary>Respiratory / Throat Symptoms</summary>
+    <div class="symptoms-grid">
+      <div class="symptom-item"><input type="checkbox" id="cough" value="cough"><label for="cough">Cough</label></div>
+      <div class="symptom-item"><input type="checkbox" id="sorethroat" value="sore throat"><label for="sorethroat">Sore throat</label></div>
+      <div class="symptom-item"><input type="checkbox" id="runnynose" value="runny nose"><label for="runnynose">Runny nose / Congestion</label></div>
+      <div class="symptom-item"><input type="checkbox" id="shortbreath" value="shortness of breath"><label for="shortbreath">Shortness of breath</label></div>
+      <div class="symptom-item"><input type="checkbox" id="coughblood" value="coughing blood"><label for="coughblood">Coughing up blood</label></div>
+    </div>
+  </details>
+
+  <!-- Category 3 -->
+  <details class="symptom-category">
+    <summary>Head & Neurological Symptoms</summary>
+    <div class="symptoms-grid">
+      <div class="symptom-item"><input type="checkbox" id="headache" value="headache"><label for="headache">Headache</label></div>
+      <div class="symptom-item"><input type="checkbox" id="dizzy" value="dizziness"><label for="dizzy">Dizziness</label></div>
+      <div class="symptom-item"><input type="checkbox" id="stiff" value="stiff"><label for="stiff">Stiff neck / joints</label></div>
+      <div class="symptom-item"><input type="checkbox" id="vision" value="blurred vision"><label for="vision">Blurred vision</label></div>
+    </div>
+  </details>
+
+  <!-- Category 4 -->
+  <details class="symptom-category">
+    <summary>Digestive / Stomach Symptoms</summary>
+    <div class="symptoms-grid">
+      <div class="symptom-item"><input type="checkbox" id="nausea" value="nausea"><label for="nausea">Nausea</label></div>
+      <div class="symptom-item"><input type="checkbox" id="vomiting" value="vomiting"><label for="vomiting">Vomiting</label></div>
+      <div class="symptom-item"><input type="checkbox" id="diarrhea" value="diarrhea"><label for="diarrhea">Diarrhea</label></div>
+      <div class="symptom-item"><input type="checkbox" id="stomach" value="stomach pain"><label for="stomach">Stomach / Abdominal pain</label></div>
+    </div>
+  </details>
+
+  <!-- Category 5 -->
+  <details class="symptom-category">
+    <summary>Pain (Musculoskeletal / Chest)</summary>
+    <div class="symptoms-grid">
+      <div class="symptom-item"><input type="checkbox" id="chest" value="chest pain"><label for="chest">Chest pain</label></div>
+      <div class="symptom-item"><input type="checkbox" id="joint" value="joint pain"><label for="joint">Joint pain</label></div>
+      <div class="symptom-item"><input type="checkbox" id="back" value="back pain"><label for="back">Back pain</label></div>
+    </div>
+  </details>
+
+  <!-- Category 6 -->
+  <details class="symptom-category">
+    <summary>Skin & Swelling</summary>
+    <div class="symptoms-grid">
+      <div class="symptom-item"><input type="checkbox" id="rash" value="rash"><label for="rash">Skin rash</label></div>
+      <div class="symptom-item"><input type="checkbox" id="itchy" value="itchy"><label for="itchy">Itching</label></div>
+      <div class="symptom-item"><input type="checkbox" id="swelling" value="swelling"><label for="swelling">Swelling</label></div>
+    </div>
+  </details>
+
+  <!-- Category 7 -->
+  <details class="symptom-category">
+    <summary>Urinary / Metabolic</summary>
+    <div class="symptoms-grid">
+      <div class="symptom-item"><input type="checkbox" id="frequenturine" value="frequent urination"><label for="frequenturine">Frequent urination</label></div>
+      <div class="symptom-item"><input type="checkbox" id="thirst" value="thirst"><label for="thirst">Excessive thirst</label></div>
+    </div>
+  </details>
+
+</div>
+<!-- About Modal -->
+<div class="modal" id="aboutModal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal()">×</button>
+
+    <h2>About Dr. Diagnosis</h2>
+
+    <p>
+      <strong>Dr. Diagnosis</strong> is an AI-powered health insight platform designed to help users
+      better understand their symptoms and explore possible health conditions in a clear,
+      responsible, and educational way.
+    </p>
+
+    <p>
+      By combining modern web technologies with intelligent symptom-matching models,
+      Dr. Diagnosis analyzes user-reported symptoms and presents <em>possible conditions</em>,
+      general care information, and guidance on when to seek professional medical help.
+    </p>
+
+    <p>
+      This platform does <strong>not provide medical diagnoses or prescriptions</strong>.
+      All information is intended for learning and awareness only and should never replace
+      consultation with a qualified healthcare professional.
+    </p>
+
+    <p>
+      Dr. Diagnosis was built with a focus on ethical AI, user safety, and modern UX design—
+      demonstrating how technology can support health education without crossing clinical boundaries.
+    </p>
+
+    <p style="margin-top: 1.4rem; opacity: 0.85;">
+      Built with ❤ 
+    </p>
+  </div>
+</div>
+
+
+
+<!-- History Modal -->
+<div class="modal" id="historyModal">
+    <div class="modal-content" style="max-width: 720px; width: 92%;">
+        <button class="close-btn" onclick="closeModal()">×</button>
+        <h2 style="margin-bottom: 1.5rem;">Your Recent Symptom Checks</h2>
+        
+        <div style="margin-bottom: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <button class="export-history" onclick="exportHistory()">Export History</button>
+            <button class="clear-history" onclick="clearHistory()">Clear History</button>
+        </div>
+        
+        <div id="history-list" class="history-list"></div>
+        
+        <p style="margin-top: 2rem; text-align: center; opacity: 0.75; font-size: 0.95rem;">
+            Entries are stored in your browser (localStorage)
+        </p>
+    </div>
+</div>
+      <div class="section-title">Anything else? (free text):</div>
+      <textarea id="other" placeholder="e.g. muscle pain, loss of smell, itchy eyes, swollen legs..."></textarea>
+
+      <div class="buttons">
+        <button onclick="checkSymptoms()">Check Symptoms</button>
+        <button class="reset" onclick="resetForm()">Reset Form</button>
+      </div>
+      <div id="loading">
+        <div class="spinner"></div>
+        Analyzing symptoms...
+      </div>
+
+      <div id="result">
+        <h2>Most Likely Conditions:</h2>
+        <div id="diseases"></div>
+
+        <h2 style="margin-top:2.2rem;">General Suggestions (NOT prescriptions):</h2>
+        <div id="medicines"></div>
+
+      </div>
+
+      <!-- Symptom History -->
+      <div id="history-section">
+        <div class="history-header">
+          <h2>Your Recent Checks</h2>
+          <div class="history-actions">
+            <button class="export-history" onclick="exportHistory()">Export History</button>
+            <button class="clear-history" onclick="clearHistory()">Clear History</button>
+          </div>
+        </div>
+        <div id="history-list" class="history-list"></div>
+      </div>
+    </div>
   </div>
 
-  <script>
-    const projects = [
-  { images: ['img/reader1.jpeg', 'img/reader.jpeg'], captions: ['Splash Screen', 'Main Reader UI'] },
-  { images: ['img/cuk1.jpeg', 'img/cuk.jpeg','img/cuk2.jpeg'], captions: ['CUK Portal Home', 'CUK Portal Home','Chatbot'] },
-  { images: ['img/ecommerce.jpg'], captions: ['Main Storefront'] },
-  { images: ['img/loan1.png', 'img/loan2.png','img/loan3.png'], captions: ['Dashboard Overview', 'Loan Signin page', 'Loan Signup page'] },
-  { images: ['img/social.jpg'], captions: ['Keyword Tracking'] },
-  { images: ['img/admin.png', 'img/admin1.png', 'img/admin2.png'], captions: ['Admin Panel UI', 'Signin Page', 'Signup Page'] },
-  { images: ['img/industrio.jpg'], captions: ['Homepage'] },
-  { images: ['img/university.png', 'img/university2.png'], captions: ['Dashboard', 'Admin Login'] },
-  { images: ['img/dating.png', 'img/dating2.png'], captions: ['Landing Page', 'Match Profile View'] },
-  { images: ['img/cv.png', 'img/cv.png'], captions: ['Home Section'] },
-  { images: ['img/voting.png', 'img/voting2.png'], captions: ['Voting Dashboard', 'Candidate Page'] }
-];
-
-
-    let currentProjectIndex = 0;
-    let currentImageIndex = 0;
-
-    function openCarousel(projectIndex) {
-      currentProjectIndex = projectIndex;
-      currentImageIndex = 0;
-      updateCarousel();
-      document.getElementById("lightbox").style.display = "flex";
-    }
-
-    function updateCarousel() {
-      const project = projects[currentProjectIndex];
-      document.getElementById("carousel-image").src = project.images[currentImageIndex];
-      document.getElementById("carousel-caption").innerText = project.captions[currentImageIndex];
-    }
-
-    function closeCarousel() {
-      document.getElementById("lightbox").style.display = "none";
-    }
-
-    function nextImage() {
-      const project = projects[currentProjectIndex];
-      currentImageIndex = (currentImageIndex + 1) % project.images.length;
-      updateCarousel();
-    }
-
-    function prevImage() {
-      const project = projects[currentProjectIndex];
-      currentImageIndex = (currentImageIndex - 1 + project.images.length) % project.images.length;
-      updateCarousel();
-    }
-  </script>
+  <script src="script.js"></script>
 
 </body>
 </html>
