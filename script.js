@@ -627,3 +627,74 @@ function showHistory() {
 document.querySelectorAll('.symptom-category').forEach((cat, index) => {
   if (index > 0) cat.removeAttribute('open');
 });
+// Add at the end of script.js
+function updateSelectionCount() {
+    const checked = document.querySelectorAll('.symptom-item input:checked').length;
+    document.getElementById('selectionCount').innerHTML = 
+        `<strong>${checked}</strong> symptom${checked !== 1 ? 's' : ''} selected`;
+}
+
+// Call it on every checkbox change
+document.querySelectorAll('.symptom-item input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', updateSelectionCount);
+});
+
+// Also call after reset
+function resetForm() {
+    // ... your existing reset code ...
+    updateSelectionCount();
+}
+function clearSelections() {
+    document.querySelectorAll('.symptom-item input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+    });
+    document.getElementById('other').value = '';
+    updateSelectionCount();
+}
+function noSymptoms() {
+    if (confirm("Are you sure? This will clear all selections.")) {
+        clearSelections();
+        alert("No symptoms reported.\nRemember to stay healthy! 🌿");
+    }
+}
+function updateSelectedPreview() {
+    const checked = Array.from(document.querySelectorAll('.symptom-item input:checked'))
+        .map(cb => cb.parentElement.querySelector('label').textContent.trim());
+    
+    const preview = document.getElementById('selectedSymptomsPreview');
+    const listEl = document.getElementById('selectedList');
+    
+    if (checked.length > 0) {
+        listEl.textContent = checked.join(', ');
+        preview.style.display = 'block';
+    } else {
+        preview.style.display = 'none';
+    }
+}
+
+// Call on every checkbox change + after reset
+function exportHistory() {
+    const history = JSON.parse(localStorage.getItem('symptomHistory') || '[]');
+    if (history.length === 0) {
+        alert("No history to export.");
+        return;
+    }
+    
+    const csv = [
+        ['Date', 'Symptoms', 'Other', 'Conditions'],
+        ...history.map(entry => [
+            entry.date,
+            entry.symptoms.join(', '),
+            entry.other || '',
+            entry.conditions?.map(c => c.name).join(', ') || ''
+        ])
+    ].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
+
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `dr-diagnosis-history-${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+}
