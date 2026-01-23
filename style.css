@@ -1000,3 +1000,46 @@ button.reset:hover {
 .history-highlight {
     animation: history-flash 2.2s ease-in-out;
 }
+/* Make history list scrollable inside modal */
+#historyModal .modal-content {
+    max-height: 85vh;           /* limit modal height */
+    overflow-y: auto;           /* enable vertical scroll if needed */
+    padding-bottom: 1rem;
+}
+
+#history-list {
+    max-height: 55vh;           /* adjust based on your modal size */
+    overflow-y: auto;
+    padding-right: 0.5rem;      /* space for scrollbar */
+    margin: 1rem 0;
+    scrollbar-width: thin;      /* Firefox */
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+#history-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+#history-list::-webkit-scrollbar-track {
+    background: rgba(30, 58, 138, 0.3);
+    border-radius: 10px;
+}
+
+#history-list::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+#history-list::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Optional: nicer empty state */
+#history-list:empty::before {
+    content: "No previous checks yet.";
+    display: block;
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 2rem 1rem;
+}

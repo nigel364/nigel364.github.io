@@ -4,313 +4,236 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dr. Diagnosis – Your Personal Symptom Insight</title>
-
   <!-- Vanilla Tilt for 3D card effects -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
-
   <!-- TensorFlow.js -->
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-
-  <!-- Font Awesome for icons (email, lock, google, facebook, github) -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!-- Side Navigation Menu -->
+
+<!-- Side Navigation -->
 <nav id="sideNav" class="side-nav">
   <div class="nav-header">
     <h2>Dr. Diagnosis</h2>
     <button class="close-nav" onclick="closeNav()">×</button>
   </div>
   <ul class="nav-list">
-    <li>
-      <a href="#" onclick="goToSection('landing'); closeNav();" class="nav-link active">
-        <i class="fas fa-home"></i> Home
-      </a>
-    </li>
-    <li>
-      <a href="#" onclick="showAbout(); closeNav();" class="nav-link">
-        <i class="fas fa-info-circle"></i> About Us
-      </a>
-    </li>
-    <li>
-      <a href="#" onclick="showHistory(); closeNav();" class="nav-link">
-    <i class="fas fa-history"></i> History
-</a>
-    </li>
+    <li><a href="#" onclick="goToSection('landing'); closeNav();" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
+    <li><a href="#" onclick="showAbout(); closeNav();" class="nav-link"><i class="fas fa-info-circle"></i> About Us</a></li>
+    <li><a href="#" onclick="showHistory(); closeNav();" class="nav-link"><i class="fas fa-history"></i> History</a></li>
     <li class="nav-divider"></li>
     <li>
       <button id="nav-theme-toggle" class="nav-link theme-toggle-btn" title="Toggle dark/light mode">
         <i class="fas fa-moon"></i> <span>Dark Mode</span>
       </button>
     </li>
-    <li>
-      <a href="#" onclick="logout()" class="nav-link logout-link">
-        <i class="fas fa-sign-out-alt"></i> Logout
-      </a>
-    </li>
+    <li><a href="#" onclick="logout()" class="nav-link logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
   </ul>
 </nav>
 
-<!-- Hamburger Menu Button (visible on all screens, especially mobile) -->
+<!-- Hamburger -->
 <button id="menuBtn" class="menu-btn" onclick="openNav()" title="Open menu">
   <i class="fas fa-bars"></i>
 </button>
 
-<!-- Overlay when menu is open -->
+<!-- Overlay -->
 <div id="navOverlay" class="nav-overlay" onclick="closeNav()"></div>
- 
 
-  <!-- Landing / Hero -->
-  <section class="hero" id="landing">
-    <div class="content">
-      <h1>Dr. Diagnosis</h1>
-      <p class="tagline">Describe how you feel — get instant insights on possible conditions.</p>
-      <button class="cta-btn" onclick="openModal('signin')">Get Started →</button>
+<!-- Hero / Landing -->
+<section class="hero" id="landing">
+  <div class="content">
+    <h1>Dr. Diagnosis</h1>
+    <p class="tagline">Describe how you feel — get instant insights on possible conditions.</p>
+    <button class="cta-btn" onclick="openModal('signin')">Get Started →</button>
+  </div>
+</section>
+
+<!-- Auth Modal -->
+<div class="modal" id="authModal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal()">×</button>
+    <div class="form-header">
+      <h2 id="formTitle">Sign In</h2>
     </div>
-  </section>
-
-  <!-- Auth Modal -->
-  <div class="modal" id="authModal">
-    <div class="modal-content">
-      <button class="close-btn" onclick="closeModal()">×</button>
-
-      <div class="form-header">
-        <h2 id="formTitle">Sign In</h2>
+    <div class="toggle-btns">
+      <button class="toggle-btn active" onclick="switchForm('signin')">Sign In</button>
+      <button class="toggle-btn" onclick="switchForm('signup')">Sign Up</button>
+    </div>
+    <form id="authForm" onsubmit="handleAuth(event)" novalidate>
+      <div class="form-group name-group" id="name-group" style="display:none;">
+        <i class="fas fa-user input-icon"></i>
+        <input type="text" id="fullName" placeholder="Full Name" minlength="2">
       </div>
-
-      <div class="toggle-btns">
-        <button class="toggle-btn active" onclick="switchForm('signin')">Sign In</button>
-        <button class="toggle-btn" onclick="switchForm('signup')">Sign Up</button>
+      <div class="form-group">
+        <i class="fas fa-envelope input-icon"></i>
+        <input type="email" id="email" placeholder="Email address" required>
       </div>
-
-      <form id="authForm" onsubmit="handleAuth(event)" novalidate>
-        <div class="form-group name-group" id="name-group" style="display:none;">
-          <i class="fas fa-user input-icon"></i>
-          <input type="text" id="fullName" placeholder="Full Name" minlength="2">
-        </div>
-
-        <div class="form-group">
-          <i class="fas fa-envelope input-icon"></i>
-          <input type="email" id="email" placeholder="Email address" required>
-        </div>
-
-        <div class="form-group">
-          <i class="fas fa-lock input-icon"></i>
-          <input type="password" id="password" placeholder="Password" required minlength="6">
-        </div>
-
-        <div class="form-group confirm-group" id="confirm-password-group" style="display:none;">
-          <i class="fas fa-lock input-icon"></i>
-          <input type="password" id="confirmPassword" placeholder="Confirm Password" minlength="6">
-        </div>
-
-        <button type="submit" class="submit-btn" id="submitBtn">Sign In</button>
-      </form>
-
-      <!-- Fake Social Auth Buttons -->
-      <div class="social-auth">
-        <p>or continue with</p>
-        <button class="social-btn google" onclick="fakeSocialAuth('Google')">
-          <i class="fab fa-google"></i> Continue with Google
-        </button>
-        <button class="social-btn facebook" onclick="fakeSocialAuth('Facebook')">
-          <i class="fab fa-facebook-f"></i> Continue with Facebook
-        </button>
-        <button class="social-btn github" onclick="fakeSocialAuth('GitHub')">
-          <i class="fab fa-github"></i> Continue with GitHub
-        </button>
+      <div class="form-group">
+        <i class="fas fa-lock input-icon"></i>
+        <input type="password" id="password" placeholder="Password" required minlength="6">
       </div>
+      <div class="form-group confirm-group" id="confirm-password-group" style="display:none;">
+        <i class="fas fa-lock input-icon"></i>
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" minlength="6">
+      </div>
+      <button type="submit" class="submit-btn" id="submitBtn">Sign In</button>
+    </form>
+    <div class="social-auth">
+      <p>or continue with</p>
+      <button class="social-btn google" onclick="fakeSocialAuth('Google')"><i class="fab fa-google"></i> Google</button>
+      <button class="social-btn facebook" onclick="fakeSocialAuth('Facebook')"><i class="fab fa-facebook-f"></i> Facebook</button>
+      <button class="social-btn github" onclick="fakeSocialAuth('GitHub')"><i class="fab fa-github"></i> GitHub</button>
     </div>
   </div>
-
-  <!-- Main Symptom Checker App -->
-  <div id="app">
-
-    <div class="app-container">
-      <h1>Dr. Diagnosis</h1>
-
-    <div class="search-container">
-		  <i class="fas fa-search search-icon"></i>
-		  <input 
-			type="text" 
-			id="symptomSearch" 
-			placeholder="Search symptoms (e.g. fever, cough, pain...)" 
-			autocomplete="off"
-		  >
-		</div>
-
-      <div class="section-title">Select your symptoms by category:</div>
-
-<div class="symptoms-categories">
-
-  <!-- Category 1 -->
-  <details class="symptom-category" open>
-    <summary>General / Systemic Symptoms</summary>
-    <div class="symptoms-grid">
-      <div class="symptom-item"><input type="checkbox" id="fever" value="fever"><label for="fever">Fever / High temperature</label></div>
-      <div class="symptom-item"><input type="checkbox" id="fatigue" value="fatigue"><label for="fatigue">Fatigue / Tiredness</label></div>
-      <div class="symptom-item"><input type="checkbox" id="chills" value="chills"><label for="chills">Chills</label></div>
-      <div class="symptom-item"><input type="checkbox" id="sweat" value="sweat"><label for="sweat">Excessive sweating</label></div>
-      <div class="symptom-item"><input type="checkbox" id="weightloss" value="weight loss"><label for="weightloss">Unexplained weight loss</label></div>
-    </div>
-  </details>
-
-  <!-- Category 2 -->
-  <details class="symptom-category">
-    <summary>Respiratory / Throat Symptoms</summary>
-    <div class="symptoms-grid">
-      <div class="symptom-item"><input type="checkbox" id="cough" value="cough"><label for="cough">Cough</label></div>
-      <div class="symptom-item"><input type="checkbox" id="sorethroat" value="sore throat"><label for="sorethroat">Sore throat</label></div>
-      <div class="symptom-item"><input type="checkbox" id="runnynose" value="runny nose"><label for="runnynose">Runny nose / Congestion</label></div>
-      <div class="symptom-item"><input type="checkbox" id="shortbreath" value="shortness of breath"><label for="shortbreath">Shortness of breath</label></div>
-      <div class="symptom-item"><input type="checkbox" id="coughblood" value="coughing blood"><label for="coughblood">Coughing up blood</label></div>
-    </div>
-  </details>
-
-  <!-- Category 3 -->
-  <details class="symptom-category">
-    <summary>Head & Neurological Symptoms</summary>
-    <div class="symptoms-grid">
-      <div class="symptom-item"><input type="checkbox" id="headache" value="headache"><label for="headache">Headache</label></div>
-      <div class="symptom-item"><input type="checkbox" id="dizzy" value="dizziness"><label for="dizzy">Dizziness</label></div>
-      <div class="symptom-item"><input type="checkbox" id="stiff" value="stiff"><label for="stiff">Stiff neck / joints</label></div>
-      <div class="symptom-item"><input type="checkbox" id="vision" value="blurred vision"><label for="vision">Blurred vision</label></div>
-    </div>
-  </details>
-
-  <!-- Category 4 -->
-  <details class="symptom-category">
-    <summary>Digestive / Stomach Symptoms</summary>
-    <div class="symptoms-grid">
-      <div class="symptom-item"><input type="checkbox" id="nausea" value="nausea"><label for="nausea">Nausea</label></div>
-      <div class="symptom-item"><input type="checkbox" id="vomiting" value="vomiting"><label for="vomiting">Vomiting</label></div>
-      <div class="symptom-item"><input type="checkbox" id="diarrhea" value="diarrhea"><label for="diarrhea">Diarrhea</label></div>
-      <div class="symptom-item"><input type="checkbox" id="stomach" value="stomach pain"><label for="stomach">Stomach / Abdominal pain</label></div>
-    </div>
-  </details>
-
-  <!-- Category 5 -->
-  <details class="symptom-category">
-    <summary>Pain (Musculoskeletal / Chest)</summary>
-    <div class="symptoms-grid">
-      <div class="symptom-item"><input type="checkbox" id="chest" value="chest pain"><label for="chest">Chest pain</label></div>
-      <div class="symptom-item"><input type="checkbox" id="joint" value="joint pain"><label for="joint">Joint pain</label></div>
-      <div class="symptom-item"><input type="checkbox" id="back" value="back pain"><label for="back">Back pain</label></div>
-    </div>
-  </details>
-
-  <!-- Category 6 -->
-  <details class="symptom-category">
-    <summary>Skin & Swelling</summary>
-    <div class="symptoms-grid">
-      <div class="symptom-item"><input type="checkbox" id="rash" value="rash"><label for="rash">Skin rash</label></div>
-      <div class="symptom-item"><input type="checkbox" id="itchy" value="itchy"><label for="itchy">Itching</label></div>
-      <div class="symptom-item"><input type="checkbox" id="swelling" value="swelling"><label for="swelling">Swelling</label></div>
-    </div>
-  </details>
-
-  <!-- Category 7 -->
-  <details class="symptom-category">
-    <summary>Urinary / Metabolic</summary>
-    <div class="symptoms-grid">
-      <div class="symptom-item"><input type="checkbox" id="frequenturine" value="frequent urination"><label for="frequenturine">Frequent urination</label></div>
-      <div class="symptom-item"><input type="checkbox" id="thirst" value="thirst"><label for="thirst">Excessive thirst</label></div>
-    </div>
-  </details>
 </div>
-<!-- About Modal -->
+
+<!-- Main App -->
+<div id="app" style="display:none;">
+  <div class="app-container">
+
+    <h1>Dr. Diagnosis</h1>
+
+    <!-- 1. Free text -->
+    <div class="section-title">Describe your symptoms (free text):</div>
+    <textarea id="other" placeholder="e.g. muscle pain started two days ago, loss of smell, itchy eyes, swollen legs..."></textarea>
+
+    <!-- 2. Buttons -->
+    <div class="buttons">
+      <button onclick="checkSymptoms()">Check Symptoms</button>
+      <button class="reset" onclick="resetForm()">Reset Form</button>
+    </div>
+
+    <!-- 3. Loading -->
+    <div id="loading" style="display:none;">
+      <div class="spinner"></div>
+      Analyzing symptoms...
+    </div>
+
+    <!-- 4. Results -->
+    <div id="result" style="display:none;">
+      <h2>Most Likely Conditions:</h2>
+      <div id="diseases"></div>
+      <h2 style="margin-top:2.2rem;">General Suggestions (NOT prescriptions):</h2>
+      <div id="medicines"></div>
+      <p class="final-warning">
+        This is NOT medical advice — See a doctor immediately!
+      </p>
+    </div>
+
+    <!-- 5. Symptom selection area -->
+    <div class="search-container">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" id="symptomSearch" placeholder="Search symptoms (e.g. fever, cough, pain...)" autocomplete="off">
+    </div>
+
+    <div class="section-title">Or select specific symptoms by category (optional):</div>
+
+    <div class="symptoms-categories">
+
+      <details class="symptom-category" open>
+        <summary>General / Systemic Symptoms</summary>
+        <div class="symptoms-grid">
+          <div class="symptom-item"><input type="checkbox" id="fever" value="fever"><label for="fever">Fever / High temperature</label></div>
+          <div class="symptom-item"><input type="checkbox" id="fatigue" value="fatigue"><label for="fatigue">Fatigue / Tiredness</label></div>
+          <div class="symptom-item"><input type="checkbox" id="chills" value="chills"><label for="chills">Chills</label></div>
+          <div class="symptom-item"><input type="checkbox" id="sweat" value="sweat"><label for="sweat">Excessive sweating</label></div>
+          <div class="symptom-item"><input type="checkbox" id="weightloss" value="weight loss"><label for="weightloss">Unexplained weight loss</label></div>
+        </div>
+      </details>
+
+      <details class="symptom-category">
+        <summary>Respiratory / Throat Symptoms</summary>
+        <div class="symptoms-grid">
+          <div class="symptom-item"><input type="checkbox" id="cough" value="cough"><label for="cough">Cough</label></div>
+          <div class="symptom-item"><input type="checkbox" id="sorethroat" value="sore throat"><label for="sorethroat">Sore throat</label></div>
+          <div class="symptom-item"><input type="checkbox" id="runnynose" value="runny nose"><label for="runnynose">Runny nose / Congestion</label></div>
+          <div class="symptom-item"><input type="checkbox" id="shortbreath" value="shortness of breath"><label for="shortbreath">Shortness of breath</label></div>
+          <div class="symptom-item"><input type="checkbox" id="coughblood" value="coughing blood"><label for="coughblood">Coughing up blood</label></div>
+        </div>
+      </details>
+
+      <details class="symptom-category">
+        <summary>Head & Neurological Symptoms</summary>
+        <div class="symptoms-grid">
+          <div class="symptom-item"><input type="checkbox" id="headache" value="headache"><label for="headache">Headache</label></div>
+          <div class="symptom-item"><input type="checkbox" id="dizzy" value="dizziness"><label for="dizzy">Dizziness</label></div>
+          <div class="symptom-item"><input type="checkbox" id="stiff" value="stiff"><label for="stiff">Stiff neck / joints</label></div>
+          <div class="symptom-item"><input type="checkbox" id="vision" value="blurred vision"><label for="vision">Blurred vision</label></div>
+        </div>
+      </details>
+
+      <details class="symptom-category">
+        <summary>Digestive / Stomach Symptoms</summary>
+        <div class="symptoms-grid">
+          <div class="symptom-item"><input type="checkbox" id="nausea" value="nausea"><label for="nausea">Nausea</label></div>
+          <div class="symptom-item"><input type="checkbox" id="vomiting" value="vomiting"><label for="vomiting">Vomiting</label></div>
+          <div class="symptom-item"><input type="checkbox" id="diarrhea" value="diarrhea"><label for="diarrhea">Diarrhea</label></div>
+          <div class="symptom-item"><input type="checkbox" id="stomach" value="stomach pain"><label for="stomach">Stomach / Abdominal pain</label></div>
+        </div>
+      </details>
+
+      <details class="symptom-category">
+        <summary>Pain (Musculoskeletal / Chest)</summary>
+        <div class="symptoms-grid">
+          <div class="symptom-item"><input type="checkbox" id="chest" value="chest pain"><label for="chest">Chest pain</label></div>
+          <div class="symptom-item"><input type="checkbox" id="joint" value="joint pain"><label for="joint">Joint pain</label></div>
+          <div class="symptom-item"><input type="checkbox" id="back" value="back pain"><label for="back">Back pain</label></div>
+        </div>
+      </details>
+
+      <details class="symptom-category">
+        <summary>Skin & Swelling</summary>
+        <div class="symptoms-grid">
+          <div class="symptom-item"><input type="checkbox" id="rash" value="rash"><label for="rash">Skin rash</label></div>
+          <div class="symptom-item"><input type="checkbox" id="itchy" value="itchy"><label for="itchy">Itching</label></div>
+          <div class="symptom-item"><input type="checkbox" id="swelling" value="swelling"><label for="swelling">Swelling</label></div>
+        </div>
+      </details>
+
+      <details class="symptom-category">
+        <summary>Urinary / Metabolic</summary>
+        <div class="symptoms-grid">
+          <div class="symptom-item"><input type="checkbox" id="frequenturine" value="frequent urination"><label for="frequenturine">Frequent urination</label></div>
+          <div class="symptom-item"><input type="checkbox" id="thirst" value="thirst"><label for="thirst">Excessive thirst</label></div>
+        </div>
+      </details>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- Modals -->
 <div class="modal" id="aboutModal">
   <div class="modal-content">
     <button class="close-btn" onclick="closeModal()">×</button>
-
     <h2>About Dr. Diagnosis</h2>
-
-    <p>
-      <strong>Dr. Diagnosis</strong> is an AI-powered health insight platform designed to help users
-      better understand their symptoms and explore possible health conditions in a clear,
-      responsible, and educational way.
-    </p>
-
-    <p>
-      By combining modern web technologies with intelligent symptom-matching models,
-      Dr. Diagnosis analyzes user-reported symptoms and presents <em>possible conditions</em>,
-      general care information, and guidance on when to seek professional medical help.
-    </p>
-
-    <p>
-      This platform does <strong>not provide medical diagnoses or prescriptions</strong>.
-      All information is intended for learning and awareness only and should never replace
-      consultation with a qualified healthcare professional.
-    </p>
-
-    <p>
-      Dr. Diagnosis was built with a focus on ethical AI, user safety, and modern UX design—
-      demonstrating how technology can support health education without crossing clinical boundaries.
-    </p>
-
-    <p style="margin-top: 1.4rem; opacity: 0.85;">
-      Built with ❤ 
-    </p>
+    <p><strong>Dr. Diagnosis</strong> is an AI-powered health insight platform designed to help users better understand their symptoms and explore possible health conditions in a clear, responsible, and educational way.</p>
+    <p>By combining modern web technologies with intelligent symptom-matching models, Dr. Diagnosis analyzes user-reported symptoms and presents <em>possible conditions</em>, general care information, and guidance on when to seek professional medical help.</p>
+    <p>This platform does <strong>not provide medical diagnoses or prescriptions</strong>. All information is intended for learning and awareness only and should never replace consultation with a qualified healthcare professional.</p>
+    <p>Dr. Diagnosis was built with a focus on ethical AI, user safety, and modern UX design — demonstrating how technology can support health education without crossing clinical boundaries.</p>
+    <p style="margin-top:1.4rem; opacity:0.85;">Built with ❤</p>
   </div>
 </div>
 
-
-<!-- History Modal -->
 <div class="modal" id="historyModal">
-    <div class="modal-content" style="max-width: 720px; width: 92%;">
-        <button class="close-btn" onclick="closeModal()">×</button>
-        <h2 style="margin-bottom: 1.5rem;">Your Recent Symptom Checks</h2>
-        
-        <div style="margin-bottom: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-            <button class="export-history" onclick="exportHistory()">Export History</button>
-            <button class="clear-history" onclick="clearHistory()">Clear History</button>
-        </div>
-        
-        <div id="history-list" class="history-list"></div>
-        
-        <p style="margin-top: 2rem; text-align: center; opacity: 0.75; font-size: 0.95rem;">
-            Entries are stored in your browser (localStorage)
-        </p>
+  <div class="modal-content" style="max-width:720px; width:92%;">
+    <button class="close-btn" onclick="closeModal()">×</button>
+    <h2 style="margin-bottom:1.5rem;">Your Recent Symptom Checks</h2>
+    <div style="margin-bottom:1.5rem; display:flex; gap:1rem; flex-wrap:wrap;">
+      <button class="export-history" onclick="exportHistory()">Export History</button>
+      <button class="clear-history" onclick="clearHistory()">Clear History</button>
     </div>
-</div>
-      <div class="section-title">Anything else? (free text):</div>
-      <textarea id="other" placeholder="e.g. muscle pain, loss of smell, itchy eyes, swollen legs..."></textarea>
-
-      <div class="buttons">
-        <button onclick="checkSymptoms()">Check Symptoms</button>
-        <button class="reset" onclick="resetForm()">Reset Form</button>
-      </div>
-      <div id="loading">
-        <div class="spinner"></div>
-        Analyzing symptoms...
-      </div>
-
-      <div id="result">
-        <h2>Most Likely Conditions:</h2>
-        <div id="diseases"></div>
-
-        <h2 style="margin-top:2.2rem;">General Suggestions (NOT prescriptions):</h2>
-        <div id="medicines"></div>
-
-      </div>
-
-      <!-- Symptom History -->
-      <div id="history-section">
-        <div class="history-header">
-          <h2>Your Recent Checks</h2>
-          <div class="history-actions">
-            <button class="export-history" onclick="exportHistory()">Export History</button>
-            <button class="clear-history" onclick="clearHistory()">Clear History</button>
-          </div>
-        </div>
-        <div id="history-list" class="history-list"></div>
-      </div>
-    </div>
+    <div id="history-list" class="history-list"></div>
+    <p style="margin-top:2rem; text-align:center; opacity:0.75; font-size:0.95rem;">
+      Entries are stored in your browser (localStorage)
+    </p>
   </div>
+</div>
 
-  <script src="script.js"></script>
-
+<script src="script.js"></script>
 </body>
 </html>

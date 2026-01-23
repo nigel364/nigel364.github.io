@@ -698,3 +698,39 @@ function exportHistory() {
     a.click();
     URL.revokeObjectURL(url);
 }
+function resetForm() {
+    // Uncheck all symptom checkboxes
+    document.querySelectorAll('.symptom-item input[type="checkbox"]').forEach(checkbox => {
+        checkbox.checked = false;
+    });
+
+    // Clear the free text area
+    const otherTextarea = document.getElementById('other');
+    if (otherTextarea) {
+        otherTextarea.value = '';
+    }
+
+    // Clear search input
+    const searchInput = document.getElementById('symptomSearch');
+    if (searchInput) {
+        searchInput.value = '';
+        // Trigger input event to reset filter (if you have live search)
+        searchInput.dispatchEvent(new Event('input'));
+    }
+
+    // Hide result and loading
+    document.getElementById('result').style.display = 'none';
+    document.getElementById('loading').style.display = 'none';
+
+    // Optional: reset any preview/count if you added those later
+    // updateSelectionCount?.();  // if you have this function
+
+    console.log("Form has been reset"); // for debugging
+}
+// Call this after adding a new history item
+function scrollHistoryToBottom() {
+    const historyList = document.getElementById('history-list');
+    if (historyList) {
+        historyList.scrollTop = historyList.scrollHeight;
+    }
+}
