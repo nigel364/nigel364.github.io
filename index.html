@@ -3,251 +3,591 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nigel's Portfolio</title>
-  <style>
-    :root {
-      --bg: #f0f2f5;
-      --text: #333;
-      --card: #fff;
-      --primary: #0d6efd;
-    }
+  <title>Afrigrade Enterprise Centre of Excellence</title>
+	  <!-- Favicon -->
+	  
+	  <!-- Favicon for browser tab -->
+<link rel="icon" type="image/png" sizes="32x32" href="img/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="img/icons/favicon-16x16.png">
 
-    body.dark {
-      --bg: #121212;
-      --text: #e0e0e0;
-      --card: #1e1e1e;
-    }
+<!-- Apple Touch Icon -->
+<link rel="apple-touch-icon" sizes="180x180" href="img/icons/apple-touch-icon.png">
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background-color: var(--bg);
-      color: var(--text);
-      transition: background 0.3s, color 0.3s;
-    }
+<!-- Android / Chrome -->
+<link rel="icon" sizes="192x192" href="img/icons/android-chrome-192x192.png">
+<link rel="icon" sizes="512x512" href="img/icons/android-chrome-512x512.png">
 
-    a {
-      color: var(--primary);
-      text-decoration: none;
-    }
 
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 2rem;
-    }
-
-    .card {
-      background: var(--card);
-      border-radius: 15px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-      padding: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-bottom: 3rem;
-      transition: background 0.3s;
-    }
-
-    .card img.profile-pic {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 2rem;
-      border: 3px solid var(--primary);
-    }
-
-    .card .info {
-      flex: 1;
-      min-width: 250px;
-    }
-
-    .card .info h1 {
-      margin: 0;
-      font-size: 2.4rem;
-      color: var(--primary);
-    }
-
-    .card .info p {
-      margin: 0.4rem 0;
-      font-size: 1rem;
-    }
-
-    h2.section-title {
-      text-align: center;
-      font-size: 2rem;
-      color: var(--primary);
-      margin-bottom: 2rem;
-    }
-
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.8rem;
-    }
-
-    .project-card {
-      background: var(--card);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-      transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
-    }
-
-    .project-card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      background: #f6f6f6;
-    }
-
-    .project-card .content {
-      padding: 1.2rem;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-card h3 {
-      margin: 0 0 0.5rem 0;
-      color: var(--primary);
-      font-size: 1.2rem;
-    }
-
-    .project-card p {
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 2rem;
-      background-color: var(--card);
-      color: var(--text);
-      margin-top: 3rem;
-      border-top: 1px solid #ccc;
-    }
-
-    .toggle-dark {
-      display: inline-block;
-      margin: 1rem auto;
-      padding: 0.5rem 1rem;
-      border: none;
-      background: var(--primary);
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .toggle-dark:hover {
-      background: #0a58ca;
-    }
-
-    @media (max-width: 600px) {
-      .card {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .card img.profile-pic {
-        margin-right: 0;
-        margin-bottom: 1rem;
-      }
-    }
-  </style>
+  <meta name="description" content="Strategy, innovation, and execution partner for enterprise performance, institutional transformation, and sustainable economic development across emerging markets."/>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+  <!-- Header / Top Bar -->
+  <header class="top-bar">
+  <div class="top-container">
 
-  <div class="container">
-    <button class="toggle-dark" onclick="document.body.classList.toggle('dark')">Toggle Dark Mode</button>
+    <div class="menu-box">
+      <button class="hamburger" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-    <!-- Profile Card -->
-    <div class="card">
-      <img src="img/profile.jpeg" alt="Nigel's Profile Picture" class="profile-pic">
-      <div class="info">
-        <h1>Nigel Ooko</h1>
-        <p><strong>Android & Web Developer | Firebase Specialist</strong></p>
-        <p>📍 Nairobi, Kenya</p>
-        <p>📧 nigelooko364@gmail.com | 📞 +254 741 441 246</p>
-        <p>🌐 <a href="https://github.com/nigel364" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/nigel-ooko-4319822b6/" target="_blank">LinkedIn</a></p>
+		<div class="logo">
+				<a href="#hero" aria-label="Afrigrade Home">
+					<img src="img/icons/logo.jpeg" alt="Afrigrade Enterprise Centre of Excellence Logo">
+				</a>
+		</div>
+
+
+    </div>
+
+    <!-- INLINE NAV (hidden by default) -->
+    <nav id="menuDropdown" class="menu-inline">
+  <div class="menu-links-container">
+    <ul class="nav-links-horizontal">
+      <li><a href="#capabilities"><b>Capabilities</b></a></li>
+      <li><a href="#outlook"><b>Outlook</b></a></li>
+      <li><a href="#about"><b>About</b></a></li>
+      <li><a href="#contact"><b>Contact</b></a></li>
+    </ul>
+  </div>
+</nav>
+
+
+ <div class="top-right-controls">
+  <div class="search-box">
+    <!-- Search Button -->
+    <button class="search-btn" aria-label="Search">
+      <img src="img/icons/search.png" alt="Search icon">
+    </button>
+
+    <input type="text" id="searchInput" class="search-input" placeholder="Type to Search…" aria-label="Search Afrigrade"/>
+
+    <div id="searchResults" class="search-results"></div>
+
+    <!-- Divider -->
+    <div class="divider"></div>
+
+    <!-- Calendar Button -->
+    <div class="appointment-wrapper">
+      <button class="calendar-btn" aria-label="Schedule Appointment">
+        <i class="fas fa-calendar-alt"></i>
+      </button>
+
+      <div class="appointment-dropdown">
+        <!-- Month Navigation -->
+        <div class="month-header">
+          <button class="prev-month">&lt;</button>
+          <span class="month-year"></span>
+          <button class="next-month">&gt;</button>
+        </div>
+
+        <!-- Weekday Header -->
+        <div class="weekday-header">
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+        </div>
+
+        <!-- Mini Month Calendar -->
+        <div class="mini-calendar" id="mini-calendar"></div>
+
+        <!-- Time slot selection -->
+        <div class="time-container">
+          <label>Select Time:</label>
+          <div class="time-slots" id="time-slots"></div>
+        </div>
+
+        <button id="book-appointment">Book Appointment</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div>
+</header>
+
+
+  <main class="main-content">
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <p class="hero-tagline">WELCOME TO AFRIGRADE ENTERPRISE CENTRE OF EXCELLENCE</p>
+      <p class="hero-subtitle">Strategy, innovation, and execution partner for sustainable growth and transformation across Africa and emerging markets.</p>
+    </section>
+
+<!-- Core Values Carousel – Infinite Loop -->
+<section class="carousel-section" id="values">
+  <div class="carousel-wrapper">
+    <div class="carousel" id="valuesCarousel">
+      <!-- Value 1 -->
+      <div class="carousel-item" data-value="integrity">
+        <img src="img/3.jpeg" 
+             alt="Integrity — handshake and trust" loading="lazy">
+        <div class="carousel-title">Integrity First</div>
+        <div class="carousel-overlay">
+          <h3>Integrity First</h3>
+          <p>We act with honesty, transparency, and accountability in all interactions.</p>
+        </div>
+      </div>
+
+      <!-- Value 2 -->
+      <div class="carousel-item" data-value="people">
+        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1600&auto=format&fit=crop&q=80" 
+             alt="People-Centered Collaboration — diverse team" loading="lazy">
+        <div class="carousel-title">People-Centered Collaboration</div>
+        <div class="carousel-overlay">
+          <h3>People-Centered Collaboration</h3>
+          <p>Diverse perspectives and inclusive collaboration unlock stronger solutions.</p>
+        </div>
+      </div>
+
+      <!-- Value 3 -->
+      <div class="carousel-item" data-value="client">
+        <img src="img/21.jpeg" 
+             alt="Client Value Creation — success metrics" loading="lazy">
+        <div class="carousel-title">Client Value Creation</div>
+        <div class="carousel-overlay">
+          <h3>Client Value Creation</h3>
+          <p>Our success is measured by the lasting, measurable impact we deliver.</p>
+        </div>
+      </div>
+
+      <!-- Value 4 -->
+      <div class="carousel-item" data-value="strategic">
+        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&auto=format&fit=crop&q=80" 
+             alt="Strategic Insight — planning board" loading="lazy">
+        <div class="carousel-title">Strategic Insight</div>
+        <div class="carousel-overlay">
+          <h3>Strategic Insight</h3>
+          <p>Deep analysis, forward thinking, and practical insight shape enduring advantage.</p>
+        </div>
+      </div>
+
+      <!-- Value 5 -->
+      <div class="carousel-item" data-value="innovation">
+        <img src="img/17.jpeg" 
+             alt="Innovation and Learning — lightbulb & team" loading="lazy">
+        <div class="carousel-title">Innovation and Learning</div>
+        <div class="carousel-overlay">
+          <h3>Innovation and Learning</h3>
+          <p>Curiosity fuels continuous learning, experimentation, and new possibilities.</p>
+        </div>
+      </div>
+
+      <!-- Value 6 -->
+      <div class="carousel-item" data-value="impact">
+        <img src="img/19.jpeg" 
+             alt="Impact-Driven Action — growth chart" loading="lazy">
+        <div class="carousel-title">Impact-Driven Action</div>
+        <div class="carousel-overlay">
+          <h3>Impact-Driven Action</h3>
+          <p>We turn strategy into measurable results and real change.</p>
+        </div>
+      </div>
+
+      <!-- Value 7 -->
+      <div class="carousel-item" data-value="global">
+        <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=1600&auto=format&fit=crop&q=80" 
+             alt="Global Citizenship — world map & hands" loading="lazy">
+        <div class="carousel-title">Global Citizenship</div>
+        <div class="carousel-overlay">
+          <h3>Global Citizenship</h3>
+          <p>Responsibility to sustainable development and equitable growth worldwide.</p>
+        </div>
       </div>
     </div>
 
-    <!-- Projects Section -->
-    <h2 class="section-title">Projects</h2>
-    <div class="projects">
-
-      <div class="project-card">
-        <img src="img/reader.jpeg" alt="Reader App">
-        <div class="content">
-          <h3>📱 Reader App</h3>
-          <p>Android app for viewing PDF, Word, Excel, and TXT files with text-to-speech and recent file tracking.</p>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <img src="img/cuk.jpeg" alt="University Student Portal">
-        <div class="content">
-          <h3>🏫 University Student Portal</h3>
-          <p>Student app to access e-library, chatbot, campus maps, and school portals. Powered by Firebase.</p>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <img src="img/ecommerce.jpg" alt="E-commerce">
-        <div class="content">
-          <h3>💄 E-commerce (Vincent-Cosmetics)</h3>
-          <p>PHP + MySQL site with M-Pesa, shopping cart, filters, and admin dashboard for product management.</p>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <img src="img/loan.jpg" alt="Loan Dashboard">
-        <div class="content">
-          <h3>📊 Loan Management System</h3>
-          <p>Admin dashboard to manage loans, filter/search, show summaries and graphs. Fully mobile responsive.</p>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <img src="img/social.jpg" alt="Social Media Monitoring">
-        <div class="content">
-          <h3>📈 Social Media Monitoring</h3>
-          <p>Web app (React + PHP) to monitor sentiment, engagement, and trends using keyword tracking and charts.</p>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <img src="img/admin.jpg" alt="Admin Panel">
-        <div class="content">
-          <h3>🛠️ Admin Panel</h3>
-          <p>Responsive panel built with HTML, CSS, and JS for managing users, reports, and app dashboards.</p>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <img src="img/industrio.jpg" alt="Industrio Construction">
-        <div class="content">
-          <h3>🏗️ Industrio Construction Website</h3>
-          <p>Professional construction site with multi-page design, service pages, gallery, and contact form.</p>
-        </div>
-      </div>
-
+    <div class="carousel-controls">
+      <button class="carousel-btn prev" aria-label="Previous value">‹</button>
+      <button class="carousel-btn next" aria-label="Next value">›</button>
     </div>
   </div>
+</section>
+    <!-- About Us -->
+    <section class="assist-section" id="about">
+      <div class="assist-container">
+        <div class="assist-content">
+          <h2>About Us</h2>
+          <p>Afrigrade Enterprise Centre of Excellence is a business development services platform dedicated to advancing enterprise performance, institutional transformation, and sustainable economic development across emerging and established markets.</p>
+          <p>We operate as a strategy, innovation, and execution partner to organizations navigating complexity, supporting them to design forward-looking strategies, strengthen capabilities, and deliver measurable impact in rapidly changing economic, technological, and social environments.</p>
+          <p>We bring together global expertise and contextual intelligence to help organizations move from ambition to action, and from isolated interventions to system-level results.</p>
+        </div>
+        <div class="assist-image">
+          <img src="img/4.jpeg" alt="Strategic planning and team collaboration in modern office"/>
+        </div>
+      </div>
+    </section>
 
-  <div class="footer">
-    <p>© 2025 Nigel Ooko. All rights reserved.</p>
+   
+    <!-- Content Cards -->
+    <section class="content-cards">
+      <div class="cards-container">
+        <!-- Large Card 1 -->
+        <div class="card-large fade-in">
+          <div class="card-image">
+            <img src="img/21.jpeg" alt="Map of Africa with development focus"/>
+          </div>
+          <div class="card-content">
+  <p class="card-label">Our Purpose</p>
+  <h2>Afrigrade Purpose</h2>
+  
+  <p class="purpose-lead">
+    We enable institutions, enterprises, and ecosystems to perform at their highest potential—today and into the future.
+  </p>
+  
+  <p>Our purpose is anchored in three core objectives:</p>
+  
+  <ul class="purpose-objectives">
+    <li><strong>Strengthening organizational effectiveness and resilience</strong> — building adaptable, high-performing institutions that thrive amid uncertainty.</li>
+    <li><strong>Enabling sustainable growth and value creation</strong> — driving measurable, long-term impact through strategic execution and innovation.</li>
+    <li><strong>Translating global knowledge into locally actionable solutions</strong> — bridging international best practices with contextual intelligence for emerging markets.</li>
+  </ul>
+  
+  <p>We work across sectors, geographies, and institutional forms—supporting public, private, and hybrid actors to navigate complex development and market challenges with clarity, confidence, and results.</p>
+</div>
+        </div>
+
+        <!-- Large Card 2 (reverse order) -->
+        <div class="card-large fade-in reverse">
+          <div class="card-content">
+            <p class="card-label">How We Work</p>
+            <h2>We Go Beyond the Expected</h2>
+            <p>Afrigrade is distinguished by its solution-oriented and partnership-driven approach. We work alongside clients as trusted partners...</p>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 24px;">
+              <a href="#contact" class="btn btn-primary">Contact Us</a>
+            </div>
+          </div>
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&h=900&fit=crop" alt="Collaborative high-performing team"/>
+          </div>
+        </div>
+
+        <!-- Small Cards Grid -->
+        <div class="small-cards-grid">
+          <div class="card-small fade-in">
+            <div class="card-image">
+              <img src="img/10.jpeg" alt="Innovation ecosystem and technology"/>
+            </div>
+            <div class="card-overlay">
+              <p class="card-label">INNOVATION</p>
+              <h3>Building Innovation Capability at Scale</h3>
+            </div>
+          </div>
+
+          <div class="card-small fade-in">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop" alt="Sustainable development and growth"/>
+            </div>
+            <div class="card-overlay">
+              <p class="card-label">SUSTAINABLE DEVELOPMENT</p>
+              <h3>Social Impact & Inclusive Growth Solutions</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Full-width small card -->
+        <div class="card-small fade-in full-width-mobile">
+          <div class="card-image" style="height: 380px;">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop" alt="Executive strategic planning session"/>
+          </div>
+          <div class="card-overlay">
+            <h3>Risk Management, Governance & Institutional Resilience</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+	<!-- Capabilities Overview -->
+<section class="capabilities-section" id="capabilities">
+  <div class="capabilities-container">
+    <h2>Our Capabilities</h2>
+    <p>We deliver comprehensive, integrated solutions that help organizations build resilience, accelerate growth, and create lasting impact.</p>
+
+    <div class="capabilities-grid">
+      <div class="capability-card" style="--bg-image: url('img/1.jpeg');">
+        <div class="card-content">
+          <h3>Business Development Services (BDS)</h3>
+        </div>
+      </div>
+
+      <div class="capability-card" style="--bg-image: url('img/22.jpeg');">
+        <div class="card-content">
+          <h3>Strategy & Corporate Development</h3>
+        </div>
+      </div>
+
+      <div class="capability-card" style="--bg-image: url('https://images.unsplash.com/photo-1552581234-26160f608093?w=800&auto=format&fit=crop&q=80');">
+        <div class="card-content">
+          <h3>Business Transformation & Change Execution</h3>
+        </div>
+      </div>
+
+      <div class="capability-card" style="--bg-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&auto=format&fit=crop&q=80');">
+        <div class="card-content">
+          <h3>Digital, Technology & Data Solutions</h3>
+        </div>
+      </div>
+
+      <div class="capability-card" style="--bg-image: url('img/9.jpeg');">
+        <div class="card-content">
+          <h3>Innovation Strategy & Delivery</h3>
+        </div>
+      </div>
+
+      <div class="capability-card" style="--bg-image: url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&auto=format&fit=crop&q=80');">
+        <div class="card-content">
+          <h3>Organization, Leadership & People Strategy</h3>
+        </div>
+      </div>
+
+      <div class="capability-card" style="--bg-image: url('img/2.jpeg');">
+        <div class="card-content">
+          <h3>Operations & Performance Excellence</h3>
+        </div>
+      </div>
+
+      <div class="capability-card" style="--bg-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80');">
+        <div class="card-content">
+          <h3>Market Development, Marketing & Growth Strategy</h3>
+        </div>
+      </div>
+
+      <div class="capability-card" style="--bg-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=80');">
+        <div class="card-content">
+          <h3>Financial Strategy, Cost & Revenue Optimization</h3>
+        </div>
+      </div>
+
+      
+
+      <div class="capability-card" style="--bg-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&auto=format&fit=crop&q=80');">
+        <div class="card-content">
+          <h3>Sustainability, ESG & Climate Solutions</h3>
+        </div>
+      </div>
+
+      <div class="capability-card" style="--bg-image: url('img/16.jpeg');">
+        <div class="card-content">
+          <h3>Global Expansion & International Development Strategy</h3>
+        </div>
+      </div>
+
+      <div class="capability-card" style="--bg-image: url('img/7.jpeg');">
+        <div class="card-content">
+          <h3>Research, Analytics & Evidence-Based Advisory</h3>
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+</section>
+ <!-- Outlook & Statistics -->
+   <section class="outlook-section" aria-labelledby="outlook-heading">
+  <div class="content-wrapper">
+    <!-- Image left | Text right (desktop) -->
+    <div class="outlook-content">
+      <!-- Left: Image -->
+      <div class="outlook-image">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&auto=format&fit=crop&q=80" 
+             alt="Global collaboration and sustainable development strategy" 
+             loading="lazy">
+      </div>
+
+      <!-- Right: Text -->
+      <div class="outlook-text" id="outlook">
+        <h2 id="outlook-heading">Our Outlook</h2>
+        <p>We operate with a <strong>global mindset</strong> and cross-regional perspective. Our work spans multiple countries and sectors, engaging international development partners, governments, corporations, financial institutions, and civil society organizations.</p>
+        <p>By connecting global knowledge with contextual understanding, we help organizations navigate complexity, manage change, and achieve sustainable impact at scale.</p>
+      </div>
+    </div>
+
+    <!-- Stats cards always below on all screens -->
+    <div class="stats-grid">
+  <div class="stat-card">
+    <i class="fas fa-calendar-days stat-icon"></i>
+    <div class="stat-number" data-target="10">10+</div>
+    <div class="stat-label">Years of Experience<small>since 2016 (founded as Co-optkam Company Limited)</small></div>
   </div>
 
+  <div class="stat-card">
+    <i class="fas fa-users stat-icon"></i>
+    <div class="stat-number" data-target="30">30+</div>
+    <div class="stat-label">Employees</div>
+  </div>
+
+	<div class="stat-card">
+	  <i class="fas fa-heart stat-icon"></i>
+	  <div class="stat-number" data-target="500000">500K+</div>
+	  <div class="stat-label">Persons Impacted</div>
+	</div>
+
+  <div class="stat-card">
+    <i class="fas fa-building stat-icon"></i>
+    <div class="stat-number" data-target="300">300+</div>
+    <div class="stat-label">Organizations Served</div>
+  </div>
+
+  <div class="stat-card">
+    <i class="fas fa-handshake stat-icon"></i>
+    <div class="stat-number" data-target="5">5+</div>
+    <div class="stat-label">International Partners</div>
+  </div>
+</div>
+  </div>
+</section>
+
+<!-- Contact Section with Map -->
+<section class="contact-section" id="contact">
+  <div class="contact-container">
+    <h2>Get in Touch</h2>
+    <p class="section-subtitle">We're here to help. Reach out to discuss your strategy, transformation, or development needs.</p>
+
+    <div class="contact-grid">
+      <!-- Map Side -->
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.817!2d36.8219!3d-1.2833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d5b0b!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2ske!4v1730000000000!5m2!1sen!2ske" 
+          width="100%" 
+          height="100%" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Afrigrade Location - Nairobi, Kenya">
+        </iframe>
+      </div>
+
+      <!-- Form Side -->
+      <div class="form-container">
+        <form id="contact-form-main" class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name <span class="required">*</span></label>
+              <input type="text" id="name" name="name" required placeholder="Your name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address <span class="required">*</span></label>
+              <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="+254 7XX XXX XXX">
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject <span class="required">*</span></label>
+              <input type="text" id="subject" name="subject" required placeholder="How can we assist you?">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Your Message <span class="required">*</span></label>
+            <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project, inquiry or partnership idea..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="submit-contact">Send Message</button>
+
+          <div id="form-status" class="form-status" style="display: none; margin-top: 16px; padding: 12px; border-radius: 6px; text-align: center;"></div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Optional: Quick contact info below form/map -->
+    <div class="contact-info-bar">
+      <div><i class="fas fa-envelope"></i> info@afrigradecentre.com</div>
+      <div><i class="fas fa-phone"></i> +254 716214083</div>
+      <div><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</div>
+    </div>
+  </div>
+</section>
+    <!-- Featured Insights -->
+    <section class="featured-section">
+      <div class="featured-container">
+        <div class="featured-content">
+          <h3>Featured Insights</h3>
+          <h2>Thought leadership shaping the future of business, development, and society in Africa and beyond</h2>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Your email address" required aria-label="Email for newsletter"/>
+            <button type="submit">Subscribe →</button>
+          </form>
+        </div>
+        <div class="featured-image">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&h=900&fit=crop" alt="Strategic foresight and future planning"/>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+      <div class="footer-container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <h3>Unlocking the Potential of Those Who Advance the World</h3>
+            <div class="ads" style="margin-top: 24px; font-size: 32px; font-weight: 700;">
+  <img src="img/icons/logo.jpeg" alt="Afrigrade Enterprise Centre of Excellence Logo" style="width: 200px; height: auto;">
+</div>
+
+          </div>
+          <div class="footer-column">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#capabilities">Capabilities</a></li>
+              <li><a href="#insights">Insights</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>Careers</h4>
+            <ul>
+              <li><a href="#careers">Open Positions</a></li>
+              <li><a href="#">Life at Afrigrade</a></li>
+              <li><a href="#">Alumni Network</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+				<h4>Connect</h4>
+				<div class="social-links">
+				  <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+					<img src="img/icons/linkedin.png" alt="LinkedIn" width="24" height="24">
+				  </a>
+				  <a href="https://x.com" target="_blank" aria-label="X">
+					<img src="img/icons/twitter.png" alt="X" width="24" height="24">
+				  </a>
+				  <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+					<img src="img/icons/facebook.png" alt="Facebook" width="24" height="24">
+				  </a>
+				  <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+					<img src="img/icons/instagram.png" alt="Instagram" width="24" height="24">
+				  </a>
+				</div>
+
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 Afrigrade Enterprise Centre of Excellence</p>
+          <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Sitemap</a>
+            <a href="#">Accessibility</a>
+            <a href="#">Cookie Preferences</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+
+  <script src="script.js"></script>
 </body>
 </html>
