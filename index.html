@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Afrigrade Enterprise Centre of Excellence</title>
+  <title>Afrigrade</title>
 	  <!-- Favicon -->
 	  
 	  <!-- Favicon for browser tab -->
@@ -45,7 +45,7 @@
     </div>
 
     <!-- INLINE NAV (hidden by default) -->
-    <nav id="menuDropdown" class="menu-inline">
+   <nav id="menuDropdown" class="menu-inline">
   <div class="menu-links-container">
     <ul class="nav-links-horizontal">
       <li><a href="#capabilities"><b>Capabilities</b></a></li>
@@ -53,7 +53,7 @@
       <li><a href="#about"><b>About</b></a></li>
       <li><a href="#contact"><b>Contact</b></a></li>
     </ul>
-  </div>
+    </div>
 </nav>
 
 
@@ -71,41 +71,55 @@
     <!-- Divider -->
     <div class="divider"></div>
 
-    <!-- Calendar Button -->
-    <div class="appointment-wrapper">
-      <button class="calendar-btn" aria-label="Schedule Appointment">
-        <i class="fas fa-calendar-alt"></i>
-      </button>
+    <!-- Calendar Button & Dropdown -->
+<!-- Calendar Button & Dropdown -->
+<div class="appointment-wrapper">
+  <button class="calendar-btn" aria-label="Schedule Appointment">
+    <i class="fas fa-calendar-alt"></i>
+  </button>
 
-      <div class="appointment-dropdown">
-        <!-- Month Navigation -->
-        <div class="month-header">
-          <button class="prev-month">&lt;</button>
-          <span class="month-year"></span>
-          <button class="next-month">&gt;</button>
-        </div>
+  <div class="appointment-dropdown">
+    
 
-        <!-- Weekday Header -->
-        <div class="weekday-header">
-          <div>Mon</div>
-          <div>Tue</div>
-          <div>Wed</div>
-          <div>Thu</div>
-          <div>Fri</div>
-        </div>
-
-        <!-- Mini Month Calendar -->
-        <div class="mini-calendar" id="mini-calendar"></div>
-
-        <!-- Time slot selection -->
-        <div class="time-container">
-          <label>Select Time:</label>
-          <div class="time-slots" id="time-slots"></div>
-        </div>
-
-        <button id="book-appointment">Book Appointment</button>
-      </div>
+    <!-- Month Navigation -->
+    <div class="month-header">
+      <button class="prev-month">&lt;</button>
+      <span class="month-year"></span>
+      <button class="next-month">&gt;</button>
     </div>
+
+    <!-- Weekday Header (Mon–Fri only) -->
+    <div class="weekday-header">
+      <div>Mon</div>
+      <div>Tue</div>
+      <div>Wed</div>
+      <div>Thu</div>
+      <div>Fri</div>
+    </div>
+
+    <!-- Mini Month Calendar -->
+    <div class="mini-calendar" ></div>
+
+    <!-- Time slot selection -->
+    <div class="time-container">
+      <label>Select Time (9:00 AM – 4:00 PM):</label>
+      <div class="time-slots"></div>
+    </div>
+
+    <!-- Booking Form -->
+    <form id="mini-booking-form2" style="margin-top: 16px; display: grid; gap: 12px;">
+      <input type="text"    name="name"    placeholder="Your full name *"    required style="padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
+      <input type="email"   name="email"   placeholder="Your email *"        required style="padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
+      <input type="tel"     name="phone"   placeholder="Phone (optional)"    style="padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
+      <textarea name="message" rows="2" placeholder="Brief note (optional)" style="padding: 10px; border-radius: 8px; border: 1px solid #ddd;"></textarea>
+
+      <button type="button" class="book-appointment btn-book">
+	  <i class="fa fa-calendar-check"></i>Book Appointment</button>
+
+
+    </form>
+  </div>
+</div>
   </div>
 </div>
 
@@ -116,7 +130,7 @@
   <main class="main-content">
 
     <!-- Hero -->
-    <section class="hero" id="hero">
+    <section class="hero reveal-on-scroll" id="hero">
       <p class="hero-tagline">WELCOME TO AFRIGRADE ENTERPRISE CENTRE OF EXCELLENCE</p>
       <p class="hero-subtitle">Strategy, innovation, and execution partner for sustainable growth and transformation across Africa and emerging markets.</p>
     </section>
@@ -210,7 +224,7 @@
   </div>
 </section>
     <!-- About Us -->
-    <section class="assist-section" id="about">
+    <section class="assist-section reveal-on-scroll stagger" id="about">
       <div class="assist-container">
         <div class="assist-content">
           <h2>About Us</h2>
@@ -229,27 +243,33 @@
     <section class="content-cards">
       <div class="cards-container">
         <!-- Large Card 1 -->
-        <div class="card-large fade-in">
+        <div class="card-large fade-in reveal-on-scroll stagger">
           <div class="card-image">
             <img src="img/21.jpeg" alt="Map of Africa with development focus"/>
           </div>
           <div class="card-content">
-  <p class="card-label">Our Purpose</p>
-  <h2>Afrigrade Purpose</h2>
-  
-  <p class="purpose-lead">
-    We enable institutions, enterprises, and ecosystems to perform at their highest potential—today and into the future.
-  </p>
-  
-  <p>Our purpose is anchored in three core objectives:</p>
-  
-  <ul class="purpose-objectives">
-    <li><strong>Strengthening organizational effectiveness and resilience</strong> — building adaptable, high-performing institutions that thrive amid uncertainty.</li>
-    <li><strong>Enabling sustainable growth and value creation</strong> — driving measurable, long-term impact through strategic execution and innovation.</li>
-    <li><strong>Translating global knowledge into locally actionable solutions</strong> — bridging international best practices with contextual intelligence for emerging markets.</li>
-  </ul>
-  
-  <p>We work across sectors, geographies, and institutional forms—supporting public, private, and hybrid actors to navigate complex development and market challenges with clarity, confidence, and results.</p>
+			<p class="card-label">Our Purpose</p>
+			<h2>Afrigrade Purpose</h2>
+			<p class="purpose-lead">
+				We enable institutions, enterprises, and ecosystems to perform at their highest potential—today and into the future.
+			</p>
+  <!-- Collapsible section -->
+  <div class="purpose-details" id="purpose-details">
+    <p>Our purpose is anchored in three core objectives:</p>
+    
+    <ul class="purpose-objectives">
+      <li><strong>Strengthening organizational effectiveness and resilience</strong></li>
+      <li><strong>Enabling sustainable growth and value creation</strong></li>
+      <li><strong>Translating global knowledge into locally actionable solutions</strong></li>
+    </ul>
+    
+    <p>We work across sectors, geographies, and institutional forms—supporting public, private, and hybrid actors to navigate complex development and market challenges with clarity, confidence, and results.</p>
+  </div>
+
+  <!-- Toggle Button -->
+  <button class="btn btn-primary purpose-toggle" aria-expanded="false" aria-controls="purpose-details">
+    Learn More <i class="fas fa-chevron-down toggle-icon"></i>
+  </button>
 </div>
         </div>
 
@@ -303,7 +323,7 @@
       </div>
     </section>
 	<!-- Capabilities Overview -->
-<section class="capabilities-section" id="capabilities">
+<section class="capabilities-section reveal-on-scroll stagger" id="capabilities">
   <div class="capabilities-container">
     <h2>Our Capabilities</h2>
     <p>We deliver comprehensive, integrated solutions that help organizations build resilience, accelerate growth, and create lasting impact.</p>
@@ -408,7 +428,7 @@
     </div>
 
     <!-- Stats cards always below on all screens -->
-    <div class="stats-grid">
+    <div class="stats-grid reveal-on-scroll stagger">
   <div class="stat-card">
     <i class="fas fa-calendar-days stat-icon"></i>
     <div class="stat-number" data-target="10">10+</div>
@@ -490,7 +510,7 @@
 
           <div class="form-group">
             <label for="message">Your Message <span class="required">*</span></label>
-            <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project, inquiry or partnership idea..."></textarea>
+            <textarea id="message" name="message" rows="5" required placeholder="Write a message......"></textarea>
           </div>
 
           <button type="submit" class="btn btn-primary" id="submit-contact">Send Message</button>
@@ -544,14 +564,7 @@
               <li><a href="#insights">Insights</a></li>
             </ul>
           </div>
-          <div class="footer-column">
-            <h4>Careers</h4>
-            <ul>
-              <li><a href="#careers">Open Positions</a></li>
-              <li><a href="#">Life at Afrigrade</a></li>
-              <li><a href="#">Alumni Network</a></li>
-            </ul>
-          </div>
+  
           <div class="footer-column">
 				<h4>Connect</h4>
 				<div class="social-links">
@@ -584,9 +597,12 @@
         </div>
       </div>
     </footer>
-
+<!-- Back to Top Button -->
+<button id="back-to-top" title="Back to Top" aria-label="Scroll to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
   </main>
-
+	
 
   <script src="script.js"></script>
 </body>

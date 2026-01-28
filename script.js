@@ -2,199 +2,140 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 // ────────────────────────────────────────
-// CAROUSEL – ACTIVE ITEM ALWAYS CENTERED + larger + infinite seamless loop
+// VALUES CAROUSEL — TRUE CIRCULAR (NO CLONES)
+// Active centered + larger + infinite
 // ────────────────────────────────────────
+
 const carousel = document.getElementById('valuesCarousel');
-if (carousel) {
-  const wrapper = carousel.parentElement;
-  let originalItems = carousel.querySelectorAll('.carousel-item');
-  const prevBtn = wrapper.querySelector('.carousel-btn.prev');
-  const nextBtn = wrapper.querySelector('.carousel-btn.next');
+// ────────────────────────────────────────
+// CAROUSEL IMAGE LAYOUT — UNIFORM SIZE + COVER
+// ────────────────────────────────────────
+(function fixCarouselImages() {
+  const carousel = document.getElementById('valuesCarousel');
+  if (!carousel) return;
 
-  if (originalItems.length < 3) return;
-
-  // Clone for infinite loop (prepend last few, append first few)
-  const clonesBefore = Array.from(originalItems).slice(-3).map(el => el.cloneNode(true));
-  const clonesAfter  = Array.from(originalItems).slice(0, 3).map(el => el.cloneNode(true));
-  clonesBefore.forEach(clone => carousel.prepend(clone));
-  clonesAfter.forEach(clone => carousel.appendChild(clone));
-
-  const allItems = carousel.querySelectorAll('.carousel-item');
-
-  let currentOffset = 0; // in pixels, negative for left movement
-  let itemFullWidth = 0;
-  let isTransitioning = false;
-  let autoplayInterval;
-
-  function updateItemWidth() {
-    const sample = carousel.querySelector('.carousel-item');
-    if (!sample) return;
-    const style = getComputedStyle(sample);
-    itemFullWidth = sample.offsetWidth +
-                    parseFloat(style.marginLeft) +
-                    parseFloat(style.marginRight);
-  }
-
-  function getActiveItemIndex() {
-    // Find current active (or the one we want centered)
-    const active = carousel.querySelector('.carousel-item.active');
-    if (active) return Array.from(allItems).indexOf(active);
-    return Math.floor(allItems.length / 2); // fallback
-  }
-  function centerActive(animate = true) {
-    if (isTransitioning) return;
-    isTransitioning = true;
-
-    updateItemWidth();
-    const activeIndex = getActiveItemIndex();
-
-    // Calculate pixels to move so active item is in center of wrapper
-    const wrapperCenter = wrapper.offsetWidth / 2;
-    const itemCenter = itemFullWidth / 2;
-    const targetOffset = wrapperCenter - (activeIndex * itemFullWidth) - itemCenter;
-
-    carousel.style.transition = animate ? 'transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none';
-    carousel.style.transform = `translateX(${targetOffset}px)`;
-
-    setTimeout(() => { isTransitioning = false; }, animate ? 700 : 0);
-  }
-function handleInfiniteLoop() {
-  const activeIndex = getActiveItemIndex();
-  const originalsCount = originalItems.length;
-  const clonesCount = 3;
-
-  let realIndex = null;
-
-  // Left clones → jump forward
-  if (activeIndex < clonesCount) {
-    realIndex = activeIndex + originalsCount;
-  }
-
-  // Right clones → jump backward
-  if (activeIndex >= clonesCount + originalsCount) {
-    realIndex = activeIndex - originalsCount;
-  }
-
-  if (realIndex === null) return;
-
-  // 🔥 FULL visual reset (this kills the zoom flicker)
-  allItems.forEach(item => {
-    item.classList.remove('active', 'prev', 'next');
-    item.style.transform = '';
-  });
-
-  const realItem = allItems[realIndex];
-  realItem.classList.add('active');
-
-  if (realItem.previousElementSibling)
-    realItem.previousElementSibling.classList.add('prev');
-
-  if (realItem.nextElementSibling)
-    realItem.nextElementSibling.classList.add('next');
-
-  centerActive(false); // instant jump, no animation
-}
-
-
-  function move(direction) {
-    // Change which item is active
-    let active = carousel.querySelector('.carousel-item.active');
-    if (!active) {
-      active = allItems[Math.floor(allItems.length / 2)];
-      active.classList.add('active');
-    }
-
-    let newActive;
-    if (direction > 0) {
-      newActive = active.nextElementSibling;
-      if (!newActive) newActive = allItems[0]; // loop
-    } else {
-      newActive = active.previousElementSibling;
-      if (!newActive) newActive = allItems[allItems.length - 1]; // loop
-    }
-
-    allItems.forEach(item => item.classList.remove('active', 'prev', 'next'));
-    newActive.classList.add('active');
-
-    // Mark neighbors for optional styling
-    if (newActive.previousElementSibling) newActive.previousElementSibling.classList.add('prev');
-    if (newActive.nextElementSibling) newActive.nextElementSibling.classList.add('next');
-
-    centerActive(true);
-  }
-
-  // Init
-  setTimeout(() => {
-    updateItemWidth();
-    // Start with a middle-ish original item as active
-    const startIdx = 3 + Math.floor(originalItems.length / 2); // after clonesBefore
-    allItems.forEach((item, i) => item.classList.remove('active'));
-    if (allItems[startIdx]) {
-      allItems[startIdx].classList.add('active');
-    }
-    centerActive(false); // no animation on load
-  }, 150); // small delay for layout to settle
-enableMouseSelection();
-
-  // Controls
-  prevBtn?.addEventListener('click', () => move(-1));
-  nextBtn?.addEventListener('click', () => move(1));
-
-  // Autoplay
-  function startAutoplay() { autoplayInterval = setInterval(() => move(1), 5000); }
-  function stopAutoplay() { clearInterval(autoplayInterval); }
-
-  wrapper.addEventListener('mouseenter', stopAutoplay);
-  wrapper.addEventListener('mouseleave', startAutoplay);
-
-  // Touch swipe
-  let touchStartX = 0;
-  wrapper.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
-    stopAutoplay();
-  });
-  wrapper.addEventListener('touchend', e => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 60) move(diff > 0 ? 1 : -1);
-    startAutoplay();
-  });
-
-function enableMouseSelection() {
   const items = carousel.querySelectorAll('.carousel-item');
+  const FIXED_HEIGHT = 480; // adjust as needed
+  const FIXED_WIDTH =300;
 
   items.forEach(item => {
-    item.addEventListener('click', () => {
-      if (isTransitioning) return;
+    const img = item.querySelector('img');
+    if (!img) return;
 
-      // 🔥 HARD RESET — fixes the zoom bug
-      allItems.forEach(i => {
-        i.classList.remove('active', 'prev', 'next');
-        i.style.transform = ''; // reset scale for unseen items
-      });
+    // Force all items to have same height
+    item.style.height = `${FIXED_HEIGHT}px`;
+	item.style.width = `${FIXED_WIDTH}px`;
+    item.style.overflow = 'hidden';
+    item.style.display = 'flex';
+    item.style.justifyContent = 'center';
+    item.style.alignItems = 'center';
 
-      // Activate clicked item
-      item.classList.add('active');
+    // Force image to fill container, crop extra
+    img.style.width = '100%';
+    img.style.height = '100%';
+    img.style.objectFit = 'cover';       // crop & fill
+    img.style.objectPosition = 'center'; // center the crop
+    img.style.display = 'block';
+  });
+})();
 
-      // Neighbors
-      if (item.previousElementSibling)
-        item.previousElementSibling.classList.add('prev');
+if (!carousel) return;
 
-      if (item.nextElementSibling)
-        item.nextElementSibling.classList.add('next');
+const wrapper = carousel.parentElement;
+const items = Array.from(carousel.querySelectorAll('.carousel-item'));
+const total = items.length;
 
-      centerActive(true);
-    });
+const prevBtn = wrapper.querySelector('.carousel-btn.prev');
+const nextBtn = wrapper.querySelector('.carousel-btn.next');
+
+let currentIndex = 0;
+let autoplayInterval;
+const ITEM_GAP = 24; // space between cards
+
+function getItemWidth() {
+  const item = items[0];
+  const style = getComputedStyle(item);
+  return item.offsetWidth +
+         parseFloat(style.marginLeft) +
+         parseFloat(style.marginRight) +
+         ITEM_GAP;
+}
+
+function updateCarousel(animate = true) {
+  const itemWidth = getItemWidth();
+
+  items.forEach((item, i) => {
+    let offset = (i - currentIndex + total) % total;
+
+    // Spread items both sides (−n … +n)
+    if (offset > total / 2) offset -= total;
+
+    const isActive = offset === 0;
+
+    item.style.transition = animate
+      ? 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s'
+      : 'none';
+
+    item.style.transform = `
+      translateX(${offset * itemWidth}px)
+      scale(${isActive ? 1.25 : 0.85})
+    `;
+
+    item.style.opacity = isActive ? '1' : '0.55';
+    item.style.zIndex = isActive ? '3' : '1';
+
+    item.classList.toggle('active', isActive);
   });
 }
 
-
-  // Resize → re-center
-  new ResizeObserver(() => {
-    centerActive(false);
-  }).observe(wrapper);
-
-  startAutoplay();
+// ─── Controls ──────────────────────────
+function move(dir) {
+  currentIndex = (currentIndex + dir + total) % total;
+  updateCarousel(true);
 }
+
+prevBtn?.addEventListener('click', () => move(-1));
+nextBtn?.addEventListener('click', () => move(1));
+
+// ─── Click to focus ────────────────────
+items.forEach((item, index) => {
+  item.addEventListener('click', () => {
+    currentIndex = index;
+    updateCarousel(true);
+  });
+});
+
+// ─── Autoplay ──────────────────────────
+function startAutoplay() {
+  autoplayInterval = setInterval(() => move(1), 4500);
+}
+function stopAutoplay() {
+  clearInterval(autoplayInterval);
+}
+
+wrapper.addEventListener('mouseenter', stopAutoplay);
+wrapper.addEventListener('mouseleave', startAutoplay);
+
+// ─── Touch Swipe ───────────────────────
+let startX = 0;
+wrapper.addEventListener('touchstart', e => {
+  startX = e.touches[0].clientX;
+  stopAutoplay();
+});
+
+wrapper.addEventListener('touchend', e => {
+  const diff = startX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 60) move(diff > 0 ? 1 : -1);
+  startAutoplay();
+});
+
+// ─── Resize Safety ─────────────────────
+new ResizeObserver(() => updateCarousel(false)).observe(wrapper);
+
+// ─── Init ──────────────────────────────
+updateCarousel(false);
+startAutoplay();
+
   // ────────────────────────────────────────
   // HAMBURGER MENU
   // ────────────────────────────────────────
@@ -267,117 +208,214 @@ function enableMouseSelection() {
     });
   }
 
-  // ────────────────────────────────────────
-  // APPOINTMENT CALENDAR + BOOKING
-  // ────────────────────────────────────────
-  const appointmentWrapper = document.querySelector('.appointment-wrapper');
-  const calendarBtn = document.querySelector('.calendar-btn');
-  const miniCalendar = document.getElementById('mini-calendar');
-  const timeSlots = document.getElementById('time-slots');
-  const bookBtn = document.getElementById('book-appointment');
-  const monthYear = document.querySelector('.month-year');
-  const prevMonth = document.querySelector('.prev-month');
-  const nextMonth = document.querySelector('.next-month');
+// ────────────────────────────────────────
+// APPOINTMENT CALENDAR + BOOKING (UPDATED)
+// ────────────────────────────────────────
+document.querySelectorAll('.appointment-wrapper').forEach(wrapper => {
+
+  const calendarBtn  = wrapper.querySelector('.calendar-btn');
+  const closeBtn     = wrapper.querySelector('.close-dropdown');
+  const miniCalendar = wrapper.querySelector('.mini-calendar');
+  const timeSlots    = wrapper.querySelector('.time-slots');
+  const bookBtn      = wrapper.querySelector('.book-appointment');
+  const monthYear    = wrapper.querySelector('.month-year');
+  const prevMonthBtn = wrapper.querySelector('.prev-month');
+  const nextMonthBtn = wrapper.querySelector('.next-month');
 
   let selectedDate = null;
   let selectedTime = null;
   let currentMonth = new Date();
   currentMonth.setHours(0, 0, 0, 0);
 
-  const timeOptions = ["09:00","09:30","10:00","10:30","11:00","14:00","14:30","15:00","15:30","16:00"];
-
-  // Example booked slots (replace with real data later)
-  const booked = [
-    { date: "2026-01-27", time: "09:00" },
-    { date: "2026-01-28", time: "14:00" }
+  const timeOptions = [
+    "09:00","09:30","10:00","10:30","11:00",
+    "14:00","14:30","15:00","15:30","16:00"
   ];
 
+  const bookedSlots = [
+    { date: "2026-01-27", time: "09:00" },
+    { date: "2026-01-28", time: "14:00" },
+    { date: "2026-01-29", time: "10:30" }
+  ];
+
+  // ─── Open / Close Calendar Dropdown ──────────────
+  calendarBtn?.addEventListener('click', e => {
+    e.stopPropagation();
+    wrapper.classList.toggle('active');
+  });
+
+  closeBtn?.addEventListener('click', e => {
+    e.stopPropagation();
+    wrapper.classList.remove('active');
+  });
+
+  wrapper.addEventListener('click', e => e.stopPropagation());
+
+  document.addEventListener('click', () => {
+    wrapper.classList.remove('active');
+  });
+
+  // ─── Calendar Generation ──────────────
   function generateCalendar() {
     if (!miniCalendar) return;
     miniCalendar.innerHTML = '';
-    const today = new Date(); today.setHours(0,0,0,0);
-    const y = currentMonth.getFullYear();
-    const m = currentMonth.getMonth();
 
-    monthYear.textContent = currentMonth.toLocaleString('default', { month: 'long', year: 'numeric' });
+    const today = new Date();
+    today.setHours(0,0,0,0);
 
-    const firstWeekday = new Date(y, m, 1).getDay(); // 0=Sun
-    const daysInMonth = new Date(y, m + 1, 0).getDate();
+    const year  = currentMonth.getFullYear();
+    const month = currentMonth.getMonth();
 
-    // Shift for Monday start (adjust if your week starts Sunday)
-    const emptyCells = (firstWeekday === 0 ? 6 : firstWeekday - 1);
-    for (let i = 0; i < emptyCells; i++) {
-      miniCalendar.appendChild(Object.assign(document.createElement('div'), { className: 'day disabled' }));
+    monthYear.textContent = currentMonth.toLocaleString('default', {
+      month: 'long',
+      year: 'numeric'
+    });
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const offset = firstDay === 0 ? 6 : firstDay - 1;
+
+    for (let i = 0; i < offset; i++) {
+      miniCalendar.appendChild(
+        Object.assign(document.createElement('div'), { className: 'day disabled' })
+      );
     }
 
     for (let d = 1; d <= daysInMonth; d++) {
-      const date = new Date(y, m, d);
-      const dayEl = document.createElement('div');
-      dayEl.className = 'day';
-      dayEl.textContent = d;
+      const dateObj = new Date(year, month, d);
+      const dateStr = dateObj.toISOString().split('T')[0];
 
-      if (date.getDay() === 0 || date.getDay() === 6 || date < today) {
-        dayEl.classList.add('disabled');
+      const day = document.createElement('div');
+      day.className = 'day';
+      day.textContent = d;
+
+      const isPast = dateObj < today;
+      const isWeekend = dateObj.getDay() === 0 || dateObj.getDay() === 6;
+
+      if (isPast || isWeekend) {
+        day.classList.add('disabled');
       } else {
-        dayEl.addEventListener('click', () => {
-          miniCalendar.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
-          dayEl.classList.add('selected');
-          selectedDate = date.toISOString().split('T')[0];
-
-          timeSlots.innerHTML = '';
-          timeOptions.forEach(t => {
-            const btn = document.createElement('button');
-            btn.textContent = t;
-
-            const isBooked = booked.some(b => b.date === selectedDate && b.time === t);
-            if (isBooked) {
-              btn.classList.add('booked');
-              btn.disabled = true;
-            }
-
-            btn.addEventListener('click', () => {
-              timeSlots.querySelectorAll('button').forEach(b => b.classList.remove('selected'));
-              btn.classList.add('selected');
-              selectedTime = t;
-            });
-            timeSlots.appendChild(btn);
-          });
+        day.addEventListener('click', () => {
+          miniCalendar.querySelectorAll('.day').forEach(el => el.classList.remove('selected'));
+          day.classList.add('selected');
+          selectedDate = dateStr;
+          generateTimeSlots();
         });
       }
-      miniCalendar.appendChild(dayEl);
+
+      miniCalendar.appendChild(day);
     }
   }
 
-  calendarBtn?.addEventListener('click', () => appointmentWrapper.classList.toggle('active'));
+  // ─── Time Slots ───────────────────────
+  function generateTimeSlots() {
+    if (!timeSlots) return;
+    timeSlots.innerHTML = '';
 
-  prevMonth?.addEventListener('click', () => {
+    if (!selectedDate) {
+      timeSlots.innerHTML = '<p style="text-align:center;color:#777;">Select a date first</p>';
+      if (bookBtn) bookBtn.disabled = true;
+      return;
+    }
+
+    timeOptions.forEach(time => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = time;
+
+      const isBooked = bookedSlots.some(slot => slot.date === selectedDate && slot.time === time);
+
+      if (isBooked) {
+        btn.disabled = true;
+        btn.classList.add('booked');
+      } else {
+        btn.addEventListener('click', () => {
+          timeSlots.querySelectorAll('button').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          selectedTime = time;
+          if (bookBtn) bookBtn.disabled = false;
+        });
+      }
+
+      timeSlots.appendChild(btn);
+    });
+
+    if (bookBtn) bookBtn.disabled = true;
+  }
+
+  // ─── Book Appointment ──────────────
+  bookBtn?.addEventListener('click', e => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!selectedDate || !selectedTime) {
+      alert("Please select a date and time.");
+      return;
+    }
+
+    const name    = wrapper.querySelector('input[name="name"]')?.value.trim();
+    const email   = wrapper.querySelector('input[name="email"]')?.value.trim();
+    const phone   = wrapper.querySelector('input[name="phone"]')?.value.trim() || '—';
+    const message = wrapper.querySelector('textarea[name="message"]')?.value.trim() || 'No additional message';
+
+    if (!name || !email) {
+      alert("Please enter your name and email.");
+      return;
+    }
+
+    const subject = encodeURIComponent(`Appointment Request – ${selectedDate} at ${selectedTime}`);
+    const body = encodeURIComponent(
+      `Hello Afrigrade Team,
+
+I would like to book a consultation.
+
+Date: ${selectedDate}
+Time: ${selectedTime}
+
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+
+Additional notes:
+${message}
+
+Thank you!
+Best regards,
+${name}`
+    );
+
+    window.open(
+      `mailto:info@afrigradecentre.com?subject=${subject}&body=${body}`,
+      '_blank'
+    );
+
+    setTimeout(() => {
+      selectedDate = null;
+      selectedTime = null;
+      generateCalendar();
+      generateTimeSlots();
+      wrapper.classList.remove('active');
+    }, 500);
+  });
+
+  // ─── Month Navigation ──────────────
+  prevMonthBtn?.addEventListener('click', () => {
     currentMonth.setMonth(currentMonth.getMonth() - 1);
     generateCalendar();
   });
 
-  nextMonth?.addEventListener('click', () => {
+  nextMonthBtn?.addEventListener('click', () => {
     currentMonth.setMonth(currentMonth.getMonth() + 1);
     generateCalendar();
   });
 
-  bookBtn?.addEventListener('click', () => {
-    if (!selectedDate || !selectedTime) {
-      alert("Please select both date and time.");
-      return;
-    }
-    const subject = encodeURIComponent("Appointment Request – Afrigrade");
-    const body = encodeURIComponent(`Hello,\n\nI'd like to book an appointment on ${selectedDate} at ${selectedTime}.\n\nBest regards.`);
-    window.location.href = `mailto:info@afrigradecentre.com?subject=${subject}&body=${body}`;
-
-    // Reset UI
-    appointmentWrapper.classList.remove('active');
-    selectedDate = selectedTime = null;
-    miniCalendar?.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
-    timeSlots.innerHTML = '';
-  });
-
-  // Initial render
+  // ─── Initialize ──────────────
   generateCalendar();
+  generateTimeSlots();
+
+});
+
+
 
   // ────────────────────────────────────────
   // FADE-IN ON SCROLL
@@ -481,3 +519,70 @@ document.getElementById('contact-form-main')?.addEventListener('submit', functio
     setTimeout(() => { status.style.display = 'none'; }, 8000);
   }, 600);
 });
+// Purpose "Learn More" toggle
+document.querySelectorAll('.purpose-toggle').forEach(button => {
+  button.addEventListener('click', function() {
+    const details = document.getElementById('purpose-details');
+    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+    
+    // Toggle state
+    this.setAttribute('aria-expanded', !isExpanded);
+    details.style.maxHeight = isExpanded ? '0px' : `${details.scrollHeight}px`;
+    details.style.opacity = isExpanded ? '0' : '1';
+    
+    // Optional: add/remove class for extra styling
+    details.classList.toggle('open', !isExpanded);
+  });
+});
+// ────────────────────────────────────────
+// BACK TO TOP BUTTON
+// ────────────────────────────────────────
+(function () {
+  const backToTopBtn = document.getElementById('back-to-top');
+
+  if (!backToTopBtn) return;
+
+  // Show/hide button based on scroll position
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTopBtn.classList.add('visible');
+    } else {
+      backToTopBtn.classList.remove('visible');
+    }
+  });
+
+  // Smooth scroll to top when clicked
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+})();
+// ────────────────────────────────────────
+// SCROLL REVEAL ANIMATIONS (Intersection Observer)
+// ────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+
+  if (!revealElements.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Optional: stop observing once revealed (better perf)
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.15,          // trigger when 15% visible
+      rootMargin: '0px 0px -80px 0px' // slight offset so it feels natural
+    }
+  );
+
+  revealElements.forEach(el => observer.observe(el));
+});
+

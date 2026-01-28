@@ -110,7 +110,7 @@ a {
     left: 0;
     right: 0;
     z-index: 1000;
-    pointer-events: none;
+    pointer-events: auto;
 }
 
 .top-container {
@@ -164,6 +164,7 @@ a {
     text-align: center;
     padding: 140px 5% 100px;
     background: white;
+	
 }
 
 .hero-tagline {
@@ -196,6 +197,7 @@ a {
 .assist-section {
     background: var(--light-green);
     padding: 100px 5%;
+	margin-top: 80px; 
 }
 
 .assist-container {
@@ -772,6 +774,7 @@ html[data-theme="dark"] .carousel-overlay {
     overflow: hidden;
     position: relative;
     padding: 60px 0;
+	
 }
 
 .carousel {
@@ -875,6 +878,7 @@ html[data-theme="dark"] .carousel-overlay {
     margin-top: 30px;
     z-index: 10;
     position: relative;
+
 }
 
 .carousel-btn {
@@ -1542,7 +1546,26 @@ html[data-theme="dark"] .carousel-overlay {
   z-index: 1000;
 }
 .appointment-wrapper.active .appointment-dropdown { opacity: 1; transform: translateY(0); pointer-events: auto; }
+/* Close Button Styling */
+.close-dropdown {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: #666;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: all 0.2s;
+  z-index: 10;
+}
 
+.close-dropdown:hover {
+  color: var(--primary-green, #00a86b);
+  background: rgba(0, 168, 107, 0.1);
+}
 /* Mini calendar */
 .mini-calendar {
   display: grid;
@@ -1884,4 +1907,533 @@ body.dark-mode .mini-calendar .day {
   .form-row {
     grid-template-columns: 1fr;
   }
+}
+/* Purpose expandable section */
+.purpose-lead {
+  font-size: 1.18rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: #333;
+  margin: 12px 0 24px;
+  border-left: 4px solid var(--primary-green);
+  padding-left: 16px;
+}
+
+.purpose-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+  margin-bottom: 20px;
+}
+
+.purpose-details[aria-hidden="false"],
+.purpose-details.open {  /* fallback class if needed */
+  max-height: 500px;     /* adjust if content grows a lot */
+  opacity: 1;
+}
+
+.purpose-objectives {
+  list-style: none;
+  padding-left: 0;
+  margin: 16px 0;
+}
+
+.purpose-objectives li {
+  margin-bottom: 12px;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  padding-left: 24px;
+  position: relative;
+}
+
+.purpose-objectives li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--primary-green);
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+/* Toggle button styling */
+.purpose-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 28px;
+  background: var(--primary-green);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.purpose-toggle:hover {
+  background: var(--dark-green);
+  transform: translateY(-2px);
+}
+
+.purpose-toggle .toggle-icon {
+  transition: transform 0.3s ease;
+}
+
+.purpose-toggle[aria-expanded="true"] .toggle-icon {
+  transform: rotate(180deg);
+}
+/* Back to Top Button */
+#back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--primary-green, #00a86b);
+  color: white;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+#back-to-top:hover {
+  background: var(--dark-green, #004d40);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+#back-to-top i {
+  transition: transform 0.3s ease;
+}
+
+#back-to-top:hover i {
+  transform: translateY(-3px);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  #back-to-top {
+    width: 48px;
+    height: 48px;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.3rem;
+  }
+}
+/* Smooth reveal animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Common reveal class */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children (optional - adds delay per element) */
+.reveal-on-scroll.stagger > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-on-scroll.stagger.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Delay per child */
+.reveal-on-scroll.stagger > *:nth-child(1) { transition-delay: 0.1s; }
+.reveal-on-scroll.stagger > *:nth-child(2) { transition-delay: 0.2s; }
+.reveal-on-scroll.stagger > *:nth-child(3) { transition-delay: 0.3s; }
+.reveal-on-scroll.stagger > *:nth-child(4) { transition-delay: 0.4s; }
+/* add more if needed */
+#back-to-top:hover i {
+  animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}/* Give body top padding equal to header height on mobile */
+/* Adjust 90px if your header is taller/shorter after testing */
+body {
+  padding-top: 90px;               /* ← safe default on mobile */
+}
+
+/* On larger screens where header might be less intrusive or you have top:20px */
+@media (min-width: 768px) {
+  body {
+    padding-top: 0;                /* reset if you want content flush top */
+  }
+  .top-bar {
+    top: 20px;                     /* your original value */
+  }
+}
+
+/* Make sure main content doesn't get covered */
+.main-content {
+  position: relative;
+  z-index: 1;                      /* stays below header but above bg */
+}
+/* Top bar / header fixes for mobile */
+@media (max-width: 1024px) {               /* or even 900px */
+  .top-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .menu-box {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .menu-inline {
+    width: 100%;
+    order: 3;
+    margin-top: 10px;
+  }
+
+  .nav-links-horizontal {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .top-right-controls {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .search-box {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+/* All multi-column sections → stack on mobile */
+@media (max-width: 992px) {
+  .assist-container,
+  .contact-grid,
+  .featured-container,
+  .outlook-content,
+  .card-large,
+  .card-large.reverse {
+    grid-template-columns: 1fr !important;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .small-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .capabilities-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Reduce section padding massively on mobile */
+@media (max-width: 768px) {
+  section, footer {
+    padding: 50px 5% !important;    /* much smaller than 100px */
+  }
+
+  .hero {
+    padding: 100px 5% 60px !important;
+  }
+
+  .content-cards,
+  .capabilities-section,
+  .outlook-section {
+    padding: 60px 5% !important;
+  }
+
+  .contact-section {
+    padding: 50px 5% !important;
+  }
+}
+html, body {
+  overflow-x: hidden;
+}
+
+img, iframe, video, .container, .top-container {
+  max-width: 100%;
+}
+
+.card-image img,
+.map-container iframe {
+  width: 100%;
+  height: auto;                   /* let height adjust naturally */
+}
+@media (max-width: 768px) {
+  .footer-brand {
+    text-align: center;
+  }
+
+  .footer-column {
+    text-align: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
+
+
+
+
+/* ────────────────────────────────────────────────
+   FIXED HEADER – MOBILE SAFETY FIRST
+   ──────────────────────────────────────────────── */
+
+/* Give body enough top padding so content starts BELOW the fixed header */
+body {
+  padding-top: 40px;                    /* adjust after testing: 70–110px usually works */
+}
+
+/* Make header full-width + compact on mobile */
+.top-bar {
+  top: 0;                               /* stick to very top on mobile */
+  background: transparent/see-through;  /* ensure no transparency/see-through */
+  padding: 8px 0;                       /* less vertical space */
+}
+
+/* Force vertical stacking + better spacing on small screens */
+@media (max-width: 1023px) {
+  .top-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    gap: 8px;
+  }
+
+  .menu-box {
+  flex: 0 0 auto;      /* ← do NOT grow */
+  width: auto;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+  .logo {
+    flex: 0 0 auto;
+    margin-right: 12px;
+  }
+
+  .menu-inline {
+    flex-basis: 100%;
+    order: 3;
+    margin-top: 8px;
+    justify-content: center;
+  }
+
+  .nav-links-horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px 24px;
+    font-size: 0.95rem;
+  }
+
+.top-right-controls {
+  flex: 0 0 auto;      /* ← do NOT stretch */
+  width: auto;
+  gap: 10px;
+}
+
+
+  .search-box {
+    max-width: 200px;
+    padding: 6px 10px;
+  }
+.search-input {
+    min-width: 0;
+    font-size: 0.9rem;
+  }
+}
+
+}/* ────────────────────────────────────────────────
+   FOOTER – MOBILE STACK + CENTERING
+   ──────────────────────────────────────────────── */
+
+@media (max-width: 1023px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .footer-brand {
+    order: -1;                        /* logo/title first */
+  }
+
+  .footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-column ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  .social-links {
+    justify-content: center;
+    margin: 12px 0;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+/* Reduce vertical padding on small screens */
+@media (max-width: 768px) {
+  footer {
+    padding: 60px 5% 40px !important;
+  }
+
+  .footer-top {
+    gap: 32px;
+  }
+}
+
+
+
+/* Desktop: keep original layout */
+@media (min-width: 1024px) {
+  .menu-inline {
+    display: relative !important;
+  }
+}.btn-book {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 14px 26px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  color: #fff;
+  background: linear-gradient(135deg, #1f7cff, #00c6ff);
+  border: none;
+  border-radius: 30px;
+
+  cursor: pointer;
+  transition: 
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.3s ease;
+
+  box-shadow: 0 10px 25px rgba(31, 124, 255, 0.35);
+}
+
+/* Hover */
+.btn-book:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(31, 124, 255, 0.45);
+}
+
+/* Click / Active */
+.btn-book:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 18px rgba(31, 124, 255, 0.35);
+}
+
+/* Disabled state */
+.btn-book:disabled {
+  background: linear-gradient(135deg, #9bb6d6, #b7cde4);
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.75;
+}
+
+/*Don't touch this*/
+#valuesCarousel {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 420px;
+}
+
+.carousel-item {
+  position: absolute;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  will-change: transform;
+}
+
+.carousel-item.active {
+  pointer-events: auto;
 }
