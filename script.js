@@ -15,8 +15,8 @@ const carousel = document.getElementById('valuesCarousel');
   if (!carousel) return;
 
   const items = carousel.querySelectorAll('.carousel-item');
-  const FIXED_HEIGHT = 480; // adjust as needed
-  const FIXED_WIDTH =300;
+  const FIXED_HEIGHT = 460; // adjust as needed
+  const FIXED_WIDTH =360;
 
   items.forEach(item => {
     const img = item.querySelector('img');
@@ -429,39 +429,7 @@ ${name}`
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-  // ────────────────────────────────────────
-  // STAT COUNTERS (with K+/M+ formatting)
-  // ────────────────────────────────────────
-  document.querySelectorAll('.stat-number[data-target]').forEach(el => {
-    const target = parseInt(el.dataset.target, 10);
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return;
-
-      let current = 0;
-      const increment = target / 140; // ~2.3 seconds at 60fps
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          current = target;
-          clearInterval(timer);
-          observer.unobserve(el);
-        }
-        el.textContent = Math.ceil(current).toLocaleString() + '+';
-      }, 16);
-
-      // Format final value (K+/M+)
-      setTimeout(() => {
-        if (target >= 1_000_000) {
-          el.textContent = (target / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M+';
-        } else if (target >= 1_000) {
-          el.textContent = Math.round(target / 1_000) + 'K+';
-        }
-      }, 2400);
-    }, { threshold: 0.5 });
-
-    observer.observe(el);
-  });
-
+ 
   // ────────────────────────────────────────
   // NEWSLETTER (demo)
   // ────────────────────────────────────────

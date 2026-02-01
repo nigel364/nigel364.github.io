@@ -1,0 +1,282 @@
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --text: #111;
+  --muted: #666;
+  --overlay: rgba(255,255,255,0.88);
+  --overlay-hover: rgba(255,255,255,0.94);
+  --learn-more-bg: #00a651;
+  --learn-more-text: #ffffff;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #fff;
+  color: var(--text);
+}
+.section {
+  max-width: 1400px;
+  margin: auto;
+  padding: 64px 32px;
+}
+.header {
+  margin-bottom: 40px;
+}
+.header span { font-size: 12px; letter-spacing: .08em; color: var(--muted); }
+.header h2 { font-size: 36px; font-weight: 500; margin-top: 8px; }
+/* Masonry grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: masonry;
+  gap: 28px;
+  align-content: start;
+}
+/* CARD */
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #000;
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+}
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease;
+  border-radius: 0 !important;
+}
+.card:hover img {
+  transform: scale(1.06);
+}
+/* Small floating meta card – visible by default at bottom */
+.meta-card {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  background: var(--overlay);
+  padding: 16px;
+  border-radius: 6px;
+  z-index: 3;
+  transition: all 0.5s ease;
+}
+.card:hover .meta-card {
+  bottom: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 48px 40px;
+  background: var(--overlay-hover);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+/* Meta & Title inside meta-card */
+.meta {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 8px;
+  display: block;
+}
+.meta-card h3 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.35;
+  margin: 0;
+}
+.card:hover .meta-card h3 {
+  font-size: 22px;
+  margin-bottom: 32px;
+  max-width: 85%;
+}
+/* TAG – unchanged */
+.tag-wrapper {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+}
+.tag {
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 2px solid #fff;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.card:hover .tag {
+  background: rgba(0,0,0,0.9);
+}
+.learn-more {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+  background: #04f404;
+  color: #000000;                     /* black text for better contrast on bright green */
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.4s ease 0.1s, background 0.3s ease, transform 0.3s ease;
+  z-index: 5;
+}
+
+.card:hover .learn-more {
+  opacity: 1;
+  transform: scale(1.05);             /* subtle grow effect on hover */
+}
+
+/* Optional: darker green on button hover */
+.learn-more:hover {
+  background: #03d003;                /* slightly darker shade when hovering the button itself */
+}
+/* Random heights */
+.card:nth-child(1) { height: 520px; }
+.card:nth-child(2) { height: 540px; }
+.card:nth-child(3) { height: 480px; }
+.card:nth-child(4) { height: 600px; }
+.card:nth-child(5) { height: 450px; }
+.card:nth-child(6) { height: 520px; }
+.card:nth-child(7) { height: 580px; }
+.card:nth-child(8) { height: 620px; }
+/* Responsive */
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+}
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .header h2 { font-size: 28px; }
+  .card { height: 480px !important; }
+  .meta-card { padding: 12px 16px; }
+  .card:hover .meta-card { padding: 32px 24px; }
+  .meta-card h3 { font-size: 18px; }
+  .learn-more { bottom: 24px; right: 24px; padding: 10px 24px; font-size: 13px; }
+}
+</style>
+
+
+<section class="section">
+  <div class="header">
+    <span>RECOMMENDED FOR YOU</span>
+    <h2>Our Latest Thinking Based on Your Interests</h2>
+  </div>
+  <div class="grid">
+    <article class="card">
+      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80">
+      <div class="tag-wrapper">
+        <span class="tag">Our Values</span>
+      </div>
+      <div class="meta-card">
+        <span class="meta">ARTICLE · JANUARY 2026</span>
+        <h3>Our values are the foundation of how we work, how we engage with partners, and how we define success. These principles guide our decisions, shape our culture, and reflect our commitment to excellence and ethical leadership in the global landscape.</h3>
+      </div>
+      <a href="#" class="learn-more">LEARN MORE</a>
+    </article>
+
+    <article class="card">
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80">
+      <div class="tag-wrapper">
+        <span class="tag">Integrity First</span>
+      </div>
+      <div class="meta-card">
+        <span class="meta">ARTICLE · JANUARY 2026</span>
+        <h3>We act with honesty, transparency, and accountability in all interactions. Our commitment to ethical conduct builds trust with clients, partners, and communities and drives decisions that are principled and responsible. </h3>
+      </div>
+      <a href="#" class="learn-more">LEARN MORE</a>
+    </article>
+
+    <article class="card">
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80">
+      <div class="tag-wrapper">
+        <span class="tag">People-Centered Collaboration</span>
+      </div>
+      <div class="meta-card">
+        <span class="meta">SLIDESHOW · JANUARY 2026</span>
+        <h3>We believe diverse perspectives and inclusive collaboration unlock stronger solutions. We value every voice, whether within our teams or with our clients—and work collaboratively to co-create innovative and sustainable outcomes. </h3>
+      </div>
+      <a href="#" class="learn-more">LEARN MORE</a>
+    </article>
+
+    <article class="card">
+      <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=1600&q=80">
+      <div class="tag-wrapper">
+        <span class="tag">Client Value Creation</span>
+      </div>
+      <div class="meta-card">
+        <span class="meta">INTERVIEW · JANUARY 2026</span>
+        <h3>Our success is measured by the impact and value we deliver to our partners. We focus on solutions 
+			that create lasting, measurable results and elevate the capabilities of the organizations we support.</h3>
+      </div>
+      <a href="#" class="learn-more">LEARN MORE</a>
+    </article>
+
+    <article class="card">
+      <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1600&q=80">
+      <div class="tag-wrapper">
+        <span class="tag">Strategic Insight</span>
+      </div>
+      <div class="meta-card">
+        <span class="meta">ARTICLE · JULY 2025</span>
+        <h3>We combine deep analysis, forward thinking, and practical insight to help organizations navigate complexity. Our approach goes beyond symptoms to uncover root causes and opportunities that shape enduring advantage.</h3>
+      </div>
+      <a href="#" class="learn-more">LEARN MORE</a>
+    </article>
+
+    <article class="card">
+      <img src="https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?auto=format&fit=crop&w=1600&q=80">
+      <div class="tag-wrapper">
+        <span class="tag">Innovation and Learning</span>
+      </div>
+      <div class="meta-card">
+        <span class="meta">ARTICLE · JANUARY 2026</span>
+        <h3>Curiosity fuels our work. We embrace new ideas, technologies, and methods, encouraging continuous learning and experimentation to expand what is possible for our clients and ecosystems.</h3>
+      </div>
+      <a href="#" class="learn-more">LEARN MORE</a>
+    </article>
+
+    <article class="card">
+      <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1600&q=80">
+      <div class="tag-wrapper">
+        <span class="tag">Impact-Driven Action</span>
+      </div>
+      <div class="meta-card">
+        <span class="meta">UPDATE · JANUARY 2026</span>
+        <h3>We are committed to turning strategy into results. Our work emphasizes implementation and measurable impact, ensuring that insights lead to real change in organizations, markets, and communities.</h3>
+      </div>
+      <a href="#" class="learn-more">LEARN MORE</a>
+    </article>
+	 <article class="card">
+      <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=1600&q=80">
+      <div class="tag-wrapper">
+        <span class="tag">Global Citizenship</span>
+      </div>
+      <div class="meta-card">
+        <span class="meta">INTERVIEW · JANUARY 2026</span>
+        <h3>We operate with a sense of responsibility to the broader world. We seek to deliver solutions that support sustainable development, equitable growth, and positive societal outcomes across regions and sectors. </h3>
+      </div>
+      <a href="#" class="learn-more">LEARN MORE</a>
+    </article>
+  </div>
+</section>
+
+<script>
+console.log("All 8cards now included – floating meta card at bottom by default, full expansion on hover");
+</script>

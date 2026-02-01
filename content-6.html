@@ -1,0 +1,406 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background-color: #f8f9fa;
+        color: #1a1a1a;
+        line-height: 1.55;
+    }
+    .afo-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 24px;
+        min-height: 100vh;
+    }
+    .afo-card {
+        border-radius: 18px;
+        overflow: hidden;
+        transition: all 0.35s ease;
+    }
+    .afo-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 36px rgba(0,0,0,0.1);
+    }
+    .afo-left-card {
+        height: 620px;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.75)),
+                    url('https://images.unsplash.com/photo-1551524484-635f78221cc4?auto=format&fit=crop&q=80&w=2000') center/cover;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 48px 40px;
+    }
+    .afo-left-card h1 {
+        font-size: clamp(2.6rem, 6vw, 4.2rem);
+        font-weight: 800;
+        margin-bottom: 12px;
+        letter-spacing: -0.8px;
+    }
+    .afo-left-card .afo-subtitle {
+        font-size: 1.35rem;
+        opacity: 0.9;
+        margin-bottom: 28px;
+    }
+    .afo-btn {
+        background: #111827;
+        color: white;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 9999px;
+        font-size: 1.02rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.22);
+        width: fit-content;
+        min-width: 160px;
+        justify-content: center;
+    }
+    .afo-btn:hover {
+        background: #1f2937;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(0,0,0,0.3);
+    }
+    .afo-right-column {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+    .afo-top-right, .afo-bottom-right {
+        padding: 36px 32px;
+        border-radius: 18px;
+    }
+    .afo-top-right {
+        background: white;
+        height: 290px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .afo-top-right p {
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 1.4px;
+        color: #6b7280;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+    .afo-top-right h1 {
+        font-size: clamp(1.7rem, 3.8vw, 2.6rem);
+        line-height: 1.15;
+    }
+    .afo-bottom-right {
+        height: 290px;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.8)),
+                    url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=2000') center/cover;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .afo-bottom-header {
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 1.3px;
+        font-weight: 700;
+        opacity: 0.9;
+    }
+    .afo-bottom-right h1 {
+        font-size: clamp(1.7rem, 3.8vw, 2.6rem);
+        line-height: 1.15;
+    }
+    /* Modal */
+    .afo-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        backdrop-filter: blur(8px);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+    }
+    .afo-modal.active {
+        display: flex;
+    }
+    .afo-modal-content {
+        background: rgba(255,255,255,0.96);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(229,231,235,0.5);
+        border-radius: 20px;
+        max-width: 720px;
+        width: 100%;
+        padding: 32px 28px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        transform: scale(0.96);
+        opacity: 0;
+        transition: all 0.4s ease-out;
+    }
+    .afo-modal.active .afo-modal-content {
+        transform: scale(1);
+        opacity: 1;
+    }
+    .afo-modal-close {
+        position: absolute;
+        top: 16px;
+        right: 20px;
+        font-size: 2.2rem;
+        color: #6b7280;
+        cursor: pointer;
+        background: none;
+        border: none;
+    }
+    .afo-modal-close:hover {
+        color: #374151;
+    }
+    .afo-modal h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #111827;
+        text-align: center;
+        margin-bottom: 1.6rem;
+    }
+    .afo-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin: 1rem 0;
+    }
+    .afo-stat-card {
+        background: rgba(243,244,246,0.7);
+        border-radius: 14px;
+        padding: 20px 16px;
+        text-align: center;
+        border: 1px solid rgba(229,231,235,0.4);
+        transition: all 0.25s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .afo-stat-card:hover {
+        background: white;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    }
+    .afo-stat-icon {
+        width: 44px;
+        height: 44px;
+        margin-bottom: 12px;
+        fill: #4b5563;
+    }
+    .afo-stat-number {
+        font-size: clamp(2.3rem, 5.5vw, 3.8rem);
+        font-weight: 800;
+        color: #111827;
+        line-height: 1;
+        margin-bottom: 6px;
+    }
+    .afo-stat-label {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 4px;
+    }
+    .afo-stat-small {
+        font-size: 0.9rem;
+        color: #6b7280;
+    }
+    /* Animations */
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .afo-card, .afo-btn {
+        animation: fadeInUp 0.8s ease-out forwards;
+        opacity: 0;
+    }
+    .afo-left-card { animation-delay: 0.1s; }
+    .afo-top-right { animation-delay: 0.3s; }
+    .afo-bottom-right { animation-delay: 0.5s; }
+    @media (max-width: 900px) {
+        .afo-container {
+            grid-template-columns: 1fr;
+            padding: 16px;
+            gap: 20px;
+        }
+        .afo-left-card {
+            height: 520px;
+            padding: 36px 28px;
+        }
+        .afo-modal-content {
+            padding: 28px 24px;
+        }
+    }
+    @media (max-width: 600px) {
+        .afo-stats-grid {
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+        .afo-left-card {
+            height: 460px;
+            padding: 32px 24px;
+        }
+        .afo-modal h2 {
+            font-size: 1.8rem;
+        }
+        .afo-stat-number {
+            font-size: clamp(2.2rem, 9vw, 3.4rem);
+        }
+        .afo-stat-icon {
+            width: 40px;
+            height: 40px;
+        }
+    }
+</style>
+
+<div class="afo-container">
+    <div class="afo-card afo-left-card">
+        <p class="afo-subtitle">Our Outlook</p>
+        <h1>Afrigrade Outlook 2026</h1>
+        <button class="afo-btn" data-modal="afo-statsModal">Show Stats →</button>
+    </div>
+    <div class="afo-right-column">
+        <div class="afo-card afo-top-right">
+            <div>
+                <p>Global mindset</p>
+                <h1>Unlocking Capital for Just Transition</h1>
+            </div>
+            <button class="afo-btn" data-modal="afo-learnModal">LEARN MORE →</button>
+        </div>
+        <div class="afo-card afo-bottom-right">
+            <div class="afo-bottom-header">Our partners</div>
+            <h1>These are our international partners </h1>
+            <button class="afo-btn" data-modal="afo-exploreModal">EXPLORE →</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modals -->
+<div class="afo-modal" id="afo-statsModal">
+    <div class="afo-modal-content">
+        <button class="afo-modal-close">×</button>
+        <h2>Our Impact at a Glance</h2>
+        <div class="afo-stats-grid">
+            <!-- 1 -->
+            <div class="afo-stat-card">
+                <svg class="afo-stat-icon" viewBox="0 0 24 24">
+                    <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                </svg>
+                <div class="afo-stat-number" data-target="10">0</div>
+                <div class="afo-stat-label">Years of Experience</div>
+                <div class="afo-stat-small">since 2016</div>
+            </div>
+            <!-- 2 -->
+            <div class="afo-stat-card">
+                <svg class="afo-stat-icon" viewBox="0 0 24 24">
+                    <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                </svg>
+                <div class="afo-stat-number" data-target="30">0</div>
+                <div class="afo-stat-label">Employees</div>
+            </div>
+            <!-- 3 -->
+            <div class="afo-stat-card">
+                <svg class="afo-stat-icon" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <div class="afo-stat-number" data-target="500000">0</div>
+                <div class="afo-stat-label">Persons Impacted</div>
+            </div>
+            <!-- 4 -->
+            <div class="afo-stat-card">
+                <svg class="afo-stat-icon" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                </svg>
+                <div class="afo-stat-number" data-target="300">0</div>
+                <div class="afo-stat-label">Organizations Served</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="afo-modal" id="afo-learnModal">
+    <div class="afo-modal-content">
+        <button class="afo-modal-close">×</button>
+        <h2>Global Mindset & Reach</h2>
+        <p>We operate with a global mindset and cross-regional perspective. Our work spans multiple countries and sectors, engaging international development partners, governments, corporations, financial institutions, and civil society organizations.</p>
+    </div>
+</div>
+
+<div class="afo-modal" id="afo-exploreModal">
+    <div class="afo-modal-content">
+        <button class="afo-modal-close">×</button>
+        <h2>Sustainable Impact at Scale</h2>
+        <p>By connecting global knowledge with contextual understanding, we help organizations navigate complexity, manage change, and achieve sustainable impact at scale.</p>
+        <p style="font-size: 1.3rem; font-weight: 600; text-align: center; margin-top: 1.6rem; color: #374151;">
+            5+ International Partners
+        </p>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('[data-modal]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const modalId = btn.getAttribute('data-modal');
+            const modal = document.getElementById(modalId);
+            modal.classList.add('active');
+            if (modalId === 'afo-statsModal') startCounting();
+        });
+    });
+
+    document.querySelectorAll('.afo-modal').forEach(modal => {
+        modal.addEventListener('click', e => {
+            if (e.target.classList.contains('afo-modal') || e.target.classList.contains('afo-modal-close')) {
+                modal.classList.remove('active');
+            }
+        });
+    });
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.afo-modal.active').forEach(m => m.classList.remove('active'));
+        }
+    });
+
+    function startCounting() {
+        const counters = document.querySelectorAll('#afo-statsModal .afo-stat-number');
+        const duration = 2000;
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            let current = 0;
+            const step = target / (duration / 16);
+            function update() {
+                current += step;
+                if (current < target) {
+                    counter.textContent = formatNumber(Math.ceil(current));
+                    requestAnimationFrame(update);
+                } else {
+                    counter.textContent = formatNumber(target);
+                }
+            }
+            update();
+        });
+    }
+
+    function formatNumber(num) {
+        if (num >= 1000) {
+            const formatted = (num / 1000).toFixed(num % 1000 === 0 ? 0 : 1);
+            return formatted + 'K';
+        }
+        return num.toLocaleString();
+    }
+</script>

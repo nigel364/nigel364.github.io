@@ -1,0 +1,203 @@
+<!-- Outlook / Insights Section – Scoped to avoid CSS conflicts -->
+<div class="out-scope">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ──────────────── Core styles (unchanged + minor tweaks) ──────────────── */
+    .out-scope * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .out-scope body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #fff;
+      color: #111;
+      line-height: 1.6;
+    }
+    .out-scope .container {
+      max-width: 1280px;
+      margin: 120px auto;
+      padding: 0 24px;
+    }
+    .out-scope .card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      transition: box-shadow 0.4s ease;
+    }
+    .out-scope .card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+    .out-scope .content {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+    }
+    .out-scope .image {
+      flex: 1.15;
+      height: 520px;
+      overflow: hidden;
+    }
+    .out-scope .image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .out-scope .card:hover .image img {
+      transform: scale(1.05);
+    }
+    .out-scope .text {
+      flex: 1;
+      padding: 80px 80px 80px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .out-scope .eyebrow {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.6px;
+      color: #04f404;
+      margin-bottom: 16px;
+      opacity: 0.9;
+    }
+    .out-scope h2 {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.12;
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
+    }
+    .out-scope .desc,
+    .out-scope .full-content {
+      font-size: 19px;
+      color: #444;
+      max-width: 520px;
+      margin-bottom: 32px;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .out-scope .full-content {
+      font-size: 1.05rem;           /* slightly smaller for longer text */
+      line-height: 1.7;
+      opacity: 0;
+      transform: translateY(10px);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      pointer-events: none;
+    }
+    .out-scope .full-content.active {
+      opacity: 1;
+      transform: translateY(0);
+      position: static;
+      pointer-events: auto;
+    }
+    .out-scope .desc.hidden {
+      opacity: 0;
+      transform: translateY(-10px);
+      height: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+    .out-scope .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #000;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 12px 26px;           /* adjusted for better shape */
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      min-width: 150px;
+      transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 0 20px rgba(4, 244, 4, 0.35);
+    }
+    .out-scope .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12), 0 0 40px rgba(4, 244, 4, 0.55);
+    }
+    .out-scope .btn .arrow {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.3s ease;
+    }
+    .out-scope .btn.open .arrow {
+      transform: rotate(180deg);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .out-scope .content { flex-direction: column; }
+      .out-scope .image { height: 400px; }
+      .out-scope .text { padding: 64px 48px; }
+      .out-scope h2 { font-size: 42px; }
+    }
+    @media (max-width: 640px) {
+      .out-scope .text { padding: 48px 24px; }
+      .out-scope .btn { padding: 10px 22px; font-size: 12.5px; min-width: 130px; }
+    }
+  </style>
+
+  <div class="container">
+    <div class="card">
+      <div class="content">
+        <div class="image">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&q=80&w=2940"
+               alt="African savanna landscape">
+        </div>
+        <div class="text">
+          <div class="eyebrow">OUR PURPOSE</div>
+          <h2>Afrigrade to the world</h2>
+
+          <!-- Short description (visible by default) -->
+          <div class="desc" id="shortDesc">
+            Learn about our purpose in the world, read our latest thought leadership, and connect with our team.
+          </div>
+
+          <!-- Full content (hidden by default, replaces short text) -->
+          <div class="full-content" id="fullContent">
+            <p>We enable institutions, enterprises, and ecosystems to perform at their highest potential, today and into the future.</p>
+            <p>Our purpose is anchored in three core objectives:</p>
+            <ul>
+              <li>Strengthening organizational effectiveness and resilience</li>
+              <li>Enabling sustainable growth and value creation</li>
+              <li>Translating global knowledge into locally actionable solutions</li>
+              <li>Deep local insight combined with global scale and best practices</li>
+            </ul>
+            <p>We work across sectors, geographies, and institutional forms, supporting both public and private actors to respond to complex development and market challenges with clarity and confidence.</p>
+          </div>
+
+          <button class="btn" id="toggleBtn">
+            LEARN MORE
+            <svg class="arrow" viewBox="0 0 24 24" fill="none">
+              <path d="M6 9L12 15L18 9" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById('toggleBtn');
+    const shortDesc = document.getElementById('shortDesc');
+    const fullContent = document.getElementById('fullContent');
+
+    btn.addEventListener('click', () => {
+      const isOpen = fullContent.classList.toggle('active');
+      shortDesc.classList.toggle('hidden', isOpen);
+      btn.classList.toggle('open', isOpen);
+
+      // Update button text
+      btn.firstChild.textContent = isOpen ? 'SHOW LESS ' : 'LEARN MORE ';
+    });
+  </script>
+</div>

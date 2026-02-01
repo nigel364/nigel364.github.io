@@ -1,0 +1,447 @@
+<!-- Capabilities Section – Scoped to avoid CSS conflicts -->
+<div class="cap-scope">
+
+  <style>
+    /* All styles scoped under .cap-scope – no conflicts with main page */
+    .cap-scope * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .cap-scope body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #e8f5e9;
+      color: #003c3b;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .cap-scope .hero {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 8% 0 6%;
+    }
+
+    .cap-scope .visual {
+      position: absolute;
+      inset: 0 0 0 50%;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 0.8s ease;
+      z-index: 1;
+    }
+
+    .cap-scope .info-card {
+      position: absolute;
+      top: 50%;
+      left: 75%;
+      transform: translate(-50%, -50%);
+      width: 84%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.68);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: #003c3b;
+      padding: 2.6rem 2.8rem;
+      border-radius: 18px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.18);
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.94);
+      transition: all 0.5s ease;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .cap-scope .info-card.active {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+      pointer-events: auto;
+    }
+
+    .cap-scope .info-title {
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+      text-align: left;
+    }
+
+    .cap-scope .info-desc {
+      font-size: clamp(1.08rem, 2.2vw, 1.24rem);
+      line-height: 1.6;
+      text-align: left;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+    }
+
+    .cap-scope .explore-btn {
+      padding: 0.9rem 2rem;
+      font-size: 1.08rem;
+      font-weight: 500;
+      color: black;
+      background: #04f404;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      float: right;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cap-scope .explore-btn:hover {
+      background: #66bb6a;
+      transform: translateY(-2px);
+    }
+
+    .cap-scope .explore-btn .arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .cap-scope .explore-btn:hover .arrow {
+      transform: translateX(6px);
+    }
+
+    .cap-scope .content {
+      position: relative;
+      z-index: 4;
+      max-width: 620px;
+    }
+
+    .cap-scope h1 {
+      font-size: clamp(3.2rem, 8vw, 6.2rem);
+      font-weight: 300;
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.2rem;
+    }
+
+    .cap-scope .subtitle {
+      font-size: clamp(1.25rem, 2.6vw, 1.5rem);
+      font-weight: 300;
+      line-height: 1.45;
+      margin-bottom: 3.2rem;
+    }
+
+    .cap-scope .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.4rem;
+    }
+
+    .cap-scope .btn-group {
+      position: relative;
+    }
+
+    .cap-scope .main-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      padding: 1.1rem 2.2rem;
+      font-size: 1.12rem;
+      font-weight: 400;
+      color: #003c3b;
+      background: rgba(255,255,255,0.72);
+      border: 1.5px solid rgba(129,199,132,0.55);
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(12px);
+      min-width: 200px;
+    }
+
+    .cap-scope .main-btn:hover {
+      background: rgba(255,255,255,0.95);
+      border-color: #4caf50;
+      box-shadow: 0 6px 20px rgba(76,175,80,0.15);
+    }
+
+    .cap-scope .arrow {
+      font-size: 1.35rem;
+      opacity: 0.85;
+    }
+
+    .cap-scope .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 290px;
+      background: rgba(255,255,255,0.95);
+      border: 1px solid rgba(129,199,132,0.4);
+      border-radius: 14px;
+      margin-top: 0.7rem;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+      backdrop-filter: blur(12px);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-12px);
+      pointer-events: none;
+      transition: all 0.35s ease;
+      z-index: 20;
+    }
+
+    .cap-scope .dropdown.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .cap-scope .dropdown-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 1.6rem;
+      font-size: 1.08rem;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .cap-scope .dropdown-item:hover,
+    .cap-scope .dropdown-item.selected {
+      background: #04f404;
+    }
+
+    .cap-scope .dropdown-arrow {
+      font-size: 1.25rem;
+      opacity: 0.7;
+    }
+
+    /* Responsive – scoped */
+    @media (max-width: 1024px) {
+      .cap-scope .hero {
+        flex-direction: column;
+        padding: 6rem 5% 6rem;
+        text-align: center;
+        min-height: auto;
+      }
+      .cap-scope .visual {
+        position: relative;
+        inset: auto;
+        height: 50vh;
+        width: 100%;
+        min-height: 320px;
+        z-index: 1;
+      }
+      .cap-scope .content {
+        margin-bottom: 3rem;
+        z-index: 3;
+        max-width: 100%;
+      }
+      .cap-scope .info-card {
+        position: relative;
+        top: auto;
+        left: 50%;
+        transform: translateX(-50%) scale(1);
+        width: 94%;
+        max-width: none;
+        margin: 2rem auto 4rem;
+        padding: 2.2rem 1.8rem;
+      }
+      .cap-scope .info-card.active {
+        transform: translateX(-50%) scale(1);
+      }
+      .cap-scope .buttons {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      }
+      .cap-scope .btn-group {
+        width: 100%;
+        max-width: 420px;
+      }
+      .cap-scope .main-btn {
+        min-width: auto;
+        width: 100%;
+      }
+      .cap-scope .dropdown {
+        position: relative;
+        width: 100%;
+        min-width: auto;
+        left: 0;
+        margin-top: 0.5rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .cap-scope h1 {
+        font-size: clamp(2.6rem, 9vw, 4.2rem);
+      }
+      .cap-scope .subtitle {
+        font-size: clamp(1.1rem, 4vw, 1.3rem);
+      }
+      .cap-scope .info-title {
+        font-size: clamp(1.7rem, 5vw, 2.2rem);
+      }
+      .cap-scope .info-desc {
+        font-size: 1.05rem;
+      }
+      .cap-scope .explore-btn {
+        padding: 0.85rem 1.8rem;
+        font-size: 1rem;
+      }
+      .cap-scope .main-btn {
+        padding: 1rem 1.6rem;
+        font-size: 1.05rem;
+      }
+    }
+  </style>
+
+  <section class="hero">
+    <div class="visual" id="visual"></div>
+    <div class="info-card" id="infoCard">
+      <div class="info-title" id="infoTitle"></div>
+      <div class="info-desc" id="infoDesc"></div>
+      <button class="explore-btn">
+        EXPLORE <span class="arrow">→</span>
+      </button>
+      <div style="clear: both;"></div>
+    </div>
+    <div class="content">
+      <h1>How can we assist<br>you today?</h1>
+      <p class="subtitle">
+        Learn more about our core areas of expertise by selecting your topic of interest.
+      </p>
+      <div class="buttons">
+        <div class="btn-group">
+          <button class="main-btn" id="capabilitiesBtn">Capabilities <span class="arrow">↓</span></button>
+          <div class="dropdown" id="capabilitiesDropdown">
+            <div class="dropdown-item"
+                 data-title="Business Development Services "
+                 data-desc="Afrigrade offers a comprehensive Business Development Services (BDS) practice designed to help organizations accelerate growth, expand market reach, strengthen competitiveness, and build robust commercial pipelines"
+                 data-bg="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=80">
+              BDS
+            </div>
+            <div class="dropdown-item"
+                 data-title="Strategy & Corporate Development"
+                 data-desc="We support organizations to define clear, future-ready strategies that align ambition, resources, and execution"
+                 data-bg="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=80">
+              Strategy & Corporate Development
+            </div>
+            <div class="dropdown-item"
+                 data-title="Business Transformation "
+                 data-desc="We help organizations design and deliver end-to-end transformation programs that improve performance, resilience, and adaptability. "
+                 data-bg="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=80">
+              Business Transformation
+            </div>
+            <div class="dropdown-item"
+                 data-title="Data Solutions"
+                 data-desc="We enable organizations to harness digital technologies, data, and analytics to enhance decision-making, efficiency, and service delivery. "
+                 data-bg="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=80">
+              Data Solutions
+            </div>
+            <div class="dropdown-item"
+                 data-title="Innovation Strategy "
+                 data-desc="We support organizations to build innovation as a repeatable capability, moving beyond isolated pilots to structured innovation systems. . "
+                 data-bg="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=80">
+              Innovation Strategy
+            </div>
+            <div class="dropdown-item"
+                 data-title="Organization Leadership "
+                 data-desc="We work with organizations to align structure, talent, leadership, and culture with strategic goals. We support organizational design, leadership development, workforce planning, and performance management systems. "
+                 data-bg="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=80">
+              Organization Leadership
+            </div>
+            <div class="dropdown-item"
+                 data-title="Operations & Performance Excellence"
+                 data-desc="We help organizations improve operational effectiveness across processes, systems, and service delivery models. "
+                 data-bg="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=80">
+              Operations & Performance Excellence
+            </div>
+          </div>
+        </div>
+        <div class="btn-group">
+          <button class="main-btn" id="industriesBtn">Industries <span class="arrow">↓</span></button>
+          <div class="dropdown" id="industriesDropdown">
+            <div class="dropdown-item" data-title="Market Development"
+                 data-desc="We support organizations to strengthen market positioning, expand reach, and drive sustainable growth."
+                 data-bg="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80">
+              Market Development
+            </div>
+            <div class="dropdown-item" data-title="Financial Strategy"
+                 data-desc="We help organizations strengthen financial performance through cost optimization, pricing strategy, revenue diversification, and financial sustainability planning. "
+                 data-bg="https://images.unsplash.com/photo-1502877338535-766e3a6052c0?auto=format&fit=crop&w=1400&q=80">
+              Financial Strategy
+            </div>
+            <div class="dropdown-item" data-title="Risk Management"
+                 data-desc="We support organizations to identify, assess, and manage strategic, operational, and institutional risks. "
+                 data-bg="https://images.unsplash.com/photo-1606857521015-7f9fcf423740?auto=format&fit=crop&w=1400&q=80">
+              Risk Management
+            </div>
+            <div class="dropdown-item" data-title="Sustainability"
+                 data-desc="We support organizations to integrate environmental, social, and governance (ESG) considerations into core strategy and operations. "
+                 data-bg="https://images.unsplash.com/photo-1509395596868-d7968f398e39?auto=format&fit=crop&w=1400&q=80">
+              Sustainability
+            </div>
+            <div class="dropdown-item" data-title="Global Expansion "
+                 data-desc="Global Expansion "
+                 data-bg="https://images.unsplash.com/photo-1509395596868-d7968f398e39?auto=format&fit=crop&w=1400&q=80">
+              Global Expansion
+            </div>
+            <div class="dropdown-item" data-title="Research"
+                 data-desc="We design and support initiatives that generate shared value for organizations and society. "
+                 data-bg="https://images.unsplash.com/photo-1509395596868-d7968f398e39?auto=format&fit=crop&w=1400&q=80">
+              Social Impact
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Original script – IDs are unique, so no conflict
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.btn-group')) {
+        document.querySelectorAll('.dropdown.active').forEach(d => d.classList.remove('active'));
+      }
+    });
+    document.querySelectorAll('.main-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const group = btn.closest('.btn-group');
+        const dropdown = group.querySelector('.dropdown');
+        const isActive = dropdown.classList.contains('active');
+        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+        dropdown.classList.toggle('active', !isActive);
+      });
+    });
+    document.querySelectorAll('.dropdown-item').forEach(item => {
+      item.addEventListener('click', e => {
+        e.stopPropagation();
+        const title = item.dataset.title;
+        const desc = item.dataset.desc;
+        const bg = item.dataset.bg;
+        const infoTitle = document.getElementById('infoTitle');
+        const infoDesc = document.getElementById('infoDesc');
+        const infoCard = document.getElementById('infoCard');
+        const visual = document.getElementById('visual');
+
+        if (infoTitle && infoDesc && infoCard && visual) {
+          infoTitle.textContent = title;
+          infoDesc.textContent = desc;
+          infoCard.classList.add('active');
+          visual.style.backgroundImage = `url(${bg})`;
+        }
+
+        item.parentElement.querySelectorAll('.dropdown-item').forEach(i => i.classList.remove('selected'));
+        item.classList.add('selected');
+        const btn = item.closest('.btn-group').querySelector('.main-btn');
+        btn.innerHTML = `${title} <span class="arrow">↓</span>`;
+        item.closest('.dropdown').classList.remove('active');
+      });
+    });
+
+    const visual = document.getElementById('visual');
+    if (visual) {
+      visual.style.backgroundImage = "url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1400&q=80')";
+    }
+  </script>
+
+</div>
