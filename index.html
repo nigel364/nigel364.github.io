@@ -3,2069 +3,251 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Afrigrade</title>
-	  <!-- Favicon -->
-	  
-	  <!-- Favicon for browser tab -->
-<link rel="icon" type="image/png" sizes="32x32" href="img/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="img/icons/favicon-16x16.png">
-
-<!-- Apple Touch Icon -->
-<link rel="apple-touch-icon" sizes="180x180" href="img/icons/apple-touch-icon.png">
-
-<!-- Android / Chrome -->
-<link rel="icon" sizes="192x192" href="img/icons/android-chrome-192x192.png">
-<link rel="icon" sizes="512x512" href="img/icons/android-chrome-512x512.png">
-
-
-  <meta name="description" content="Strategy, innovation, and execution partner for enterprise performance, institutional transformation, and sustainable economic development across emerging markets."/>
-  <link rel="stylesheet" href="styles.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<!-- Styling for the pasted content sections -->
-
-<style>
-
-  html, body {
-    background-color: white !important;
-    color: #111; /* or keep your preferred text color */
-  }
-
-  /* Force white bg on all major containers/sections */
-  .main-content,
-  .permanent-section,
-  .carousel-section,
-  .cap-scope,
-  .out-scope,
-  .ag-hero,
-  .featured-section,
-  .contact-section,
-  footer,
-  .afo-container,
-  .section,
-  .hero,
-  .container {
-    background-color: white !important;
-  }
-
-  /* Override any gradient or dark backgrounds that might remain */
-  .afo-left-card,
-  .afo-bottom-right,
-  .out-scope .image,{
-    background: white !important;
-  }
-
-  /* Make sure modals and overlays don't fight the white theme if needed */
-  .afo-modal-content {
-    background: rgba(255, 255, 255, 0.98) !important;
-  }
-  
-</style>
-
-</head>
-<body>
-  <!-- Header / Top Bar -->
-  <header class="top-bar">
-  <div class="top-container">
-
-    <div class="menu-box">
-      <button class="hamburger" aria-label="Open menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-		<div class="logo">
-				<a href="#hero" aria-label="Afrigrade Home">
-					<img src="img/icons/logo.jpeg" alt="Afrigrade Enterprise Centre of Excellence Logo">
-				</a>
-		</div>
-
-
-    </div>
-
-    <!-- INLINE NAV (hidden by default) -->
-   <nav id="menuDropdown" class="menu-inline">
-  <div class="menu-links-container">
-    <ul class="nav-links-horizontal">
-      <li><a href="#capabilities"><b>Capabilities</b></a></li>
-      <li><a href="#outlook"><b>Outlook</b></a></li>
-      <li><a href="#about us"><b>About us</b></a></li>
-	  <li><a href="#purpose"><b>Purpose</b></a></li>
-      <li><a href="#work"><b>Work</b></a></li>
-	  <li><a href="#values"><b>Values</b></a></li>
-      <li><a href="#contact"><b>Contact</b></a></li>
-    </ul>
-    </div>
-</nav>
-
-
- <div class="top-right-controls">
-  <div class="search-box">
-    <!-- Search Button -->
-    <button class="search-btn" aria-label="Search">
-      <img src="img/icons/search.png" alt="Search icon">
-    </button>
-
-    <input type="text" id="searchInput" class="search-input" placeholder="Type to Search…" aria-label="Search Afrigrade"/>
-
-    <div id="searchResults" class="search-results"></div>
-
-    <!-- Divider -->
-    <div class="divider"></div>
-
-    <!-- Calendar Button & Dropdown -->
-<!-- Calendar Button & Dropdown -->
-<div class="appointment-wrapper">
-  <button class="calendar-btn" aria-label="Schedule Appointment">
-    <i class="fas fa-calendar-alt"></i>
-  </button>
-
-  <div class="appointment-dropdown">
-    
-
-    <!-- Month Navigation -->
-    <div class="month-header">
-      <button class="prev-month">&lt;</button>
-      <span class="month-year"></span>
-      <button class="next-month">&gt;</button>
-    </div>
-
-    <!-- Weekday Header (Mon–Fri only) -->
-    <div class="weekday-header">
-      <div>Mon</div>
-      <div>Tue</div>
-      <div>Wed</div>
-      <div>Thu</div>
-      <div>Fri</div>
-    </div>
-
-    <!-- Mini Month Calendar -->
-    <div class="mini-calendar" ></div>
-
-    <!-- Time slot selection -->
-    <div class="time-container">
-      <label>Select Time (9:00 AM – 4:00 PM):</label>
-      <div class="time-slots"></div>
-    </div>
-
-				<!-- Booking Form -->
-				<form id="mini-booking-form2" style="margin-top: 16px; display: grid; gap: 12px;">
-				  <input type="text"    name="name"    placeholder="Your full name *"    required style="padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
-				  <input type="email"   name="email"   placeholder="Your email *"        required style="padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
-				  <input type="tel"     name="phone"   placeholder="Phone (optional)"    style="padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
-				  <textarea name="message" rows="2" placeholder="Brief note (optional)" style="padding: 10px; border-radius: 8px; border: 1px solid #ddd;"></textarea>
-
-				  <button type="button" class="book-appointment btn-book">
-				  <i class="fa fa-calendar-check"></i>Book Appointment</button>
-
-				</form>
-			  </div>
-			</div>
-			  </div>
-			</div>
-
-	</div>
-			</header>
-
-
-  <main class="main-content">
-
-    <!-- Hero -->
-    <section class="hero reveal-on-scroll" id="hero">
-      <p class="hero-tagline">WELCOME TO AFRIGRADE ENTERPRISE CENTRE OF EXCELLENCE</p>
-      <p class="hero-subtitle">Strategy, innovation, and execution partner for sustainable growth and transformation across Africa and emerging markets.</p>
-    </section>
-
-<!-- Core Values Carousel – Infinite Loop -->
-<section class="carousel-section" id="about us">
-  <div class="carousel-wrapper">
-    <div class="carousel" id="valuesCarousel">
-      <!-- Value 1 -->
-      <div class="carousel-item" data-value="integrity">
-        <img src="img/3.jpeg" 
-             alt="Integrity — handshake and trust" loading="lazy">
-        <div class="tag-wrapper">
-        <span class="tag">Core Identity & Focus</span>
-		</div>
-        <div class="meta-card">
-        <span class="meta">About Us · AFRIGRADE 2026</span>
-        <h3>Afrigrade Enterprise Centre of Excellence is a business development services (BDS) platform dedicated to advancing enterprise performance, institutional transformation, and sustainable economic development across emerging and established markets.</h3>
-      </div>
-      </div>
-
-      <!-- Value 2 -->
-      <div class="carousel-item" data-value="people">
-        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1600&auto=format&fit=crop&q=80" 
-             alt="People-Centered Collaboration — diverse team" loading="lazy">
-        <div class="tag-wrapper">
-        <span class="tag">Role & Positioning</span>
-		</div>
-        <div class="meta-card">
-        <span class="meta">About Us · AFRIGRADE 2026</span>
-        <h3>It serves as a strategy, innovation, and execution partner, helping organizations successfully navigate complex and rapidly changing economic, technological, and social environments. </h3>
-      </div>
-      </div>
-      <!-- Value 3-->
-      <div class="carousel-item" data-value="strategic">
-        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&auto=format&fit=crop&q=80" 
-             alt="Strategic Insight — planning board" loading="lazy">
-        <div class="tag-wrapper">
-        <span class="tag">Primary Support Activities</span>
-		</div>
-        <div class="meta-card">
-        <span class="meta">About Us · AFRIGRADE 2026</span>
-        <h3>The organization assists clients in designing forward-looking strategies, strengthening institutional and organizational capabilities, and delivering measurable, lasting impact.</h3>
-      </div>
-      </div>
-
-      <!-- Value 4 -->
-      <div class="carousel-item" data-value="innovation">
-        <img src="img/17.jpeg" 
-             alt="Innovation and Learning — lightbulb & team" loading="lazy">
-        <div class="tag-wrapper">
-        <span class="tag">Knowledge Integration</span>
-		</div>
-        <div class="meta-card">
-        <span class="meta">About Us · AFRIGRADE 2026</span>
-        <h3>It combines global best-practice expertise with deep contextual/local intelligence to create relevant and actionable solutions. </h3>
-      </div>
-      </div>
-      <!-- Value 5 -->
-      <div class="carousel-item" data-value="global">
-        <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=1600&auto=format&fit=crop&q=80" 
-             alt="Global Citizenship — world map & hands" loading="lazy">
-        <div class="tag-wrapper">
-        <span class="tag">Value Creation Philosophy</span>
-		</div>
-        <div class="meta-card">
-        <span class="meta">About Us · AFRIGRADE 2026</span>
-        <h3>Afrigrade helps organizations transition from high-level ambition to concrete action, and from one-off projects to scalable, system-level results and sustainable change.</h3>
-      </div>
-      </div> 
-    </div>
-
-    <div class="carousel-controls">
-      <button class="carousel-btn prev" aria-label="Previous value">‹</button>
-      <button class="carousel-btn next" aria-label="Next value">›</button>
-    </div>
-  </div>
-</section>
-
-
-
-
-  <!-- Capabilities Section – Scoped to avoid CSS conflicts -->
-<div class="cap-scope" id="capabilities">
-
+  <title>Nigel's Portfolio</title>
   <style>
-    /* All styles scoped under .cap-scope – no conflicts with main page */
-    .cap-scope * {
+    :root {
+      --bg: #f0f2f5;
+      --text: #333;
+      --card: #fff;
+      --primary: #0d6efd;
+    }
+
+    body.dark {
+      --bg: #121212;
+      --text: #e0e0e0;
+      --card: #1e1e1e;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
     }
 
-    .cap-scope body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: white;
-      color: #003c3b;
-      min-height: 100vh;
-      overflow-x: hidden;
-	  
+    a {
+      color: var(--primary);
+      text-decoration: none;
     }
 
-    .cap-scope .hero {
-      position: relative;
-      display: flex;
-      align-items: center;
-      min-height: 100vh;
-      max-width: 1600px;
-      margin: 0 auto;
-      padding: 0 8% 0 6%;
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
     }
 
-    .cap-scope .visual {
-      position: absolute;
-      inset: 0 0 0 50%;
-      background-size: cover;
-      background-position: center;
-      transition: background-image 0.8s ease;
-      z-index: 1;
-    }
-
-    .cap-scope .info-card {
-      position: absolute;
-      top: 50%;
-      left: 75%;
-      transform: translate(-50%, -50%);
-      width: 84%;
-      max-width: 500px;
-      background: rgba(255, 255, 255, 0.68);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      color: #003c3b;
-      padding: 2.6rem 2.8rem;
-      border-radius: 18px;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.18);
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(0.94);
-      transition: all 0.5s ease;
-      z-index: 3;
-      pointer-events: none;
-    }
-
-    .cap-scope .info-card.active {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-      pointer-events: auto;
-    }
-
-    .cap-scope .info-title {
-      font-size: clamp(1.9rem, 4vw, 2.6rem);
-      font-weight: 600;
-      line-height: 1.15;
-      margin-bottom: 1.2rem;
-      text-align: left;
-    }
-
-    .cap-scope .info-desc {
-      font-size: clamp(1.08rem, 2.2vw, 1.24rem);
-      line-height: 1.6;
-      text-align: left;
-      margin-bottom: 2rem;
-      opacity: 0.95;
-    }
-
-    .cap-scope .explore-btn {
-      padding: 0.9rem 2rem;
-      font-size: 1.08rem;
-      font-weight: 500;
-      color: black;
-      background: #04f404;
-      border: none;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      float: right;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .cap-scope .explore-btn:hover {
-      background: #66bb6a;
-      transform: translateY(-2px);
-    }
-
-    .cap-scope .explore-btn .arrow {
-      transition: transform 0.3s ease;
-    }
-
-    .cap-scope .explore-btn:hover .arrow {
-      transform: translateX(6px);
-    }
-
-    .cap-scope .content {
-      position: relative;
-      z-index: 4;
-      max-width: 620px;
-	  text-align: left;
-    }
-
-    .cap-scope h1 {
-      font-size: clamp(3.2rem, 8vw, 6.2rem);
-      font-weight: 200;
-      line-height: 1.02;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.2rem;
-	  text-align: left;
-    }
-
-    .cap-scope .subtitle {
-      font-size: clamp(1.25rem, 2.6vw, 1.5rem);
-      font-weight: 200;
-      line-height: 1.45;
-      margin-bottom: 3.2rem;
-	  text-align: left;
-    }
-
-    .cap-scope .buttons {
+    .card {
+      background: var(--card);
+      border-radius: 15px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      padding: 2rem;
       display: flex;
       flex-wrap: wrap;
-      gap: 1.4rem;
-    }
-
-    .cap-scope .btn-group {
-      position: relative;
-    }
-
-    .cap-scope .main-btn {
-      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 0.7rem;
-      padding: 1.1rem 2.2rem;
-      font-size: 1.12rem;
-      font-weight: 400;
-      color: #003c3b;
-      background: rgba(255,255,255,0.72);
-      border: 1.5px solid rgba(129,199,132,0.55);
-      border-radius: 999px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(12px);
-      min-width: 200px;
+      margin-bottom: 3rem;
+      transition: background 0.3s;
     }
 
-    .cap-scope .main-btn:hover {
-      background: rgba(255,255,255,0.95);
-      border-color: #4caf50;
-      box-shadow: 0 6px 20px rgba(76,175,80,0.15);
+    .card img.profile-pic {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 2rem;
+      border: 3px solid var(--primary);
     }
 
-    .cap-scope .arrow {
-      font-size: 1.35rem;
-      opacity: 0.85;
+    .card .info {
+      flex: 1;
+      min-width: 250px;
     }
 
-    .cap-scope .dropdown {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      min-width: 290px;
-      background: rgba(255,255,255,0.95);
-      border: 1px solid rgba(129,199,132,0.4);
-      border-radius: 14px;
-      margin-top: 0.7rem;
-      box-shadow: 0 12px 32px rgba(0,0,0,0.14);
-      backdrop-filter: blur(12px);
+    .card .info h1 {
+      margin: 0;
+      font-size: 2.4rem;
+      color: var(--primary);
+    }
+
+    .card .info p {
+      margin: 0.4rem 0;
+      font-size: 1rem;
+    }
+
+    h2.section-title {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 2rem;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      border-radius: 12px;
       overflow: hidden;
-      opacity: 0;
-      transform: translateY(-12px);
-      pointer-events: none;
-      transition: all 0.35s ease;
-      z-index: 20;
-    }
-
-    .cap-scope .dropdown.active {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    .cap-scope .dropdown-item {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.1rem 1.6rem;
-      font-size: 1.08rem;
-      cursor: pointer;
-      transition: all 0.25s;
+      flex-direction: column;
     }
 
-    .cap-scope .dropdown-item:hover,
-    .cap-scope .dropdown-item.selected {
-      background: #04f404;
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
     }
 
-    .cap-scope .dropdown-arrow {
-      font-size: 1.25rem;
-      opacity: 0.7;
+    .project-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background: #f6f6f6;
     }
 
-    /* Responsive – scoped */
-    @media (max-width: 1024px) {
-      .cap-scope .hero {
-        flex-direction: column;
-        padding: 6rem 5% 6rem;
-        text-align: center;
-        min-height: auto;
-      }
-      .cap-scope .visual {
-        position: relative;
-        inset: auto;
-        height: 50vh;
-        width: 100%;
-        min-height: 320px;
-        z-index: 1;
-      }
-      .cap-scope .content {
-        margin-bottom: 3rem;
-        z-index: 3;
-        max-width: 100%;
-		
-      }
-      .cap-scope .info-card {
-        position: relative;
-        top: auto;
-        left: 50%;
-        transform: translateX(-50%) scale(1);
-        width: 94%;
-        max-width: none;
-        margin: 2rem auto 4rem;
-        padding: 2.2rem 1.8rem;
-      }
-      .cap-scope .info-card.active {
-        transform: translateX(-50%) scale(1);
-      }
-      .cap-scope .buttons {
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-      }
-      .cap-scope .btn-group {
-        width: 100%;
-        max-width: 420px;
-      }
-      .cap-scope .main-btn {
-        min-width: auto;
-        width: 100%;
-      }
-      .cap-scope .dropdown {
-        position: relative;
-        width: 100%;
-        min-width: auto;
-        left: 0;
-        margin-top: 0.5rem;
-      }
+    .project-card .content {
+      padding: 1.2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
     }
 
-    @media (max-width: 640px) {
-      .cap-scope h1 {
-        font-size: clamp(2.6rem, 9vw, 4.2rem);
-      }
-      .cap-scope .subtitle {
-        font-size: clamp(1.1rem, 4vw, 1.3rem);
-      }
-      .cap-scope .info-title {
-        font-size: clamp(1.7rem, 5vw, 2.2rem);
-      }
-      .cap-scope .info-desc {
-        font-size: 1.05rem;
-      }
-      .cap-scope .explore-btn {
-        padding: 0.85rem 1.8rem;
-        font-size: 1rem;
-      }
-      .cap-scope .main-btn {
-        padding: 1rem 1.6rem;
-        font-size: 1.05rem;
-      }
-    }
-  </style>
-
-  <section class="hero">
-    <div class="visual" id="visual"></div>
-    <div class="info-card" id="infoCard">
-      <div class="info-title" id="infoTitle"></div>
-      <div class="info-desc" id="infoDesc"></div>
-      <button class="explore-btn">
-        EXPLORE <span class="arrow">→</span>
-      </button>
-      <div style="clear: both;"></div>
-    </div>
-    <div class="content">
-      <h1>How can we assist<br>you today?</h1>
-      <p class="subtitle">
-        Learn more about our core areas of expertise by selecting your topic of interest.
-      </p>
-      <div class="buttons">
-        <div class="btn-group">
-          <button class="main-btn" id="capabilitiesBtn">Capabilities <span class="arrow">↓</span></button>
-          <div class="dropdown" id="capabilitiesDropdown">
-            <div class="dropdown-item"
-                 data-title="Business Development Services "
-                 data-desc="Afrigrade offers a comprehensive Business Development Services (BDS) practice designed to help organizations accelerate growth, expand market reach, strengthen competitiveness, and build robust commercial pipelines"
-                 data-bg="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=80">
-              BDS
-            </div>
-            <div class="dropdown-item"
-                 data-title="Corporate Development"
-                 data-desc="We support organizations to define clear, future-ready strategies that align ambition, resources, and execution"
-                 data-bg="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=80">
-              Corporate Development
-            </div>
-            <div class="dropdown-item"
-                 data-title="Business Transformation "
-                 data-desc="We help organizations design and deliver end-to-end transformation programs that improve performance, resilience, and adaptability. "
-                 data-bg="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=80">
-              Business Transformation
-            </div>
-            <div class="dropdown-item"
-                 data-title="Data Solutions"
-                 data-desc="We enable organizations to harness digital technologies, data, and analytics to enhance decision-making, efficiency, and service delivery. "
-                 data-bg="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=80">
-              Data Solutions
-            </div>
-            <div class="dropdown-item"
-                 data-title="Innovation Strategy "
-                 data-desc="We support organizations to build innovation as a repeatable capability, moving beyond isolated pilots to structured innovation systems. . "
-                 data-bg="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=80">
-              Innovation Strategy
-            </div>
-            <div class="dropdown-item"
-                 data-title="Organization Leadership "
-                 data-desc="We work with organizations to align structure, talent, leadership, and culture with strategic goals. We support organizational design, leadership development, workforce planning, and performance management systems. "
-                 data-bg="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=80">
-              Organization Leadership
-            </div>
-            <div class="dropdown-item"
-                 data-title="Operations & Performance Excellence"
-                 data-desc="We help organizations improve operational effectiveness across processes, systems, and service delivery models. "
-                 data-bg="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=80">
-              Performance Excellence
-            </div>
-          </div>
-        </div>
-        <div class="btn-group">
-          <button class="main-btn" id="industriesBtn">Industries <span class="arrow">↓</span></button>
-          <div class="dropdown" id="industriesDropdown">
-            <div class="dropdown-item" data-title="Market Development"
-                 data-desc="We support organizations to strengthen market positioning, expand reach, and drive sustainable growth."
-                 data-bg="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80">
-              Market Development
-            </div>
-            <div class="dropdown-item" data-title="Financial Strategy"
-                 data-desc="We help organizations strengthen financial performance through cost optimization, pricing strategy, revenue diversification, and financial sustainability planning. "
-                 data-bg="img/17.jpeg">
-              Financial Strategy
-            </div>
-            <div class="dropdown-item" data-title="Risk Management"
-                 data-desc="We support organizations to identify, assess, and manage strategic, operational, and institutional risks. "
-                 data-bg="https://images.unsplash.com/photo-1606857521015-7f9fcf423740?auto=format&fit=crop&w=1400&q=80">
-              Risk Management
-            </div>
-            <div class="dropdown-item" data-title="Sustainability"
-                 data-desc="We support organizations to integrate environmental, social, and governance (ESG) considerations into core strategy and operations. "
-                 data-bg="img/1.jpeg">
-              Sustainability
-            </div>
-            <div class="dropdown-item" data-title="Global Expansion "
-                 data-desc="We support organizations pursuing cross-border growth, regional integration, and international partnerships. "
-                 data-bg="img/7.jpeg>
-              Global Expansion
-            </div>
-            <div class="dropdown-item" data-title="Research"
-                 data-desc="We design and support initiatives that generate shared value for organizations and society. "
-                 data-bg="img/21.jpeg">
-              Social Impact
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    // Original script – IDs are unique, so no conflict
-    document.addEventListener('click', e => {
-      if (!e.target.closest('.btn-group')) {
-        document.querySelectorAll('.dropdown.active').forEach(d => d.classList.remove('active'));
-      }
-    });
-    document.querySelectorAll('.main-btn').forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.stopPropagation();
-        const group = btn.closest('.btn-group');
-        const dropdown = group.querySelector('.dropdown');
-        const isActive = dropdown.classList.contains('active');
-        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
-        dropdown.classList.toggle('active', !isActive);
-      });
-    });
-    document.querySelectorAll('.dropdown-item').forEach(item => {
-      item.addEventListener('click', e => {
-        e.stopPropagation();
-        const title = item.dataset.title;
-        const desc = item.dataset.desc;
-        const bg = item.dataset.bg;
-        const infoTitle = document.getElementById('infoTitle');
-        const infoDesc = document.getElementById('infoDesc');
-        const infoCard = document.getElementById('infoCard');
-        const visual = document.getElementById('visual');
-
-        if (infoTitle && infoDesc && infoCard && visual) {
-          infoTitle.textContent = title;
-          infoDesc.textContent = desc;
-          infoCard.classList.add('active');
-          visual.style.backgroundImage = `url(${bg})`;
-        }
-
-        item.parentElement.querySelectorAll('.dropdown-item').forEach(i => i.classList.remove('selected'));
-        item.classList.add('selected');
-        const btn = item.closest('.btn-group').querySelector('.main-btn');
-        btn.innerHTML = `${title} <span class="arrow">↓</span>`;
-        item.closest('.dropdown').classList.remove('active');
-      });
-    });
-
-    const visual = document.getElementById('visual');
-    if (visual) {
-      visual.style.backgroundImage = "url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1400&q=80')";
-    }
-  </script>
-
-</div>
-
-<!-- Outlook / Insights (content-3) -->
-<div class="permanent-section" id="values">
-      
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root {
-  --text: #111;
-  --muted: #666;
-  --overlay: rgba(255,255,255,0.88);
-  --overlay-hover: rgba(255,255,255,0.94);
-  --learn-more-bg: #00a651;
-  --learn-more-text: #ffffff;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: #fff;
-  color: var(--text);
-}
-.section {
-  max-width: 1400px;
-  margin: auto;
-  padding: 64px 32px;
-}
-.header {
-  margin-bottom: 40px;
-}
-.header span { font-size: 12px; letter-spacing: .08em; color: var(--muted); }
-.header h2 { font-size: 36px; font-weight: 500; margin-top: 8px; }
-/* Masonry grid */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: masonry;
-  gap: 28px;
-  align-content: start;
-}
-/* CARD */
-.card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 6px;
-  background: #000;
-  transition: transform 0.3s ease;
-}
-.card:hover {
-  transform: translateY(-6px);
-}
-.card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .6s ease;
-  border-radius: 0 !important;
-}
-.card:hover img {
-  transform: scale(1.06);
-}
-/* Small floating meta card – visible by default at bottom */
-.meta-card {
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-  right: 16px;
-  background: var(--overlay);
-  padding: 16px;
-  border-radius: 6px;
-  z-index: 3;
-  transition: all 0.5s ease;
-}
-.card:hover .meta-card {
-  bottom: auto;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 48px 40px;
-  background: var(--overlay-hover);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
-/* Meta & Title inside meta-card */
-.meta {
-  font-size: 11px;
-  color: var(--muted);
-  margin-bottom: 8px;
-  display: block;
-}
-.meta-card h3 {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.35;
-  margin: 0;
-}
-.card:hover .meta-card h3 {
-  font-size: 22px;
-  margin-bottom: 32px;
-  max-width: 85%;
-}
-/* TAG – unchanged */
-.tag-wrapper {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 10;
-}
-.tag {
-  background: rgba(0,0,0,0.75);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 500;
-  padding: 8px 14px;
-  border-radius: 999px;
-  border: 2px solid #fff;
-  transition: all 0.2s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.card:hover .tag {
-  background: rgba(0,0,0,0.9);
-}
-.learn-more {
-  position: absolute;
-  bottom: 32px;
-  right: 32px;
-  background: #04f404;
-  color: #000000;                     /* black text for better contrast on bright green */
-  font-size: 14px;
-  font-weight: 600;
-  padding: 12px 28px;
-  border-radius: 999px;
-  text-decoration: none;
-  opacity: 0;
-  transition: opacity 0.4s ease 0.1s, background 0.3s ease, transform 0.3s ease;
-  z-index: 5;
-}
-
-.card:hover .learn-more {
-  opacity: 1;
-  transform: scale(1.05);             /* subtle grow effect on hover */
-}
-
-/* Optional: darker green on button hover */
-.learn-more:hover {
-  background: #03d003;                /* slightly darker shade when hovering the button itself */
-}
-/* Random heights */
-.card:nth-child(1) { height: 520px; }
-.card:nth-child(2) { height: 540px; }
-.card:nth-child(3) { height: 480px; }
-.card:nth-child(4) { height: 600px; }
-.card:nth-child(5) { height: 450px; }
-.card:nth-child(6) { height: 520px; }
-.card:nth-child(7) { height: 580px; }
-.card:nth-child(8) { height: 620px; }
-/* Responsive */
-@media (max-width: 1024px) {
-  .grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
-}
-@media (max-width: 640px) {
-  .grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-  .header h2 { font-size: 28px; }
-  .card { height: 480px !important; }
-  .meta-card { padding: 12px 16px; }
-  .card:hover .meta-card { padding: 32px 24px; }
-  .meta-card h3 { font-size: 18px; }
-  .learn-more { bottom: 24px; right: 24px; padding: 10px 24px; font-size: 13px; }
-}
-</style>
-
-
-<section class="section">
-  <div class="header">
-    <span>RECOMMENDED FOR YOU</span>
-    <h2>Our Latest Thinking Based on Your Interests</h2>
-  </div>
-  <div class="grid">
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80">
-      <div class="tag-wrapper">
-        <span class="tag">Our Values</span>
-      </div>
-      <div class="meta-card">
-        <span class="meta">ARTICLE · JANUARY 2026</span>
-        <h3>Our values are the foundation of how we work, how we engage with partners, and how we define success. These principles guide our decisions, shape our culture, and reflect our commitment to excellence and ethical leadership in the global landscape.</h3>
-      </div>
-      <a href="#" class="learn-more">LEARN MORE</a>
-    </article>
-
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80">
-      <div class="tag-wrapper">
-        <span class="tag">Integrity First</span>
-      </div>
-      <div class="meta-card">
-        <span class="meta">ARTICLE · JANUARY 2026</span>
-        <h3>We act with honesty, transparency, and accountability in all interactions. Our commitment to ethical conduct builds trust with clients, partners, and communities and drives decisions that are principled and responsible. </h3>
-      </div>
-      <a href="#" class="learn-more">LEARN MORE</a>
-    </article>
-
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80">
-      <div class="tag-wrapper">
-        <span class="tag">People-Centered Collaboration</span>
-      </div>
-      <div class="meta-card">
-        <span class="meta">SLIDESHOW · JANUARY 2026</span>
-        <h3>We believe diverse perspectives and inclusive collaboration unlock stronger solutions. We value every voice, whether within our teams or with our clients—and work collaboratively to co-create innovative and sustainable outcomes. </h3>
-      </div>
-      <a href="#" class="learn-more">LEARN MORE</a>
-    </article>
-
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=1600&q=80">
-      <div class="tag-wrapper">
-        <span class="tag">Client Value Creation</span>
-      </div>
-      <div class="meta-card">
-        <span class="meta">INTERVIEW · JANUARY 2026</span>
-        <h3>Our success is measured by the impact and value we deliver to our partners. We focus on solutions 
-			that create lasting, measurable results and elevate the capabilities of the organizations we support.</h3>
-      </div>
-      <a href="#" class="learn-more">LEARN MORE</a>
-    </article>
-
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1600&q=80">
-      <div class="tag-wrapper">
-        <span class="tag">Strategic Insight</span>
-      </div>
-      <div class="meta-card">
-        <span class="meta">ARTICLE · JULY 2025</span>
-        <h3>We combine deep analysis, forward thinking, and practical insight to help organizations navigate complexity. Our approach goes beyond symptoms to uncover root causes and opportunities that shape enduring advantage.</h3>
-      </div>
-      <a href="#" class="learn-more">LEARN MORE</a>
-    </article>
-
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?auto=format&fit=crop&w=1600&q=80">
-      <div class="tag-wrapper">
-        <span class="tag">Innovation and Learning</span>
-      </div>
-      <div class="meta-card">
-        <span class="meta">ARTICLE · JANUARY 2026</span>
-        <h3>Curiosity fuels our work. We embrace new ideas, technologies, and methods, encouraging continuous learning and experimentation to expand what is possible for our clients and ecosystems.</h3>
-      </div>
-      <a href="#" class="learn-more">LEARN MORE</a>
-    </article>
-
-    <article class="card">
-      <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1600&q=80">
-      <div class="tag-wrapper">
-        <span class="tag">Impact-Driven Action</span>
-      </div>
-      <div class="meta-card">
-        <span class="meta">UPDATE · JANUARY 2026</span>
-        <h3>We are committed to turning strategy into results. Our work emphasizes implementation and measurable impact, ensuring that insights lead to real change in organizations, markets, and communities.</h3>
-      </div>
-      <a href="#" class="learn-more">LEARN MORE</a>
-    </article>
-	 <article class="card">
-      <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=1600&q=80">
-      <div class="tag-wrapper">
-        <span class="tag">Global Citizenship</span>
-      </div>
-      <div class="meta-card">
-        <span class="meta">INTERVIEW · JANUARY 2026</span>
-        <h3>We operate with a sense of responsibility to the broader world. We seek to deliver solutions that support sustainable development, equitable growth, and positive societal outcomes across regions and sectors. </h3>
-      </div>
-      <a href="#" class="learn-more">LEARN MORE</a>
-    </article>
-  </div>
-</section>
-
-<script>
-console.log("All 8cards now included – floating meta card at bottom by default, full expansion on hover");
-</script>
-
- </div>
-
-<!-- Outlook / Insights Section – Scoped to avoid CSS conflicts -->
-<div class="out-scope" id="purpose">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
- <style>
-  /* ──────────────── Core styles ──────────────── */
-  .out-scope * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  .out-scope body {
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: #fff;
-    color: #111;
-    line-height: 1.6;
-  }
-  .out-scope .container {
-    max-width: 1280px;
-    margin: 120px auto;
-    padding: 0 24px;
-  }
-  .out-scope .card {
-    background: white;
-    border-radius: 16px;
-    overflow: visible;                /* ← FIX 1: allows overflow */
-    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-    transition: box-shadow 0.4s ease;
-    margin-bottom: 40px;              /* ← breathing room */
-  }
-  .out-scope .card:hover {
-    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
-  }
-  .out-scope .content {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-  }
-  .out-scope .image {
-    flex: 1.15;
-    height: 520px;
-    overflow: hidden;
-  }
-  .out-scope .image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .out-scope .card:hover .image img {
-    transform: scale(1.05);
-  }
-  .out-scope .text {
-    flex: 1;
-    padding: 80px 80px 120px 64px;   /* ← FIX 2: more bottom padding */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;      /* ← content grows downward */
-    min-height: 420px;                /* ← minimum height protection */
-  }
-  .out-scope .eyebrow {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 1.6px;
-    color: #04f404;
-    margin-bottom: 16px;
-    opacity: 0.9;
-  }
-  .out-scope h2 {
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 1.12;
-    margin-bottom: 24px;
-    letter-spacing: -0.5px;
-  }
-  .out-scope .desc,
-  .out-scope .full-content {
-    font-size: 19px;
-    color: #444;
-    max-width: 520px;
-    margin-bottom: 32px;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-  }
-  .out-scope .full-content {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    opacity: 0;
-    transform: translateY(10px);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    pointer-events: none;
-  }
-  .out-scope .full-content.active {
-    opacity: 1;
-    transform: translateY(0);
-    position: static;
-    pointer-events: auto;
-  }
-  .out-scope .desc.hidden {
-    opacity: 0;
-    transform: translateY(-10px);
-    height: 0;
-    margin: 0;
-    overflow: hidden;
-  }
-    .out-scope .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: #000;
-      color: #fff;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 12px 26px;           /* adjusted for better shape */
-      border-radius: 9999px;
-      border: none;
-      cursor: pointer;
-      min-width: 150px;
-      transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 0 20px rgba(4, 244, 4, 0.35);
-    }
-    .out-scope .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.12), 0 0 40px rgba(4, 244, 4, 0.55);
-    }
-    .out-scope .btn .arrow {
-      width: 14px;
-      height: 14px;
-      transition: transform 0.3s ease;
-    }
-    .out-scope .btn.open .arrow {
-      transform: rotate(180deg);
+    .project-card h3 {
+      margin: 0 0 0.5rem 0;
+      color: var(--primary);
+      font-size: 1.2rem;
     }
 
-  /* Responsive */
-  @media (max-width: 1024px) {
-    .out-scope .content { flex-direction: column; }
-    .out-scope .image { height: 400px; }
-    .out-scope .text { padding: 64px 48px 100px 48px; } /* more bottom */
-    .out-scope h2 { font-size: 42px; }
-  }
-  @media (max-width: 640px) {
-    .out-scope .text { padding: 48px 24px 80px 24px; }
-    .out-scope .btn { padding: 10px 22px; font-size: 12.5px; min-width: 130px; }
-  }
-</style>
-
-  <div class="container">
-    <div class="card">
-      <div class="content">
-        <div class="image">
-          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&q=80&w=2940"
-               alt="African savanna landscape">
-        </div>
-        <div class="text">
-          <div class="eyebrow">OUR PURPOSE</div>
-          <h2>Afrigrade to the world</h2>
-
-          <!-- Short description (visible by default) -->
-          <div class="desc" id="shortDesc">
-            Learn about our purpose in the world, read our latest thought leadership, and connect with our team.
-          </div>
-
-          <!-- Full content (hidden by default, replaces short text) -->
-          <div class="full-content" id="fullContent">
-            <p>We enable institutions, enterprises, and ecosystems to perform at their highest potential, today and into the future.</p>
-            <p>Our purpose is anchored in three core objectives:</p>
-            <ul>
-              <li>Strengthening organizational effectiveness and resilience</li>
-              <li>Enabling sustainable growth and value creation</li>
-              <li>Translating global knowledge into locally actionable solutions</li>
-              <li>Deep local insight combined with global scale and best practices</li>
-            </ul>
-            <p>We work across sectors, geographies, and institutional forms, supporting both public and private actors to respond to complex development and market challenges with clarity and confidence.</p>
-          </div>
-
-          <button class="btn" id="toggleBtn">
-            LEARN MORE
-            <svg class="arrow" viewBox="0 0 24 24" fill="none">
-              <path d="M6 9L12 15L18 9" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const btn = document.getElementById('toggleBtn');
-    const shortDesc = document.getElementById('shortDesc');
-    const fullContent = document.getElementById('fullContent');
-
-    btn.addEventListener('click', () => {
-      const isOpen = fullContent.classList.toggle('active');
-      shortDesc.classList.toggle('hidden', isOpen);
-      btn.classList.toggle('open', isOpen);
-
-      // Update button text
-      btn.firstChild.textContent = isOpen ? 'SHOW LESS ' : 'LEARN MORE ';
-    });
-  </script>
-</div>
-
-<div class="container ag-hero" id="work">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    /* ======================================================
-       AFRIGRADE HERO — STARTS CLOSED, EXPANDS ON CLICK
-       Reliable even in main layout
-    ====================================================== */
-    .ag-hero {
-      --ag-green: #00a651;
-      --ag-green-dark: #008c44;
-      --ag-neon: #04f404;
-      --ag-neon-dark: #03d803;
-      --ag-text-dark: #111111;
-      --ag-text-light: #ffffff;
-      --ag-gray: #f5f5f5;
-      --ag-black: #000000;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: white;
-      color: var(--ag-text-dark);
+    .project-card p {
+      font-size: 0.95rem;
       line-height: 1.5;
     }
 
-    .ag-hero * { box-sizing: border-box; }
-
-    .ag-hero .hero {
-      position: relative;
-      background: white;
-      overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-      margin: 80px auto;
-      max-width: 1440px;
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: var(--card);
+      color: var(--text);
+      margin-top: 3rem;
+      border-top: 1px solid #ccc;
     }
 
-    .ag-hero .hero-content {
-      display: flex;
-      align-items: center;
-      min-height: 520px;
-    }
-
-    .ag-hero .text-column {
-      flex: 1;
-      padding: 100px 80px 100px 100px;
-      position: relative;
-      z-index: 2;
-      text-align: left;
-    }
-
-    .ag-hero .eyebrow,
-    .ag-hero h1,
-    .ag-hero .short-desc,
-    .ag-hero .full-content {
-      text-align: left;
-    }
-
-    .ag-hero .eyebrow {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      color: var(--ag-green);
-      margin-bottom: 24px;
-    }
-
-    .ag-hero h1 {
-      font-size: 56px;
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 32px;
-      color: var(--ag-text-dark);
-    }
-
-    .ag-hero .content-wrapper {
-      position: relative;
-      margin-bottom: 48px;
-      min-height: 120px;
-    }
-
-    .ag-hero .short-desc {
-      font-size: 20px;
-      color: #444;
-      max-width: 580px;
-      transition: all 0.5s ease;
-    }
-
-    .ag-hero .full-content-wrapper {
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .ag-hero .full-content-wrapper.expanded {
-      max-height: 1200px;
-      opacity: 1;
-    }
-
-    .ag-hero .full-content {
-      font-size: 1.08rem;
-      line-height: 1.7;
-      color: #333;
-      max-height: 420px;
-      overflow-y: auto;
-      padding-right: 12px;
-    }
-
-    /* Custom scrollbar */
-    .ag-hero .full-content::-webkit-scrollbar {
-      width: 8px;
-    }
-    .ag-hero .full-content::-webkit-scrollbar-track {
-      background: rgba(0,0,0,0.05);
-      border-radius: 10px;
-    }
-    .ag-hero .full-content::-webkit-scrollbar-thumb {
-      background: var(--ag-green);
-      border-radius: 10px;
-    }
-    .ag-hero .full-content::-webkit-scrollbar-thumb:hover {
-      background: var(--ag-green-dark);
-    }
-
-    .ag-hero .buttons {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-
-    .ag-hero .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 15px;
-      font-weight: 600;
-      padding: 18px 36px;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      min-width: 180px;
-    }
-
-    .ag-hero .btn-primary {
-      background: white;
-      color: var(--ag-text-dark);
-      border: 2px solid var(--ag-text-dark);
-    }
-
-    .ag-hero .btn-primary:hover {
-      background: var(--ag-text-dark);
-      color: white;
-      transform: translateY(-3px);
-    }
-
-    /* Green CONTACT US button */
-    .ag-hero .btn-accent {
-      background: var(--ag-neon);
-      color: #000;
+    .toggle-dark {
+      display: inline-block;
+      margin: 1rem auto;
+      padding: 0.5rem 1rem;
       border: none;
+      background: var(--primary);
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
     }
 
-    .ag-hero .btn-accent:hover {
-      background: var(--ag-neon-dark);
-      color: #000;
-      transform: translateY(-3px);
+    .toggle-dark:hover {
+      background: #0a58ca;
     }
 
-    .ag-hero .btn .arrow-up {
-      transition: transform 0.3s ease;
-    }
+    @media (max-width: 600px) {
+      .card {
+        flex-direction: column;
+        text-align: center;
+      }
 
-    .ag-hero .btn.expanded .arrow-up {
-      transform: rotate(180deg);
-    }
-
-    /* Image Column */
-    .ag-hero .image-column {
-      flex: 1;
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, rgba(4,244,4,0.12), rgba(0,166,81,0.18), rgba(255,255,255,0.4));
-    }
-
-    .ag-hero .image-column::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, rgba(4,244,4,0.18), rgba(0,166,81,0.12), rgba(0,0,0,0.15));
-    }
-
-    .ag-hero .image-frame {
-      position: relative;
-      z-index: 3;
-      background: #fff;
-      padding: 18px;
-      box-shadow: 0 28px 70px rgba(0,0,0,0.22);
-      margin: 60px;
-    }
-
-    .ag-hero .image-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .ag-hero .hero:hover .image-frame img {
-      transform: scale(1.07);
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .ag-hero .hero-content { flex-direction: column; }
-      .ag-hero .text-column { padding: 80px 48px; order: 2; }
-      .ag-hero .image-column { height: 420px; order: 1; }
-      .ag-hero h1 { font-size: 48px; }
-      .ag-hero .full-content { max-height: 340px; }
-    }
-
-    @media (max-width: 640px) {
-      .ag-hero .text-column { padding: 60px 24px; }
-      .ag-hero h1 { font-size: 38px; }
-      .ag-hero .short-desc { font-size: 18px; }
-      .ag-hero .buttons { flex-direction: column; }
-      .ag-hero .btn { width: 100%; padding: 16px 28px; min-width: auto; }
-      .ag-hero .full-content { max-height: 280px; }
+      .card img.profile-pic {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
     }
   </style>
+</head>
+<body>
 
   <div class="container">
-    <div class="hero">
-      <div class="hero-content">
-        <div class="text-column">
-          <div class="eyebrow">How we Work</div>
-          <h1>Go Beyond the Expected</h1>
+    <button class="toggle-dark" onclick="document.body.classList.toggle('dark')">Toggle Dark Mode</button>
 
-          <!-- Content wrapper -->
-          <div class="content-wrapper">
-            <p class="short-desc">
-              We’re dedicated to helping our clients do amazing things and unlocking the potential of those who advance the world. Join us, and you can too.
-            </p>
+    <!-- Profile Card -->
+    <div class="card">
+      <img src="img/profile.jpeg" alt="Nigel's Profile Picture" class="profile-pic">
+      <div class="info">
+        <h1>Nigel Ooko</h1>
+        <p><strong>Android & Web Developer | Firebase Specialist</strong></p>
+        <p>📍 Nairobi, Kenya</p>
+        <p>📧 nigelooko364@gmail.com | 📞 +254 741 441 246</p>
+        <p>🌐 <a href="https://github.com/nigel364" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/nigel-ooko-4319822b6/" target="_blank">LinkedIn</a></p>
+      </div>
+    </div>
 
-            <div class="full-content-wrapper">
-              <div class="full-content">
-                <p>Afrigrade is distinguished by its solution-oriented and partnership-driven approach. We work alongside clients as trusted partners, combining analytical rigor, practical experience, and adaptive implementation support.</p>
-                <p>Our engagements are designed to deliver enduring value, not one-off outputs.</p>
-                <p style="font-weight: 600; margin: 32px 0 16px;">Our methodology emphasizes:</p>
-                <ul>
-                  <li><strong>Deep problem diagnosis</strong></li>
-                  <li><strong>Co-creation with stakeholders</strong></li>
-                  <li><strong>Agile implementation and learning</strong></li>
-                  <li><strong>Clear metrics for performance and impact</strong></li>
-                </ul>
-                <p>This approach allows us to operate effectively across diverse institutional, cultural, and regulatory environments.</p>
-              </div>
-            </div>
-          </div>
+    <!-- Projects Section -->
+    <h2 class="section-title">Projects</h2>
+    <div class="projects">
 
-          <div class="buttons">
-            <button class="btn btn-primary" type="button">
-              EXPLORE MORE <span class="arrow-up">→</span>
-            </button>
-            <a href="#contact" class="btn btn-accent">
-              CONTACT US <span class="arrow-up">→</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="image-column">
-          <div class="image-frame">
-            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=2940"
-                 alt="Diverse team members collaborating">
-          </div>
+      <div class="project-card">
+        <img src="img/reader.jpeg" alt="Reader App">
+        <div class="content">
+          <h3>📱 Reader App</h3>
+          <p>Android app for viewing PDF, Word, Excel, and TXT files with text-to-speech and recent file tracking.</p>
         </div>
       </div>
+
+      <div class="project-card">
+        <img src="img/cuk.jpeg" alt="University Student Portal">
+        <div class="content">
+          <h3>🏫 University Student Portal</h3>
+          <p>Student app to access e-library, chatbot, campus maps, and school portals. Powered by Firebase.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="img/ecommerce.jpg" alt="E-commerce">
+        <div class="content">
+          <h3>💄 E-commerce (Vincent-Cosmetics)</h3>
+          <p>PHP + MySQL site with M-Pesa, shopping cart, filters, and admin dashboard for product management.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="img/loan.jpg" alt="Loan Dashboard">
+        <div class="content">
+          <h3>📊 Loan Management System</h3>
+          <p>Admin dashboard to manage loans, filter/search, show summaries and graphs. Fully mobile responsive.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="img/social.jpg" alt="Social Media Monitoring">
+        <div class="content">
+          <h3>📈 Social Media Monitoring</h3>
+          <p>Web app (React + PHP) to monitor sentiment, engagement, and trends using keyword tracking and charts.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="img/admin.jpg" alt="Admin Panel">
+        <div class="content">
+          <h3>🛠️ Admin Panel</h3>
+          <p>Responsive panel built with HTML, CSS, and JS for managing users, reports, and app dashboards.</p>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="img/industrio.jpg" alt="Industrio Construction">
+        <div class="content">
+          <h3>🏗️ Industrio Construction Website</h3>
+          <p>Professional construction site with multi-page design, service pages, gallery, and contact form.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <script>
-    (function() {
-      // Find this specific ag-hero block
-      const section = document.currentScript.closest('.ag-hero');
-      if (!section) return;
-
-      const btn = section.querySelector('.btn-primary');
-      const shortDesc = section.querySelector('.short-desc');
-      const fullWrapper = section.querySelector('.full-content-wrapper');
-
-      if (!btn || !shortDesc || !fullWrapper) return;
-
-      // Start closed (default state)
-      shortDesc.classList.remove('hidden');
-      fullWrapper.classList.remove('expanded');
-      btn.classList.remove('expanded');
-      btn.innerHTML = 'EXPLORE MORE <span class="arrow-up">→</span>';
-
-      btn.addEventListener('click', () => {
-        const isExpanded = fullWrapper.classList.toggle('expanded');
-        shortDesc.classList.toggle('hidden', isExpanded);
-        btn.classList.toggle('expanded', isExpanded);
-
-        btn.innerHTML = isExpanded
-          ? 'SHOW LESS <span class="arrow-up" style="transform: rotate(180deg);">→</span>'
-          : 'EXPLORE MORE <span class="arrow-up">→</span>';
-      });
-    })();
-  </script>
-</div>
-<section class="permanent-section" id="outlook">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    body {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        background-color: #f8f9fa;
-        color: #1a1a1a;
-        line-height: 1.55;
-    }
-    .afo-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 20px;
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 24px;
-        min-height: 100vh;
-    }
-    .afo-card {
-        border-radius: 18px;
-        overflow: hidden;
-        transition: all 0.35s ease;
-    }
-    .afo-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 18px 36px rgba(0,0,0,0.1);
-    }
-    .afo-left-card {
-        height: 620px;
-        background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.75)),
-                    url('https://images.unsplash.com/photo-1551524484-635f78221cc4?auto=format&fit=crop&q=80&w=2000') center/cover;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        padding: 48px 40px;
-    }
-    .afo-left-card h1 {
-        font-size: clamp(2.6rem, 6vw, 4.2rem);
-        font-weight: 800;
-        margin-bottom: 12px;
-        letter-spacing: -0.8px;
-    }
-    .afo-left-card .afo-subtitle {
-        font-size: 1.35rem;
-        opacity: 0.9;
-        margin-bottom: 28px;
-    }
-    .afo-btn {
-        background: #111827;
-        color: white;
-        border: none;
-        padding: 12px 28px;
-        border-radius: 9999px;
-        font-size: 1.02rem;
-        font-weight: 600;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        transition: all 0.3s ease;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.22);
-        width: fit-content;
-        min-width: 160px;
-        justify-content: center;
-    }
-    .afo-btn:hover {
-        background: #1f2937;
-        transform: translateY(-2px);
-        box-shadow: 0 10px 24px rgba(0,0,0,0.3);
-    }
-    .afo-right-column {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-    }
-    .afo-top-right, .afo-bottom-right {
-        padding: 36px 32px;
-        border-radius: 18px;
-    }
-    .afo-top-right {
-        background: white;
-        height: 290px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-    .afo-top-right p {
-        font-size: 0.95rem;
-        text-transform: uppercase;
-        letter-spacing: 1.4px;
-        color: #6b7280;
-        font-weight: 600;
-        margin-bottom: 10px;
-    }
-    .afo-top-right h1 {
-        font-size: clamp(1.7rem, 3.8vw, 2.6rem);
-        line-height: 1.15;
-    }
-    .afo-bottom-right {
-        height: 290px;
-        background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.8)),
-                    url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=2000') center/cover;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-    .afo-bottom-header {
-        font-size: 0.95rem;
-        text-transform: uppercase;
-        letter-spacing: 1.3px;
-        font-weight: 700;
-        opacity: 0.9;
-    }
-    .afo-bottom-right h1 {
-        font-size: clamp(1.7rem, 3.8vw, 2.6rem);
-        line-height: 1.15;
-    }
-    /* Modal */
-    .afo-modal {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.5);
-        backdrop-filter: blur(8px);
-        z-index: 1000;
-        align-items: center;
-        justify-content: center;
-        padding: 16px;
-    }
-    .afo-modal.active {
-        display: flex;
-    }
-    .afo-modal-content {
-        background: rgba(255,255,255,0.96);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(229,231,235,0.5);
-        border-radius: 20px;
-        max-width: 720px;
-        width: 100%;
-        padding: 32px 28px;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-        transform: scale(0.96);
-        opacity: 0;
-        transition: all 0.4s ease-out;
-    }
-    .afo-modal.active .afo-modal-content {
-        transform: scale(1);
-        opacity: 1;
-    }
-    .afo-modal-close {
-        position: absolute;
-        top: 16px;
-        right: 20px;
-        font-size: 2.2rem;
-        color: #6b7280;
-        cursor: pointer;
-        background: none;
-        border: none;
-    }
-    .afo-modal-close:hover {
-        color: #374151;
-    }
-    .afo-modal h2 {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #111827;
-        text-align: center;
-        margin-bottom: 1.6rem;
-    }
-    .afo-stats-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        margin: 1rem 0;
-    }
-    .afo-stat-card {
-        background: rgba(243,244,246,0.7);
-        border-radius: 14px;
-        padding: 20px 16px;
-        text-align: center;
-        border: 1px solid rgba(229,231,235,0.4);
-        transition: all 0.25s ease;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    .afo-stat-card:hover {
-        background: white;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-    }
-    .afo-stat-icon {
-        width: 44px;
-        height: 44px;
-        margin-bottom: 12px;
-        fill: #4b5563;
-    }
-    .afo-stat-number {
-        font-size: clamp(2.3rem, 5.5vw, 3.8rem);
-        font-weight: 800;
-        color: #111827;
-        line-height: 1;
-        margin-bottom: 6px;
-    }
-    .afo-stat-label {
-        font-size: 1.05rem;
-        font-weight: 600;
-        color: #374151;
-        margin-bottom: 4px;
-    }
-    .afo-stat-small {
-        font-size: 0.9rem;
-        color: #6b7280;
-    }
-    /* Animations */
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(30px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    .afo-card, .afo-btn {
-        animation: fadeInUp 0.8s ease-out forwards;
-        opacity: 0;
-    }
-    .afo-left-card { animation-delay: 0.1s; }
-    .afo-top-right { animation-delay: 0.3s; }
-    .afo-bottom-right { animation-delay: 0.5s; }
-    @media (max-width: 900px) {
-        .afo-container {
-            grid-template-columns: 1fr;
-            padding: 16px;
-            gap: 20px;
-        }
-        .afo-left-card {
-            height: 520px;
-            padding: 36px 28px;
-        }
-        .afo-modal-content {
-            padding: 28px 24px;
-        }
-    }
-    @media (max-width: 600px) {
-        .afo-stats-grid {
-            grid-template-columns: 1fr;
-            gap: 18px;
-        }
-        .afo-left-card {
-            height: 460px;
-            padding: 32px 24px;
-        }
-        .afo-modal h2 {
-            font-size: 1.8rem;
-        }
-        .afo-stat-number {
-            font-size: clamp(2.2rem, 9vw, 3.4rem);
-        }
-        .afo-stat-icon {
-            width: 40px;
-            height: 40px;
-        }
-    }
-</style>
-
-<div class="afo-container">
-    <div class="afo-card afo-left-card">
-        <p class="afo-subtitle">Our Outlook</p>
-        <h1>Afrigrade Outlook 2026</h1>
-        <button class="afo-btn" data-modal="afo-statsModal">Show Stats →</button>
-    </div>
-    <div class="afo-right-column">
-        <div class="afo-card afo-top-right">
-            <div>
-                <p>Global mindset</p>
-                <h1>Unlocking Capital for Just Transition</h1>
-            </div>
-            <button class="afo-btn" data-modal="afo-learnModal">LEARN MORE →</button>
-        </div>
-        <div class="afo-card afo-bottom-right">
-            <div class="afo-bottom-header">Our partners</div>
-            <h1>These are our international partners </h1>
-            <button class="afo-btn" data-modal="afo-exploreModal">EXPLORE →</button>
-        </div>
-    </div>
-</div>
-
-<!-- Modals -->
-<div class="afo-modal" id="afo-statsModal">
-    <div class="afo-modal-content">
-        <button class="afo-modal-close">×</button>
-        <h2>Our Impact at a Glance</h2>
-        <div class="afo-stats-grid">
-            <!-- 1 -->
-            <div class="afo-stat-card">
-                <svg class="afo-stat-icon" viewBox="0 0 24 24">
-                    <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
-                </svg>
-                <div class="afo-stat-number" data-target="10">0</div>
-                <div class="afo-stat-label">Years of Experience</div>
-                <div class="afo-stat-small">since 2016</div>
-            </div>
-            <!-- 2 -->
-            <div class="afo-stat-card">
-                <svg class="afo-stat-icon" viewBox="0 0 24 24">
-                    <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
-                </svg>
-                <div class="afo-stat-number" data-target="30">0</div>
-                <div class="afo-stat-label">Employees</div>
-            </div>
-            <!-- 3 -->
-            <div class="afo-stat-card">
-                <svg class="afo-stat-icon" viewBox="0 0 24 24">
-                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                </svg>
-                <div class="afo-stat-number" data-target="500000">0</div>
-                <div class="afo-stat-label">Persons Impacted</div>
-            </div>
-            <!-- 4 -->
-            <div class="afo-stat-card">
-                <svg class="afo-stat-icon" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
-                </svg>
-                <div class="afo-stat-number" data-target="300">0</div>
-                <div class="afo-stat-label">Organizations Served</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="afo-modal" id="afo-learnModal">
-    <div class="afo-modal-content">
-        <button class="afo-modal-close">×</button>
-        <h2>Global Mindset & Reach</h2>
-        <p>We operate with a global mindset and cross-regional perspective. Our work spans multiple countries and sectors, engaging international development partners, governments, corporations, financial institutions, and civil society organizations.</p>
-    </div>
-</div>
-
-<div class="afo-modal" id="afo-exploreModal">
-    <div class="afo-modal-content">
-        <button class="afo-modal-close">×</button>
-        <h2>Sustainable Impact at Scale</h2>
-        <p>By connecting global knowledge with contextual understanding, we help organizations navigate complexity, manage change, and achieve sustainable impact at scale.</p>
-        <p style="font-size: 1.3rem; font-weight: 600; text-align: center; margin-top: 1.6rem; color: #374151;">
-            5+ International Partners
-        </p>
-    </div>
-</div>
-
-<script>
-    document.querySelectorAll('[data-modal]').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const modalId = btn.getAttribute('data-modal');
-            const modal = document.getElementById(modalId);
-            modal.classList.add('active');
-            if (modalId === 'afo-statsModal') startCounting();
-        });
-    });
-
-    document.querySelectorAll('.afo-modal').forEach(modal => {
-        modal.addEventListener('click', e => {
-            if (e.target.classList.contains('afo-modal') || e.target.classList.contains('afo-modal-close')) {
-                modal.classList.remove('active');
-            }
-        });
-    });
-
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') {
-            document.querySelectorAll('.afo-modal.active').forEach(m => m.classList.remove('active'));
-        }
-    });
-
-    function startCounting() {
-        const counters = document.querySelectorAll('#afo-statsModal .afo-stat-number');
-        const duration = 2000;
-        counters.forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-target'));
-            let current = 0;
-            const step = target / (duration / 16);
-            function update() {
-                current += step;
-                if (current < target) {
-                    counter.textContent = formatNumber(Math.ceil(current));
-                    requestAnimationFrame(update);
-                } else {
-                    counter.textContent = formatNumber(target);
-                }
-            }
-            update();
-        });
-    }
-
-    function formatNumber(num) {
-        if (num >= 1000) {
-            const formatted = (num / 1000).toFixed(num % 1000 === 0 ? 0 : 1);
-            return formatted + 'K';
-        }
-        return num.toLocaleString();
-    }
-</script>
-</section>
- 
-<!-- Contact Section with Map -->
-<section class="contact-section" id="contact">
-  <div class="contact-container">
-    <h2>Get in Touch</h2>
-    <p class="section-subtitle">We're here to help. Reach out to discuss your strategy, transformation, or development needs.</p>
-
-    <div class="contact-grid">
-      <!-- Map Side -->
-      <div class="map-container">
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.817!2d36.8219!3d-1.2833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d5b0b!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2ske!4v1730000000000!5m2!1sen!2ske" 
-          width="100%" 
-          height="100%" 
-          style="border:0;" 
-          allowfullscreen="" 
-          loading="lazy" 
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Afrigrade Location - Nairobi, Kenya">
-        </iframe>
-      </div>
-
-      <!-- Form Side -->
-      <div class="form-container">
-        <form id="contact-form-main" class="contact-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="name">Full Name <span class="required">*</span></label>
-              <input type="text" id="name" name="name" required placeholder="Your name">
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address <span class="required">*</span></label>
-              <input type="email" id="email" name="email" required placeholder="your.email@example.com">
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" name="phone" placeholder="+254 7XX XXX XXX">
-            </div>
-            <div class="form-group">
-              <label for="subject">Subject <span class="required">*</span></label>
-              <input type="text" id="subject" name="subject" required placeholder="How can we assist you?">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="message">Your Message <span class="required">*</span></label>
-            <textarea id="message" name="message" rows="5" required placeholder="Write a message......"></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary" id="submit-contact">Send Message</button>
-
-          <div id="form-status" class="form-status" style="display: none; margin-top: 16px; padding: 12px; border-radius: 6px; text-align: center;"></div>
-        </form>
-      </div>
-    </div>
-
-    <!-- Optional: Quick contact info below form/map -->
-    <div class="contact-info-bar">
-      <div><i class="fas fa-envelope"></i> info@afrigradecentre.com</div>
-      <div><i class="fas fa-phone"></i> +254 742160587</div>
-      <div><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</div>
-    </div>
+  <div class="footer">
+    <p>© 2025 Nigel Ooko. All rights reserved.</p>
   </div>
-</section>
-    <!-- Featured Insights -->
-    <section class="featured-section">
-      <div class="featured-container">
-        <div class="featured-content">
-          <h3>Featured Insights</h3>
-          <h2>Thought leadership shaping the future of business, development, and society in Africa and beyond</h2>
-          <form class="newsletter-form">
-            <input type="email" placeholder="Your email address" required aria-label="Email for newsletter"/>
-            <button type="submit">Subscribe →</button>
-          </form>
-        </div>
-        <div class="featured-image">
-          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&h=900&fit=crop" alt="Strategic foresight and future planning"/>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-      <div class="footer-container">
-        <div class="footer-top">
-          <div class="footer-brand">
-            <h3>Unlocking the Potential of Those Who Advance the World</h3>
-            <div class="ads" style="margin-top: 24px; font-size: 32px; font-weight: 700;">
-  <img src="img/icons/logo.jpeg" alt="Afrigrade Enterprise Centre of Excellence Logo" style="width: 200px; height: auto;">
-</div>
-
-          </div>
-          <div class="footer-column">
-            <h4>Company</h4>
-            <ul>
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#capabilities">Capabilities</a></li>
-              <li><a href="#insights">Insights</a></li>
-            </ul>
-          </div>
-  
-          <div class="footer-column">
-				<h4>Connect</h4>
-				<div class="social-links">
-				  <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-					<img src="img/icons/linkedin.png" alt="LinkedIn" width="24" height="24">
-				  </a>
-				  <a href="https://x.com" target="_blank" aria-label="X">
-					<img src="img/icons/twitter.png" alt="X" width="24" height="24">
-				  </a>
-				  <a href="https://facebook.com" target="_blank" aria-label="Facebook">
-					<img src="img/icons/facebook.png" alt="Facebook" width="24" height="24">
-				  </a>
-				  <a href="https://instagram.com" target="_blank" aria-label="Instagram">
-					<img src="img/icons/instagram.png" alt="Instagram" width="24" height="24">
-				  </a>
-				</div>
-
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <p>© 2026 Afrigrade Enterprise Centre of Excellence</p>
-          <div class="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Use</a>
-            <a href="#">Sitemap</a>
-            <a href="#">Accessibility</a>
-            <a href="#">Cookie Preferences</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-<!-- Back to Top Button -->
-<button id="back-to-top" title="Back to Top" aria-label="Scroll to top">
-  <i class="fas fa-arrow-up"></i>
-</button>
-  </main>
-	
-
-  <script src="script.js"></script>
-  
-
 
 </body>
 </html>
